@@ -1,0 +1,1 @@
+game.Players.LocalPlayer:Kick('Patched! Ping owner');
