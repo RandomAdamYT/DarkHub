@@ -1,0 +1,330 @@
+-- Function/Variable Defining
+
+local darkCore = {}
+darkCore.makeDraggable = function(gui)
+    local UserInputService = game:GetService("UserInputService")
+    local dragging;
+    local dragInput;
+    local dragStart;
+    local startPos;
+    local function update(input)
+        local delta = input.Position - dragStart
+        gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+    gui.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = gui.Position
+            
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+    gui.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+    UserInputService.InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            update(input)
+        end
+    end)
+end
+darkCore.import = function(item)
+	return game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/"..item)
+end
+darkCore.supportedGames = game:GetService("HttpService"):JSONDecode(darkCore.import("SupportedGames"));
+
+-- Check for Other Instances
+
+for i,v in next, game:GetService("CoreGui"):GetChildren() do
+	if v.Name == "DarkHub" then
+		v:Destroy()
+	end
+end
+
+-- Main Interfacing
+
+local DarkHub = Instance.new("ScreenGui")
+local Background = Instance.new("Frame")
+local TopBar = Instance.new("Frame")
+local TitleText = Instance.new("TextLabel")
+local ThemesList = Instance.new("Frame")
+local UIListLayout = Instance.new("UIListLayout")
+local ThemeButtonBack = Instance.new("ImageLabel")
+local ThemeIcon = Instance.new("ImageLabel")
+local ThemeButton = Instance.new("TextButton")
+local StartButtonBack = Instance.new("ImageLabel")
+local StartIcon = Instance.new("ImageLabel")
+local StartButton = Instance.new("TextButton")
+local PatchNotesBox = Instance.new("ImageLabel")
+local PatchNotesLabel = Instance.new("TextLabel")
+local PatchNotesValue = Instance.new("TextLabel")
+local CreditsBox = Instance.new("ImageLabel")
+local CreditsLabel = Instance.new("TextLabel")
+local CreditsValue = Instance.new("TextLabel")
+local BackButtonBack = Instance.new("ImageLabel")
+local BackIcon = Instance.new("ImageLabel")
+local BackButton = Instance.new("TextButton")
+DarkHub.Name = "DarkHub"
+DarkHub.Parent = game:GetService("CoreGui")
+
+Background.Name = "Background"
+Background.Parent = DarkHub
+Background.Active = true
+Background.ClipsDescendants = true
+Background.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Background.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Background.BorderSizePixel = 0
+Background.Position = UDim2.new(0, -400, 0.5, -150)
+Background.Size = UDim2.new(0, 400, 0, 300)
+
+TopBar.Name = "TopBar"
+TopBar.Parent = Background
+TopBar.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+TopBar.BorderColor3 = Color3.fromRGB(27, 42, 53)
+TopBar.BorderSizePixel = 0
+TopBar.Size = UDim2.new(0, 400, 0, 35)
+
+TitleText.Name = "TitleText"
+TitleText.Parent = TopBar
+TitleText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TitleText.BackgroundTransparency = 1.000
+TitleText.Size = UDim2.new(0, 400, 0, 35)
+TitleText.Font = Enum.Font.GothamSemibold
+TitleText.Text = "DarkHub - Home"
+TitleText.TextColor3 = Color3.fromRGB(255, 255, 255)
+TitleText.TextSize = 20.000
+
+ThemesList.Name = "ThemesList"
+ThemesList.Parent = Background
+ThemesList.Active = true
+ThemesList.BackgroundColor3 = Color3.fromRGB(72, 72, 72)
+ThemesList.BorderSizePixel = 0
+ThemesList.ClipsDescendants = true
+ThemesList.Position = UDim2.new(1, 0, 0.116666667, 0)
+ThemesList.Size = UDim2.new(0, 170, 0, 265)
+ThemesList.ZIndex = 2
+ThemesList.Visible = true
+
+ThemeButtonBack.Name = "ThemeButtonBack"
+ThemeButtonBack.Parent = Background
+ThemeButtonBack.Active = true
+ThemeButtonBack.AnchorPoint = Vector2.new(0.5, 0.5)
+ThemeButtonBack.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ThemeButtonBack.BackgroundTransparency = 1.000
+ThemeButtonBack.Position = UDim2.new(0.78455019, 0, 0.230105013, 0)
+ThemeButtonBack.Selectable = true
+ThemeButtonBack.Size = UDim2.new(0.390381902, 0, 0.147133693, 0)
+ThemeButtonBack.Image = "rbxassetid://3570695787"
+ThemeButtonBack.ImageColor3 = Color3.fromRGB(57, 57, 57)
+ThemeButtonBack.ScaleType = Enum.ScaleType.Slice
+ThemeButtonBack.SliceCenter = Rect.new(100, 100, 100, 100)
+ThemeButtonBack.SliceScale = 0.100
+
+ThemeIcon.Name = "ThemeIcon"
+ThemeIcon.Parent = ThemeButtonBack
+ThemeIcon.BackgroundTransparency = 1.000
+ThemeIcon.Position = UDim2.new(0.0786455646, 0, 0.0679654032, 0)
+ThemeIcon.Size = UDim2.new(0.189273, 0, 0.90937984, 0)
+ThemeIcon.Image = "rbxassetid://4335489011"
+ThemeIcon.ScaleType = Enum.ScaleType.Fit
+
+ThemeButton.Name = "ThemeButton"
+ThemeButton.Parent = ThemeButtonBack
+ThemeButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ThemeButton.BackgroundTransparency = 1.000
+ThemeButton.BorderSizePixel = 0
+ThemeButton.Position = UDim2.new(0.180999994, 0, 0, 0)
+ThemeButton.Size = UDim2.new(0, 104, 1, 0)
+ThemeButton.Font = Enum.Font.GothamSemibold
+ThemeButton.Text = "Themes"
+ThemeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ThemeButton.TextSize = 15.000
+
+StartButtonBack.Name = "StartButtonBack"
+StartButtonBack.Parent = Background
+StartButtonBack.Active = true
+StartButtonBack.AnchorPoint = Vector2.new(0.5, 0.5)
+StartButtonBack.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+StartButtonBack.BackgroundTransparency = 1.000
+StartButtonBack.Position = UDim2.new(0.78455019, 0, 0.406771868, 0)
+StartButtonBack.Selectable = true
+StartButtonBack.Size = UDim2.new(0.390381902, 0, 0.147133693, 0)
+StartButtonBack.Image = "rbxassetid://3570695787"
+StartButtonBack.ImageColor3 = Color3.fromRGB(57, 57, 57)
+StartButtonBack.ScaleType = Enum.ScaleType.Slice
+StartButtonBack.SliceCenter = Rect.new(100, 100, 100, 100)
+StartButtonBack.SliceScale = 0.100
+
+StartIcon.Name = "StartIcon"
+StartIcon.Parent = StartButtonBack
+StartIcon.BackgroundTransparency = 1.000
+StartIcon.Position = UDim2.new(0.0786455646, 0, 0.0679654032, 0)
+StartIcon.Size = UDim2.new(0.189273, 0, 0.90937984, 0)
+StartIcon.Image = "rbxassetid://3944690667"
+StartIcon.ScaleType = Enum.ScaleType.Fit
+
+StartButton.Name = "StartButton"
+StartButton.Parent = StartButtonBack
+StartButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+StartButton.BackgroundTransparency = 1.000
+StartButton.BorderSizePixel = 0
+StartButton.Position = UDim2.new(0.180999994, 0, 0, 0)
+StartButton.Size = UDim2.new(0, 104, 1, 0)
+StartButton.Font = Enum.Font.GothamSemibold
+StartButton.Text = "Start"
+StartButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+StartButton.TextSize = 15.000
+
+BackButton.Name = "BackButton"
+BackButton.Parent = BackButtonBack
+BackButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+BackButton.BackgroundTransparency = 1.000
+BackButton.BorderSizePixel = 0
+BackButton.Position = UDim2.new(0.180999994, 0, 0, 0)
+BackButton.Size = UDim2.new(0, 104, 1, 0)
+BackButton.Font = Enum.Font.GothamSemibold
+BackButton.Text = "Back"
+BackButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+BackButton.TextSize = 15.000
+BackButton.ZIndex = 2
+
+BackButtonBack.Name = "BackButtonBack"
+BackButtonBack.Parent = ThemesList
+BackButtonBack.Active = true
+BackButtonBack.AnchorPoint = Vector2.new(0.5, 0.5)
+BackButtonBack.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+BackButtonBack.BackgroundTransparency = 1.000
+BackButtonBack.Position = UDim2.new(0, 85, 0, 35)
+BackButtonBack.Selectable = true
+BackButtonBack.Size = UDim2.new(0, 150, 0, 50)
+BackButtonBack.Image = "rbxassetid://3570695787"
+BackButtonBack.ImageColor3 = Color3.fromRGB(57, 57, 57)
+BackButtonBack.ScaleType = Enum.ScaleType.Slice
+BackButtonBack.SliceCenter = Rect.new(100, 100, 100, 100)
+BackButtonBack.SliceScale = 0.100
+BackButtonBack.ZIndex = 2
+
+BackIcon.Name = "StartIcon"
+BackIcon.Parent = BackButtonBack
+BackIcon.Rotation = 180
+BackIcon.BackgroundTransparency = 1.000
+BackIcon.Position = UDim2.new(0.0786455646, 0, 0.0679654032, 0)
+BackIcon.Size = UDim2.new(0.189273, 0, 0.90937984, 0)
+BackIcon.Image = "rbxassetid://3944690667"
+BackIcon.ScaleType = Enum.ScaleType.Fit
+BackIcon.ZIndex = 2
+
+PatchNotesBox.Name = "PatchNotesBox"
+PatchNotesBox.Parent = Background
+PatchNotesBox.Active = true
+PatchNotesBox.AnchorPoint = Vector2.new(0.5, 0.5)
+PatchNotesBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+PatchNotesBox.BackgroundTransparency = 1.000
+PatchNotesBox.Position = UDim2.new(0, 115, 0, 179)
+PatchNotesBox.Selectable = true
+PatchNotesBox.Size = UDim2.new(0.537881911, 0, 0.750571966, 0)
+PatchNotesBox.Image = "rbxassetid://3570695787"
+PatchNotesBox.ImageColor3 = Color3.fromRGB(57, 57, 57)
+PatchNotesBox.ScaleType = Enum.ScaleType.Slice
+PatchNotesBox.SliceCenter = Rect.new(100, 100, 100, 100)
+PatchNotesBox.SliceScale = 0.100
+
+PatchNotesLabel.Name = "PatchNotesLabel"
+PatchNotesLabel.Parent = PatchNotesBox
+PatchNotesLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+PatchNotesLabel.BackgroundTransparency = 1.000
+PatchNotesLabel.BorderSizePixel = 0
+PatchNotesLabel.Position = UDim2.new(0, 0, -0.0863908902, 0)
+PatchNotesLabel.Size = UDim2.new(0.999999881, 0, 0.0863909051, 0)
+PatchNotesLabel.Font = Enum.Font.GothamSemibold
+PatchNotesLabel.Text = "Information & Patch Notes"
+PatchNotesLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+PatchNotesLabel.TextSize = 14.000
+
+PatchNotesValue.Name = "PathNotesValue"
+PatchNotesValue.Parent = PatchNotesBox
+PatchNotesValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+PatchNotesValue.BackgroundTransparency = 1.000
+PatchNotesValue.BorderSizePixel = 0
+PatchNotesValue.Size = UDim2.new(1, 0, 1, 0)
+PatchNotesValue.Font = Enum.Font.GothamSemibold
+PatchNotesValue.Text = ""
+PatchNotesValue.TextColor3 = Color3.fromRGB(255, 255, 255)
+PatchNotesValue.TextSize = 14.000
+
+CreditsBox.Name = "CreditsBox"
+CreditsBox.Parent = Background
+CreditsBox.Active = true
+CreditsBox.AnchorPoint = Vector2.new(0.5, 0.5)
+CreditsBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CreditsBox.BackgroundTransparency = 1.000
+CreditsBox.Position = UDim2.new(0, 313, 0, 230)
+CreditsBox.Selectable = true
+CreditsBox.Size = UDim2.new(0.389326125, 0, 0.39285481, 0)
+CreditsBox.Image = "rbxassetid://3570695787"
+CreditsBox.ImageColor3 = Color3.fromRGB(57, 57, 57)
+CreditsBox.ScaleType = Enum.ScaleType.Slice
+CreditsBox.SliceCenter = Rect.new(100, 100, 100, 100)
+CreditsBox.SliceScale = 0.100
+
+CreditsLabel.Name = "CreditsLabel"
+CreditsLabel.Parent = CreditsBox
+CreditsLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CreditsLabel.BackgroundTransparency = 1.000
+CreditsLabel.BorderSizePixel = 0
+CreditsLabel.Position = UDim2.new(0.00642135181, 0, -0.156518772, 0)
+CreditsLabel.Size = UDim2.new(1, 0, 0.156518787, 0)
+CreditsLabel.Font = Enum.Font.GothamSemibold
+CreditsLabel.Text = "DarkHub Credits"
+CreditsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+CreditsLabel.TextSize = 14.000
+
+CreditsValue.Name = "CreditsValue"
+CreditsValue.Parent = CreditsBox
+CreditsValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CreditsValue.BackgroundTransparency = 1.000
+CreditsValue.BorderSizePixel = 0
+CreditsValue.Size = UDim2.new(1, 0, 1, 0)
+CreditsValue.Font = Enum.Font.GothamSemibold
+CreditsValue.Text = ""
+CreditsValue.TextColor3 = Color3.fromRGB(255, 255, 255)
+CreditsValue.TextSize = 14.000
+
+local ClickSound = Instance.new("Sound")
+ClickSound.Volume = 1
+ClickSound.Parent = DarkHub
+ClickSound.SoundId = "rbxassetid://1238528678"
+
+-- Fetch data from webhost
+
+CreditsValue.Text = darkCore.import("Credits")
+PatchNotesValue.Text = darkCore.import("PatchNotes")
+
+BackButton.MouseButton1Click:Connect(function()
+	ThemesList:TweenPosition(UDim2.new(1, 0, 0.116666667, 0), "Out","Sine", .2)
+end)
+
+ThemeButton.MouseButton1Click:Connect(function()
+	ClickSound:Play()
+	ThemesList:TweenPosition(UDim2.new(1, -170, 0.116666667, 0), "In","Sine", .2)
+end)
+
+StartButton.MouseButton1Click:Connect(function()
+	ClickSound:Play()
+	Background:TweenPosition(UDim2.new(0, -400, 0.5, -150), "In","Sine", .2)
+	for i,v in next, darkCore.supportedGames do
+		if tostring(game.PlaceId) == tostring(v) then
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/" .. tostring(i)))()
+		end
+	end
+end)
+
+-- Slide in UI when everything's done
+Background:TweenPosition(UDim2.new(0, 0, 0.5, -150), "Out","Sine", .5)
