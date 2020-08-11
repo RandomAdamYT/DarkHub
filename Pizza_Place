@@ -1,0 +1,1 @@
+game.Players.LocalPlayer:Kick('if you see this then its patched let the owner know');
