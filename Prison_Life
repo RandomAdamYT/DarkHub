@@ -1,0 +1,1 @@
+game.Players.LocalPlayer:Kick('let the owner know to fix it ok?');
