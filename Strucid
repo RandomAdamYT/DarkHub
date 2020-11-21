@@ -1,3 +1,9 @@
+if KRNL_LOADED then
+   pcall(function()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/StrucidKrnl", true))()
+   end)
+   return
+end
 --[[
 
  ________   ________   ________   ___  __            ___  ___   ___  ___   ________          ___      ___   _____      _____     
