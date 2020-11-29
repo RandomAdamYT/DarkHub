@@ -214,6 +214,7 @@ function DarkLib:Window()
 	Glow_3.ImageColor3 = Color3.fromRGB(15, 15, 15)
 	Glow_3.ScaleType = Enum.ScaleType.Slice
 	Glow_3.SliceCenter = Rect.new(20, 20, 280, 280)
+    Glow_3.ImageTransparency = 1
 	DraggableFrame.Parent = MainFrame
 	DraggableFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	DraggableFrame.BackgroundTransparency = 1.000
