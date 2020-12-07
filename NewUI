@@ -1,3 +1,20 @@
+if game.CoreGui:FindFirstChild("DarkHubLib") then
+    game.CoreGui.DarkHubLib:Destroy()
+end
+game:GetService("UserInputService").InputBegan:connect(
+    function(key, gpe)
+        if key.KeyCode == Enum.KeyCode.RightControl then
+            pcall(
+                function()
+                    for i, v in pairs(game.CoreGui.DarkHubLib:GetChildren()) do
+                        v.Visible = not v.Visible
+                    end
+                end
+            )
+        end
+    end
+)
+
 local DarkLib = {RainbowColorValue = 0, HueSelectionPosition = 0}
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
