@@ -1,2 +1,3 @@
 # DarkHub
-Dark Hub is cool uwu
+discord.gg/darkhub
+darkhub.xyz
