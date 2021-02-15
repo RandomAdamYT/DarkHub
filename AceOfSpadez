@@ -1,3 +1,6 @@
+--Created by : Bye...#0001
+--Discord.gg/darkhub
+--Please give credits if you plan on using anything ;))
 Client = {
     Toggles = {
         SilentAim = false,
