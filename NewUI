@@ -237,7 +237,7 @@ function DarkLib:Window()
 	DraggableFrame.BackgroundTransparency = 1.000
 	DraggableFrame.Size = UDim2.new(0, 547, 0, 59)
 
-	MakeDraggable(DraggableFrame, MainFrame)
+	--MakeDraggable(DraggableFrame, MainFrame)
 	local Win = {}
 	function Win:Tab(text)
 		local Tab = Instance.new("TextButton")
