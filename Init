@@ -1,3 +1,9 @@
+if getconnections then
+  for i,v in pairs(getconnections(game:GetService("ScriptContext").Error)) do
+    v:Disable()
+  end
+end
+
 if setclipboard then
   setclipboard('https://discord.gg/darkhub')
 end
