@@ -1,0 +1,46 @@
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/NewUI"))()
+main = lib:Window()
+
+Client = {
+    Toggles = {
+        SilentAim = false
+    }
+}
+
+local Main = main:Tab("Main")
+Main:Toggle('Silent Aim',function(state)
+    Client.Toggles.SilentAim = state
+end)
+
+
+
+function GetClosestPlr()
+    Plr = nil
+    MaxDis = math.huge
+    for i,v in pairs(game.Players.GetPlayers(game.Players)) do
+        if v ~= game.Players.LocalPlayer and v.TeamColor == game.Players.LocalPlayer.TeamColor and v.Character and v.Character.FindFirstChild(v.Character,"Head") and v.Character.FindFirstChild(v.Character,"Head").IsA(v.Character.FindFirstChild(v.Character,"Head"),'Part') then
+            local Pos, Vis = game.Workspace.CurrentCamera.WorldToScreenPoint(game.Workspace.CurrentCamera,v.Character.FindFirstChild(v.Character,"Head").Position)
+            if Vis then
+                mag = (Vector2.new(Pos.X,Pos.Y) - Vector2.new(game.Players.LocalPlayer.GetMouse(game.Players.LocalPlayer).X,game.Players.LocalPlayer.GetMouse(game.Players.LocalPlayer).Y)).magnitude
+                if mag < MaxDis and mag <= 300 then
+                    Plr = v
+                    MaxDis = mag
+                end
+            end
+        end
+    end
+    return Plr
+end
+local GameMT = getrawmetatable(game)
+local OldNC = GameMT.__namecall
+setreadonly(GameMT, false)
+GameMT.__namecall = newcclosure(function(self, ...)
+    if Client.Toggles.SilentAim and tostring(getnamecallmethod()) == 'FindPartOnRayWithIgnoreList' and getfenv(2).script.Name == '_client' then
+        local Args = {...}
+        if GetClosestPlr() ~= nil then
+            return OldNC(self,Ray.new(game.Workspace.CurrentCamera.CFrame.p,CFrame.new(game.Workspace.CurrentCamera.CFrame.p,GetClosestPlr().Character.Head.Position).LookVector.Unit * 999),Args[2])
+        end
+    end
+    return OldNC(self, ...)
+end)
+setreadonly(GameMT, true)
