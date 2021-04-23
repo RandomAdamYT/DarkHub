@@ -31,12 +31,153 @@ if identifyexecutor then
         local Metatable = getrawmetatable(game)
         local Index = Metatable.__index
         local Target = nil
-        
+        Client = {
+            Toggles = {
+                CashRegFarm = false,
+                AutoFarm = false,
+                CashDropRegFarm = false,
+                WalkSpeed = false
+            },
+            Values = {
+                Walkspeed = 16
+            }
+        }
+        function GetCombat()
+            if game.Players.LocalPlayer.Character:FindFirstChild('Combat') then
+                return game.Players.LocalPlayer.Character:FindFirstChild('Combat')
+            elseif game.Players.LocalPlayer.Backpack:FindFirstChild('Combat') then
+                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild('Combat'))
+                return game.Players.LocalPlayer.Character:FindFirstChild('Combat')
+            else
+                return nil
+            end
+        end
+        function GrabCash()
+            for i,v in pairs(game:GetService("Workspace").Ignored.Drop:GetChildren()) do
+                if v.Name == 'MoneyDrop' and game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart') and (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 15 then
+                    fireclickdetector(v.ClickDetector)
+                    wait(.3)
+                end
+            end    
+        end
+        function GetCash()
+            for i,v in pairs(game:GetService("Workspace").Ignored.Drop:GetChildren()) do
+                if v.Name == 'MoneyDrop' and game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart') and (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude < 15 then
+                    return v
+                end
+            end
+            return nil
+        end
+        function GetCashRegister()
+            for i,v in pairs(game:GetService("Workspace").Cashiers:GetChildren()) do
+                if v:FindFirstChild("Humanoid") and v:FindFirstChild('Head') and v.Humanoid.Health > 0 and v:FindFirstChild('Open') then
+                    return v
+                end
+            end
+        end
+        function GetShoes()
+            for i,v in pairs(game:GetService("Workspace").Ignored.Drop:GetChildren()) do
+                if v.Name == 'MeshPart' and v:FindFirstChild('ClickDetector') then
+                    if game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart') then
+                        game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(v.CFrame.p + Vector3.new(0,2,0))) 
+                        wait(.4)
+                        fireclickdetector(v.ClickDetector)
+                    end
+                end
+            end
+            if game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart') and game.Players.LocalPlayer.Character.BodyEffects.ShoesCollect.Value ~= 0 then
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(game:GetService("Workspace").Ignored["Clean the shoes on the floor and come to me for cash"].HumanoidRootPart.CFrame.p + Vector3.new(2,2,0))) 
+                wait(.2)
+                fireclickdetector(game:GetService("Workspace").Ignored["Clean the shoes on the floor and come to me for cash"].ClickDetector)
+            end
+        end
         local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/NewUI"))()
         local Window = Lib:Window()
         local Main = Window:Tab('Main')
         local Tps = Window:Tab('Teleports')
-        
+        local Farming = Window:Tab('Autofarm')
+        Farming:Toggle('AutoFarm',function(state)
+            Client.Toggles.AutoFarm = state
+        end)
+        Farming:Label('Options')
+        Farming:Toggle('Farm Shoes When No Cash Registers',function(state)
+            Client.Toggles.CashRegFarm = state
+        end)
+        Farming:Toggle('Farm Medical Job When No Registers',function(state)
+            Client.Toggles.CashDropRegFarm = state
+        end)
+
+
+        Main:Button('God Block',function(state)
+            game.Players.LocalPlayer.Character.BodyEffects.Defense.CurrentTimeBlock:Destroy()
+            game.Players.LocalPlayer.Character.BodyEffects.Defense:Destroy()
+        end)
+        Main:Toggle('WalkSpeed',function(state)
+            Client.Toggles.WalkSpeed = state
+            if game.Players.LocalPlayer.Character:FindFirstChild('Animate') then
+                getsenv(game.Players.LocalPlayer.Character.Animate).checkingSPEED = function() return nil end
+            end
+            if Client.Toggles.WalkSpeed == true then
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Client.Values.WalkSpeed
+            else
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+            end
+        end)
+        Main:Slider('WalkSpeed Value',10,150,function(num)
+            Client.Values.WalkSpeed = num
+            if Client.Toggles.WalkSpeed == true then
+                if game.Players.LocalPlayer.Character:FindFirstChild('Animate') then
+                    getsenv(game.Players.LocalPlayer.Character.Animate).checkingSPEED = function() return nil end
+                end
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Client.Values.WalkSpeed
+            end
+        end)
+        Main:Toggle('Inf Jump',function(state)
+            Client.Toggles.InfJump = state
+        end)
+        Main:Toggle('No Clip',function(state)
+            Client.Toggles.NoClip = state
+        end)
+        game:GetService("RunService").Stepped:Connect(function()
+            if Client.Toggles.NoClip then
+                for i, v in ipairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("BasePart")then
+                        v.CanCollide = false
+                    end
+                end
+            end
+        end)
+        game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+            if game.Players.LocalPlayer.Character:FindFirstChild('Animate') then
+                getsenv(game.Players.LocalPlayer.Character.Animate).checkingSPEED = function() return nil end
+            end
+            if Client.Toggles.WalkSpeed == true then
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Client.Values.WalkSpeed
+            end
+        end)
+        game.Players.LocalPlayer.CharacterAdded:Connect(function(Char)
+            repeat wait() until Char:FindFirstChild('Humanoid')
+            Char.Humanoid.WalkSpeed = 17
+            Char.Humanoid.JumpPower = 51
+            Char.Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+                if game.Players.LocalPlayer.Character:FindFirstChild('Animate') then
+                    getsenv(game.Players.LocalPlayer.Character.Animate).checkingSPEED = function() return nil end
+                end
+                if Client.Toggles.WalkSpeed == true then
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Client.Values.WalkSpeed
+                end
+            end)
+            Char.Humanoid:GetPropertyChangedSignal("JumpPower"):Connect(function()
+                if Client.Toggles.JumpPower == true then
+                    game.Players.LocalPlayer.Character.Humanoid.JumpPower = Client.Values.JumpPower
+                end
+            end)
+        end)        
+        game:GetService("UserInputService").JumpRequest:connect(function()
+            if Client.Toggles.InfJump then
+                game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+            end
+        end)
         local Circle = Drawing.new("Circle")
         Circle.Color = Color3.new(1, 1, 1)
         Circle.Thickness = 1
@@ -237,6 +378,47 @@ if identifyexecutor then
             Circle.Position = Vector2.new(Mouse.X, Mouse.Y)
             Target = GetClosest()
         end)
+        while true do wait()
+            pcall(function()
+                if Client.Toggles.AutoFarm then
+                    CurrCash = GetCashRegister()
+                    if CurrCash ~= nil then
+                        game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CurrCash.Head.CFrame * CFrame.new(.4,0,3))
+                        Combat = GetCombat()
+                        Combat:Activate()
+                        repeat wait(1.2)
+                            game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CurrCash.Head.CFrame * CFrame.new(.4,0,3))
+                            Combat = GetCombat()
+                            Combat:Activate()
+                        until CurrCash.Humanoid.Health < 0 or Client.Toggles.AutoFarm == false
+                        repeat wait(.1)
+                            GrabCash()
+                        until GetCash() == nil or Client.Toggles.AutoFarm == false
+                    else
+                        if Client.Toggles.CashRegFarm == true then
+                            GetShoes()
+                        end
+                        if Client.Toggles.CashDropRegFarm and game:GetService("Workspace").Ignored.HospitalJob:FindFirstChildOfClass('Model') then
+                            for i,v in pairs(game:GetService("Workspace").Ignored.HospitalJob:GetChildren()) do
+                                if v:IsA('Part') then
+                                    if string.match(game:GetService("Workspace").Ignored.HospitalJob:FindFirstChildOfClass('Model').Name,v.Name) then
+                                        if game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart') then
+                                            game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(v.CFrame * CFrame.new(.2,0,-2))
+                                            wait(.5)
+                                            fireclickdetector(v.ClickDetector)
+                                            wait(.2)
+                                            if game:GetService("Workspace").Ignored.HospitalJob:FindFirstChildOfClass('Model') then
+                                                fireclickdetector(game:GetService("Workspace").Ignored.HospitalJob:FindFirstChildOfClass('Model').ClickDetector)    
+                                            end
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end)
+        end
     else
         game.Players.LocalPlayer:Kick('DarkHub.exe Only')
     end
