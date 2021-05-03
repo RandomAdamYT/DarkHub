@@ -1,1 +1,321 @@
-local u={}local e=string local _=getfenv and getfenv()or _ENV local a="\4\8\116\111\110\117\109\98\101\114\115\69\121\90\116\108\73\107\0\6\115\116\114\105\110\103\4\99\104\97\114\111\86\112\114\66\85\77\73\0\6\115\116\114\105\110\103\3\115\117\98\103\116\77\80\109\85\116\99\0\6\115\116\114\105\110\103\4\98\121\116\101\99\107\120\122\74\82\111\75\0\5\116\97\98\108\101\6\99\111\110\99\97\116\69\111\100\86\75\118\118\122\0\5\116\97\98\108\101\6\105\110\115\101\114\116\86\89\120\67\105\116\87\105\5"local function d(l)local p=0x01 local function n(u)p=p+u return l:sub(p-u,p-0x01)end while true do local l=n(0x01)if(l=="\5")then break end local p=e.byte(n(0x01))local p=n(p)if l=="\2"then p=u.sEyZtlIk(p)elseif l=="\3"then p=p~="\0"elseif l=="\4"then p=_[p]elseif l=="\0"then p=_[p][n(e.byte(n(0x01)))];end local n=n(0x08)u[n]=p end end d(a);local a=(function(o,d)local a,l=0x01,0x10 local n={{},{},{}}local e=-0x01 local p=0x01 local _=o while true do n[0x03][u.gtMPmUtc(d,p,(function()p=a+p return p-0x01 end)())]=(function()e=e+0x01 return e end)()if e==(0x0f)then e=""l=0x000 break end end local e=#d while p<e+0x01 do n[0x02][l]=u.gtMPmUtc(d,p,(function()p=a+p return p-0x01 end)())l=l+0x01 if l%0x02==0x00 then l=0x00 u.VYxCitWi(n[0x01],(u.oVprBUMI((((n[0x03][n[0x02][0x00]]or 0x00)*0x10)+(n[0x03][n[0x02][0x01]]or 0x00)+_)%0x100)));_=o+_;end end return u.EodVKvvz(n[0x01])end);d(a(137,":NpgPBAk%!3}V*?_k!_g!ANP%BDhkg_!3g8BkP*%BpV?A*kp?%%?p%%*pPk}pk%NN!k?%_MB3VA}33P!}NP%%}gP333VpPV3PX}VP_}3gV}pPB}}N}3%}kp_*VP_VkP}*APk3_PAV}Nk3gVpgV?pB*V*P%}3AP_pB}3_BpVAg!!V}}gg*_BgV!ApVPAgV%gP}yg?!PVAg??AB}*kAg?NBk*2gP?PgN!}*NP!_JAk?P%*__%P_?P%VVB**}*VBA_}kD?_AB**kV_gBA*pP_V_g!*B*BP*_Pk7?>!!NBk}?LP??*AB3??EB%__kB_Nk}_gAPeBAPV*A%VV?}AB)}%B_!kp?k%??VA_*3kp_Ng?}A?PB*LNk*_gABJ*!%Npkg_3B!V}PpAA*?%3_}kBtPk*?_!N_!k%?)APkN?%!AnV!Np%3Xph3N?b%AV_xBk_pB!_NP%k4B}NpAk}o3!A?p%k_V_?kAN*!3K?!Ap_3AN}!}N%%!?MI!%Npk3NN}3AN?3*pB3gpp!pNgNP%?gN}ZpP!?W?3*pN!gN?!A_}%?_kj*%BpV3%N!*7PZ!}N3!_9Ak!^}N%!WgB}Ppg}*BPV?N!3Pp%3Vp#pg!3Pk}}kg*gB*3*N_Vpgg3V}kgQ*kP_VAPR*%PN*!B%3pgV!lN%g!}NB%V?PV_3Pp*pPGVVgp3HpEPP}VA%*3BB*k%N*cAN}gg%*!gkP_V!AV?AB!*NP3?Ak**_A!}ppB!?NAP%VRA!?gBP?A%%_*kB?kAg*pN*BgV}kN?_B?Ng%V?}B!?pA}?pB%B?*B%a_P3p_rk3e3%}VVkV}}_pA}NN%}HBkPN_%}m6AA*_k*_6AkkP?3!pPB!Ap*}BN*%VNAkV!Nvk}&B?}kg%3*Np}%p33%3?pPV?A!_3kk*!Bg3BpB!!V}P%?%AP*VBgV3gV}pp??ggxVgNV%*gV3!=Zp!3gP}VNg%3*pkVZp3}%NN!WpOkk_%pp!3Pl}3gp}Pg*33N33?NB3A4Pp*3PP}V;kp?NBVVNg*V*PB3*VNg%?LBA?p%BJgk!V_B3*VggBBVVkg?!kp_p%%_kA_??PA*P?!AR+%k*Ng!gNPk258A%*!A*k*_A!}NZ%}ZB!Bsk3VN3!!NpkB?!__k%NV!pe}%ggV!ApgA_6?%!_pA!%N_%3pNA!*gk!!gB!}Ng%PG}NB%}gk**P<}!gp3}gp3kp?gp3!P_V}kV?!kN}*gk*pN}3gVAg_?PAp*AB ?PAkV?A*}AP*!3PkP%VNAk*?BBV!B%_AB*}*B_3%gTV3V3Pg?kB_*%P??kB3V*P_*#P_}?P!P_"));d(a(110,"Q&vb<n/i)_Y4KhJ^_vvYv_4K<Khn/K^iv/&)44<nhY</^&/&&KYJv^4Jnh_Fvbv>Ynbnhv/<l</^&/Yvb_4<b)^<&Y4xY4b&h/nK)4)<yJY&</hXn_hJiJJJY<&JYbbh)/v#&__hbJK_nb^<ib&)_ivYK/n&h<i/J/)b&b4Ynv^<NJYnY/vn4)n<h^&v&b_Jbv4n<_Jbi&^h_/&i_Kn)4Y<J_Jbvbb4Jnvhn/_>b)h!n4<nn4_iiJv)v4Jnvn&hn/J^_)_vKY_v&Jinvh__/t)Y&h^"));local p=(-u.At_WDGLt+(function()local _,p=u.SAaAvYzh,u.yAiZzFxw;(function(l,n,u,p)n(u(p,u,p and n,u)and p(n and p,u,u and u,p),u(u and p,l,u,u),p(u,u and u,l,u),u(n,n,p,u and n))end)(function(l,d,n,e)if _>u.RFQPlkTj then return n end _=_+u.yAiZzFxw p=(p-u.CWQBbpEZ)%u.czlIurnZ if(p%u.VAiWLQhG)<=u.LSRTAzPC then p=(p+u.kftwJWqx)%u.aaMRXaTy return e else return l(l(d,e,e,d and l),d(l,l,n,n)and d(e,d and d,e,e),d(l,d,e,e),d(n and l,l,e and n,l and e))end return l(n(e,n and d,l,e),n(n,l,l,d),l(n,d and n,n,n),n(e,n and l,e,n))end,function(l,e,n,d)if _>u.sxgULtuG then return d end _=_+u.yAiZzFxw p=(p+u.JKEoWImZ)%u.dKWKltJK if(p%u.auxbrZUU)<u.MOJufn_l then p=(p-u.FfgpzBqC)%u.mkIavKyw return l else return l(l(e,n,n,n and d),d(n,n,e,d)and n(n,l,l and n,e and n),l(n,d,n,l),l(n,e,n,e)and d(d,e,n,e))end return e(l(d,e and l,l,e),e(e,n and l,n,n),d(d,e and e,l and d,d and l),d(n,e,l,n and l))end,function(n,l,e,d)if _>u.GiigpvpP then return e end _=_+u.yAiZzFxw p=(p*u.LMefmunx)%u.ZWRfgUqc if(p%u.rkOWeUQl)>=u.TtwK_lyv then p=(p*u.v_rKFrln)%u.YKltGjGX return e(l(e,n,d,n),e(l,l,l,n),n(l,n,n,l),d(n,n,e,n))else return l end return n end,function(n,e,d,l)if _>u.pAZQfULU then return n end _=_+u.yAiZzFxw p=(p-u.BuMgBPza)%u.XxcvHDFG if(p%u.MxvwrwoC)<=u.oqYPbtts then p=(p-u.jATmwAzB)%u.eZXGIpll return d(l(l and d,n and n,e,e)and e(l,n,n,d),n(n,e and e,l,d),e(n and l,e,n,n),l(d,n,l,n))else return d end return d end)return p;end)())local r=(getfenv)or(function()return _ENV end);local n=u.cIfuGsLZ or u.gahWJtDF;local d=a(p,";uGpx^BWI}w,#C5qp^Bx}B#Iq,pB^5}k#GBQ}^,}55GqBG}G,,qGuC5}ppx#W5,{GqIp,^5BqCxuWu}q#^uIxIWuwICpuuuIB,}I#wqCpIpCwGCx(x#^^px5^wI#Gw^qI^,^qGCIpCIu#Gqxu,^GWC,,}w5}q5I,x#}x#BqIGwWCCW3CpxWpwwIICW5#Bx}u#5DWG,GxpxW#w55TuGWW,qqxuq^w}GWS,qCxx#W},B5qupj#u#Bx}B#Iqw^GwC5BqWxWB,}#IwC}55BB}pC+o}GCGBpBW5,N5GuxB##WLtC#G,xPIp,x5BuxGxB#}5CksG^B,^q?OqxqG5WC}GywpWWxwCCu#wCwGG^xIB,IGu^C}w#,O^px^,IC,5w#q,u:^pIH}<CIzwp#B5#}GZ^WIww}5^u^xwW#BG,u#Bp5B,wI5u9^q5H5^BII,w5#^(}^#^UpGqBxxw}}w5GB^p}f#}5C5BqBp5WvwGCxpCW},B5IuzxuInw,}B5^qwWG}qC#u^p}pGxGIw,#55GtWI#C_IGCB#ICCGq^5GpuxB,55,GIBuI^W5wx5pu^pw,p5Cu55#pxBB}I#wG^W#wB,puuxpWW^ww},5pBBpwQC}qCqBu#^,IC,GGCBx},#55CC5BGIW#cq^u}x5GBB5w-CG%xB},I5#uupqWxBG,u#Bp5B,wI5uj^C#Iux?Cxt}Gq^q}#IG5Bp,BBWC#u (pB^,IW,,wIqW>#I^,u5qu}Gl^qwqqcgux^Ix,wCqm,pqpxBr#GuWxG^}}CC#uGpWBp}WIB,qCGBB},#uquG5uxW,#,5qG5pWI5#Gq}Gwp,Wq,5qxu}x^W}BB,^#wxpBqwCCWC5uCBCw5,qKpxGWI}C#}qCqGu5IpCpqWpBpq}B#wHupGxpIW#Bq#GuxCIuW1w},#^gI^w,C,uIq5^pwp5uh,xwB,^#w,#)p}B^wp#CCxupBpwx,^q}pIB5}p,qqp5IuxW,#^qwG^^qI5,u5^u}:IxuWI,qGp^GIxw}5xu#uCBCw,C^uxp^uTwxC}qqGqB#^G,xbGG}Wp}uCY-p5GpuxB,q5,G}^p^w}}5}Gwp,Wq,5qxu}x^W}B5}wqwxIBq,}CWuBx}GwBpWB&wpqB^}^CG,IuwBIIqC}qWpBuBB^WwC#Gw^u},,}qIG,uIBI,C5pup^_BB,xC,G^xpIGx#5Yu^p,B,wII55CxuW}w}#C,w/}u5Ic#5q^pq^C}#}BC^G^BBWu#^qCGC^uxBW}I#Gr^^W,w,5I#5pwIu,uCIuupqWq^5wC#Gp,BWw^#qCBu^B^wB,Wq,pwW0}^#uq^5wuBWC#Wq#GWBu}Z,p5Wu,%wxpWw#.uuxBWIwqCCuC5BWwwqC^=^xGGIIW#CM5q{pq^x#Cq}pWBuBIwWqWpIx}IC##+GGW^pIWW#wI&q^}I5,}qpGGx^W}wC}#C^F#^Cwp5x,8xxW}}q#qm#qGxCwxC#qqp5^q}pCB,xQpuI}u,Cq,G^G#B,,,q#!C^u}d#B5,uWx,xnB#CpuC^GWC,W5Bz}pCWuBM}}C%uCWxw##qa5GqBpwBB59GpW^CIC#w,*2q^}}w,}q5uC^RI#,Wwxqp_IIu,uqGGGxpI,,pCCu5pCIGwuCxuYp,pdwu#Cc,p^G,p5CG>WGC^C}wImC,pG^wICCGw#q,uUBq,}qwu}^5WC,05#uWuGW^wW5puwxGW^,wW5uGxWBC}CCw#JG4B^wp#CqCGCBw}#IGCu5Bx^IqCc5qpx^pIB#G5C5Ix,WC,55pGux,W,w,5Iuw5wW5,pC}D}xBG#IwC}Dxqxxp^ICBi,GqBxw^CINIpuBI}pIBqWGpBuI,}GCGp=BG}8}}5}GwuUp#,xqGGx^GIWIEwWC}x5Bq,Wwk=,pqW#wG5u4<x^W^}}CIq,p}BwwG#^MJpIGxI,#}q}5CxGIp#G5wGW^W^C,G5uuqpCBwWW,5bC^bW,Iw5}!I2WWW}C5uuxpWWBB^,Bqqxp^pW}Ix,C5qG1^pBBqwGq^^I^#GwIuu^^I#,xquG,1B^^Bw#IuWxGx#},CquBp5W,,^}I#,C5WGwW#CqCpwG8Wq#^qqpBuwB}W55WG,BGIw#WSuqBxGIu,xw#CCp^W,,^5#CWa,u5,G5W6CpCWwBc,}u}xxGIWWI#q^p}Wm}IC^Lq(x^vIq#G,w5,pC}C#I,p5WqwI5#p5}u}^Bp#wG5uGxx,W,,##wu,^up8Wq}x7#p}WBwqCpwwp5Wp}}#}(B5#xu}}CxqWpG^Cxw}}w5cxBxI^#CquGI^px#,55WG,n5pwIC5^GVxpW5w}}ICu5xxqwW5G%^xtB,BBwC1,pwBqwxIxCp5IpC},#wqqpxGW^x#B5qppuB^uW5wx5WuxpwWCwW,wG^WC,IC,uBxup#}xCw{Cp}WpwICuuuxpGGWuIB#}Cxpq}WCGq^pk^,^Bw#5CGG^}}W#WwBq^DwBq,pqxGBxCIxwq5CCwGxWq,IW55}xuW#}qCwE^%H^w}qC,/pG5Bw}^IGCu5Bx,IqCPJGG}B%I,#},BL2^,}xw^q^u}xwGGIC5^G_xpW5w}wxqBxqW}}uC}:Bp}W}^IwW,#qqpLBG}xw3j,Bp}5#uq#GWGGB##uqBGI^pIxWG#uCBx5W,,Iquu^5#^Wwq5w:CxIWpB5#BuBpWWBwCC#qqxGBWwG#}uu5wp}x5}u}##5xpI}#pqwqIxx}u,,5CGxxqxxW^#uu,^uWI,W55Cpfwp8wI5}uxp,W5w^CCa5qwxBw^CWEBq^LI^ZIG,x5Bx,IqC6eGG}B!I,#},Bq,^^I,,GquGIlB^^Bw,5uCxqW5x5C,uBp5p^xIWw5qp^BqwBwxqHpCBW}}Csq,q_GuWq#Wq#GWBG}wWI#,G^^,xWW5wxu#^CIIwqqGu}^uIGB5,wu}x,WwB}W##xqBGI^w,qFpxxWB}CCxqqpCGwIu#}q5G}Bx}#Ww#}C5pG}u#pqG#GxqIw,Gw},#55Bpw}5puwuIBx,uC,lCxxBqBx}^q^x^B}^Bw5?}xGG^^#IGqwp,BBICC8qWGqB%x#}IqWG}^IxW^wwGCxnBpI}C5uGG^xW,,GCCu,AI^GwC5BqWxWB,}#IwC}55xGwuCp)GCGuwx#W5,_h^^C}I,,qBGuu#WB,,qWuqxwIB,u}55C(G^B,^5WuB5BWpw5CB#C5)uGIW#C!Wp5p#IWCGfuG5BuwaII,}cwB^}5Iu,IC5Gux5Wx,W5Iuwx#Www9uI^}Ixw,55u^xCW5Bw#Gu,x^B#wu5f#}C#Gx^BII,wuqBpwxCBqCpx^q}CIwCxGqBIxx}pwIsIBuI,,G5WGBqrpIBw}##5GpW,,BC}uxpqpw}MCuUBpCW,w,IwC}55x5wWCuqIGCB#pB#pq5GBuCp4BGCWuC^WI5I#CIG^xqIu,I5pCIV}^B,^qT#wGuIu,X}}C<qBB5wqCwcuxxB,wpCx#A(#B,}C##,,#5uBxIWww#uu^^}B#I5qGB^uIqW##GGu^#W,,,}w5}q5^G,u5puG5GBqwwCG#}C#H5Ip#}<ppwpIIp#5qCGw^C}#Ix,^uW^p}j#uq,Gw^uIp,xw}5*<Bx}WB}#5/u p5BxC#uCxIBq,GC}uuxGG5IBCq=}p?B^wxICwS5Iuwx#W55pGWBI}w#uqIGpBux5w}5^GG^pIC,#5pu^xBpxIp}IqI^uW,wGCWuB5FGI^wI#,5pBWuwBIBeuqBu#wxILq,pGuB}I,,q^p)BpxwwxqGu}BpIu#Yw5qxx^W},p5wFCxuW,W#,,%,x#xCwxCWc#pBWB},CB#Gq^GW^_#B!pCAuIxwW#w55>uGxxWBquGht#}xW5Ctu^^pWCBw,}5,8tpx},C,3}xwW,w#wu#xqxW^wwIwuGq#x5}pCuq,5IpWB}W5,Gu}^}IW#Iq}GwGSxGWGqIu5xCII^B}5C9EGpxBB}I#wq#G5Bg}G#xxGWW}C#Ciwq*xB}^Cwq}5wp}x5CGqWp^B,}u##qu5BBBx,^5wBCIXwp#B5w-CGHxpBBI}w##GGWu,BC^CxG^W},GCpqpxGB}},##,w)}u5W5CWzuGI^C}#BBw55UuGxxWBwICwv#p5WjwGCxGwW},5CCC#GuW,,u#puW^PWu}u5XLWp}Bw^IwW,#u#W^}q#Bq,pwHxx#W5,<5GuxxBWIwwGu^#Ix^#wxCBlIpw,u5#ux5#W},xC#Cp5BuIICCpiCxxxGIB#C_-p^B5^#IIq,pqB}^HI}}##5pC}C#I#BuG^qI},,qGuCuGxpw^5uu5^SWIw}5Iup_^p#BGCwu,xBBC,yCWAqxXG#WICW6}pIGWpwIG,x5BuIWC#u?Gpx^,}G,Cq,5IxpWq,#55uBxWIB,u}#5,)Z^x,p5^ux5xG#^5}>#GpwW^wwIwl^qwGSwIIxqqpBuw}#,qq}pxBWx5wIqBuCBWI^#x,GqIx}WC,W55uux^WqIi,qsq^>^uwIC,uSpwWw}qCw#Bq}G,^x#wtWCxu#x5IF,G5xuBxIWwq^Gxu0}IIGCxu}^WIuB5,C5q>xpI}qCq1Cx5Wq,lw^#IqIW}w5I5uBvb^G}WC^qq5#p,BCIG,BuC^CI,##qCG5GxxBWBq#GG^uI#^wwGCxnBpIBw}##5JDpGBx}B#IxBW,wuCuK5qxxw}}C5qC55pC^GCBq,p}Bq}^Crq^5wBwxqBGwwC#<5x=WGwxCB!IpwB#}5CkGBW^,wC}CIu5Ipw#C5=}xw^I}qCwApxxWx}^Cwsup}Bwx5}C,GqIGI^IBxw#C5u_xGWxwBCI1wIu,#5x,#lxpBBI}wuux#Wxx#C}uxp#ppxBWI5WxWWGWU,#8}ppB^}##W,#5CxB}}W#5UG^^^}p,qqx5uuIp5,BqWGGx}I#,p5,u#)I^x,p5^uxEpuB^5}2#Gqx^}}CC5u-pWB5}}CW#xuw^qIq#Cq}G5uxBpWI##G,^CI#^#wxCBYIpw,G5CGGkGWCWG}IGZq#WWw5}GuxpWWuw#Cq#BGdB5}^CqqCp#GwW3#uq^GqBBI},CqWqIpWIW#I#}GH^pII,GqGuW^Gp5Wuwp##xGWqx#}x#BqIGw^#I5#=qGBC}#IIu<qwx#}u#qq}5Bp^BWW#,KuW^WI^#BqWGIuCxnWYquGB%BI5WI#wkqxCWWBx,p5^qwG5}^C^8pxxW^wB}#,555Wx}w#}RxCGuwx#W5,y5GuxxBWIwwC#V5xM,5qpu}x}IBB##Guu^BW^BB,^#wx5Wp,u5W4CxIBCBG5G#WCwGG^xIB,I5wu#x5IR,G5xuBxI}55CpG^u^n},q,GBp^I^,u5,CGGupBWIIx##q5psBG}x#BqIGw^#I5#ZqGxI}WC#q,qw^x}}#WF,uuBuIC#W,#u*^,}I,}qe5Ip}IW,5wGquvBxI^x}##5U(pGBx}B#IqwG#^5}O#GuIBWw##,#wGxB}}WC,5upu^C}WI#5vG,BII}#>,Ic}xq}IWG#uCBuIGxB#}5CO6GpxBB}I#wq#G5Bb}G5IpWW#},}wqxp}BWw,,u*uGCBW^#,}qpp,GxW^#pqwC5GCxGIx}(CI*wp#B5whCG*xpBBI}w##q5^xwp5IgWfBBjw^CpuWuCBC}}Cp#IG^^qwW}/5uGWW>xw}}w5q%q#xxWBwICw9#p5W2wGu}^xW#^x}##5{&pGw}5xe#5xWuw#Cx#,C5ubWqCqJwTI^xwu#,qCpx^q^xI^C5puuxW}#Iq#GuxqIxW},yCBx5Iq,w5uGxx,Ip,xwK5#x,WCw#},w5qBGI^wI#qup^WBwI#q3BpuBq^#,pnGpB^,I},5w#q,u*Bx#pq^Gxqxp#B5woCGxwI^,w}wu^cwp9,I}x3qxBGww##q1}xxWW^5,IKBGCWW}^Cx#GmI^}IC#Wq5Gu^^Iq}M#quqB1Bu,I5,G6xwIwwq5wCBg}p,BxCwuW5xG#^5}=#GqxGB^IIw/^pxG%wI}G5xG}BW}uW5#CqquxxIwq5quC^5Iq#K,^CIeII},5}5GBu1BGwW5^mqq#x,WC}G#BGCBC},C#%Cp5px^BIB.#pGBu}#Bw,G5xuBxIWww#C5uzxGWxwBCI^BI,,u5uu5hx^ww}55RCq5xCBG5B{,x}Wqw^5Mk^qwWw^qWG,w5#u5^LIG,x5BuIxwW#w55%pBI^#w5}5IpqI5#G5Wu^xwxB}W5^u#2*xqBxwB,GqwG#^5}/#GqxGB^IIw,#55G=WB#^QwG}GIWq#5 GGW^^IwIBCWuCBBx4Iqwx5BqGpwB#}5CPtGpxBB}IjqxwWGxw}G#xqBGI}qCwlGCwBWwG#w#uCxhBW^C^O6q5xw}W#uqpGw^^xwW,#qGB^C}7wqw.qCxCIG,xwuCIq5WB,W5GA}x#Wpw,C##IuxWpw^Cx#pCBu5^>IG,xu}^C}5CsqWG5^}}WIxCuGI^q}G,u5CuC^GIxBw,}#5GGIu,p5G,GpqWwwG}}w#C5xCwCCICBGGBq}}#,HGGCGG^pwWq5p^BIIWWIC#Gu^wIq,p5ICCuxpw,Gqpu5x^IIwq5WuI1x^zwq5uurqquG^wI#,5qr^^}}Cwh#ppBw}^Cp#QLCBxI5},q}G,^qxG}uwBqw^}I,,wIwCG>xpBBI5*u,^ipsw,w+#Bx5Gww^C##1xGB^}qCwSCqxx5}##pXCG,Bw^I}55qGp^C}x,W5,G^GBB^,^qBqWx5Iu,B59Ghx^ImB#}qCuqwWQwCWw#GqxGB^IIw,#55G/},#w,Bp5GIWw,qqCGWuxBp}^wwC5x^I^,pqxG^^Bx,B5}5uq^xpx,#wBqIpCW,w^}G5uupGI^##p_ppuWGwpCx#w5#u#wG#IqWpG1.xIWww#C5u!xGWxwBCIiwp#B55#GuxWWW,x}wqOpqIxwp}x5pqIW#wuCqu^p,WB},}Eugq^yI^YIG,x5BuIxwW#w55guGxxWB55G}^5p5,qw5CxxIpI,p5w#5^+WpwC5Iu,{G^<}q5x+pVG^I}CCB?,GqBxI^#}ZWpC^q}w#uq^5,uxIw#W}xC#H5x WGwxCBEIpwB#}5C9SGpxBB}I#wxpWp,xCI.}xxW5BG#5#Wq5W}}^#q>#5wp}x5#BQWpG^}}##pq,G#uI}B,CqpuCupGBB5wkCG_xpBBI}w##q5pbBG}x#BqIGw^#I5#:qGGx}q#5,wuqBpwxCBqCpx^q}CIwCWG5^IB^#pq^G}N#}G,I5WGGqlpIBw}##5UUpGBx}B#IqwG#^5})#GqxGB^IIw,#55G ^GIx,Bpw^qwvCpvGp.q5xBWIwwC#_5x:WGwxCBhIpwB#}5C!nGpxBB}I#wq#Wpw#5^{}5LGI^wI#,5q=GG^xIB,I5wu#x5I4,G5xuBxIWww#C5u=xGWxwBGwxq} #pqGGcHxICw}5pG/QBIxw,5uc,Duux^#I5#bqGGx^BII,w5#u5^0IG,x5BuIxwW#w55(uGI}#x5##x?#p5WgwGCxJBpIBw}##5-ipGBx}B#IqwWuw#Cxw#qxGB^IIw,#55G%^GIx,B5Iuw}u##qx##uxxBWIwwC#35xgWG5}Gxx#GxB#}5Cm8GW},xC#,xxuW#wx},w55+uGwd5uv#ppWB}CC^NB5wx=w1#uy}uWBW}C,,q5GpuIx,^5wBCIzwp#,w5qu^x^IGBI,#u,^BpkWq}x5wxwB,,pCW25p}pGwx#CuuqxGvIpCpJ}GWBwIqW5,W#wuGxxWBwIq#^,}BW5#^Gp^GIW,#}#5,y1^^,p5GuWx#pqB#CBuxxpWpIw,uC5qBpuB,}x#G5IG,B^I5,#5GGxxqBGwwC#n5xD}xqpG5uBB5,x5WupxCIGw,5,uCq#x,B8wGCGn,uG^wI#,5q4xxwpC5#BueB^}w##qWGIuBB^WwqGuq^#}^,}}lCIFwp#B5#GGu^#xx}#5#vCx#Ip,GC^uIpCWI}q5W#PoqGxBWWG,w5#u5^ECxq}pwBC}##ww5nGBu}#Bv5CGI^JGI^w5IG}^xW,,55^uCx5pGI,C,u#G}WGwx5pFWxIG5wI#,_5xGG#^GCxh^p,GppBW5,E5Gux}G#W5CuC^wx<}I5^GIpII},q5WGxx,Ip,x}I5Wq#^uwuCq6}xIB}Wx#pVCxGB5}I,w WG_B^}pCW.GppBI}#wwq,GW^5}BW#C#uCxC}m,CqG5^uGIxwCquCxx5Wu,x5ICxGIW}wqCWuxp,Wpwx}BqGqIu5wi#pgBpwGBWw#,tuG}BBIC#^qB5Ix^p5W,wGC#^BW},#q.C#ppW,,5C,CBppG#BC}ECxqCpG^ICwqCxyWxB8,xK^p,BpwT#WqqpJGGIXIu,p#BS5xoWGwxGIxCI5#uqgu5-G^wwW5wqwx,Iuw}5ByCx^WBBI#^,5qCGGwxC^{,qI^^pI#^(YGInDpG#%+uG#^p}B,Cq^GBDwBp,pqxq^^pII,BCqu5^upII^C#tWxwppxBI5#9qGGxwGCWqCGCBw^9,BlppB^uxw}}w5GC^p}I,5,BGGBuI^,^I#Cx>BpIBw5IuCxpWp,M}B5wx}IS,GCqkqGCGBW^Iw#}p,BuwB###xpEBq}p#p}w5GuxxBWIqBG,^uIu,5wxAI^uIu,xqG>I<G^uBBw^uWpCIGwIwEm#x,Bq}qWB,5q7GG^xCG2WGC^C}wIzC5G}^#}#,Gw#q,u)Iq,^qwG-uIIx#p5WuW55pBBI}w##xwWqw^C^uGqI^}wGCxuppWWIw}WG,w5#u5^ #5{pG}^}}BW#C5GqB^IC#wquG}^w}uWk,qCxBu}^^x}##53tpGww5^uwqwW^Bw}4uIqxBqwBIw*wppWIwB}!,Br,BGICCb#wL}^}}w},qGG^^wIx#x5}Gxu&xpB#5Guq5#pxBB}I#wq#G5Bb}GYCp#GI,P}w5up#BpwWC}5BG,B}}pI%#qauuBxwww5Cp3BxxxWx5WGBx5p##xw5_Dx^IpwC}wGwu,p!Bx,#u,x^B,wwCC>}pB^Bw^CWE5u#^qwGCB,B5BB#}G#uq##wuGxxWBwICwi#p5WKwGCxzBpI,B5,uuxuW5Bx#BuWxCW^,GC}uuxGpG^I,}>wGuBpwx#}q,pBuwB}W5CpGpBuI,#w5,qBx^Iq#xqMuwp#I}wG5Wu^^}Ix,^5wu5G#WCw}5YuIq5W5BI,#?CxpB,wI#qEWpIG^pII4,G5xuBxIWww#C5u!xGWxwB-I^}Iq,Wqxu,^pIx,,C^GG+#^5wp5uV,p^GwW}I5q>xuWW}qC#4pp,B#pwIG,x5BuIxwW#w55.uGxxWBwIt}^GIx#p5WGI^}pIIW}#q^x^IB}pC#15xCWu,G}IuI<TGBIIC}(qpWWx},Cp-xqu(xx#W5,P5GuxxBWIwwC#R5x*WG5Cu#SIB},wCuup^xW}w,5B#w^?WBw^5 w5qBGI^wI#,5qRGG^xIB,I5wu#x5Il,G5x^qI5WwC#GCBpI,#I5qGW^IxwwWwe554xBw,W5wR^q5IxwwC}ux5GGw^#I5#2qGGx^BII,w5#u5^YIG,x5BuIxwW#w55/xB}p#B5uCwG}p5w9quGWxqI#,p5,u#y5B,x5}B#IqwG#^5}g#GqxGB^IIw,#55Gn^GIxq,pB^5pBW5,>5GuxxBWIwwC#Y5x2WGwxCBUIpwB#5WuBNGBx,^5,up^(WWwq5=CGGqGIWII#5gpqWBwIC^6^Gpu#wG#IqWpGMFxIWww#C5u/xGWxwBCIRwp#B5wFCGdxpBBI}w##q5^G,u5IuwxWWW}^I5CCqG^xw^C,Mpx&BW}qCT#Guq/GxwW#w55=uGxxWBwICw #p5WRwGCxHBpIwq5wuG5wpGBx}B#IqwG#^5}L#GqxGB^IIw,#55G!},#w,BuIB}}q#WMxG,Bp}xIB5GC#Gwxl}55}u#^#WGB#qGuIxWIG^-}I#wq#G5BJ}G#xqBGI^wI#,5qrGG^xIB,I5wu#x5w#qWGwBwI2Ww#}C5x)}u#W5qG#^pI,,#w5Xw55pBBI}w##q5p4BG}x#BqIGw^#I5#*qGGx},CBq5CBu5^nIG,x5BuIxwW#w55&uGxxWBwICw2#IW,BwG?x^^I,,pq6uWxqI!WG#5#IuIG#}TC}*}p#Ww}?IwuDpBB^wsB5,B5Iuwx#W5,F5GuxxBWIwwC#)5x_WGwxCB!IpwB#C1u}x}W#,wCA#wu}G5}c5uuWpqW#wpC,n#q5^wp5IB,I5wu#x5Im,G5xuBxIWww#C5uRxGWx5,GBx5GBB5w-CGTxpBBI}w##q5p_BG}x ,xBB5xBI5#FqGGx^BII,w5#Bp}5#B}55BuIxwW#qpG5^BG5WBwICw:#}N,^qBG}^IIBBwqW>GxqIG}XC,?5x5G#W,}eqIp}B}w#C}b5N*G5w{#}!Cq_xB}u#x?xuwux^uWIC}GG^x}p,WqIG}uxpww75CGOp,pxWu}Iq}xGWx,pCWuIx}puBBI#qGpqWGIB#qqqpGWKx5}C,Guw^,I,#5q,p)GG^>#G5,GquGB5,W5Wuw^IB5BIwW##GCWBwI5WE,x#WCBII5qxxuWxIqII#^5#xC}B#I9WG,B#}CI^,w5vpx}p#wq#G}^}Bw,^5IGIrB^^BwCGupxpIB,p5ICw&IWwwp5W#wG9B,}5C5qx55G,^G,pq#G5BC}uCGvp55uxBI#Wq5pT^CICw,wx5phIB},G5xGpxWII,}wuCBq#^Awq5BuIx^W^I#C^Q^pIWB^xwp,IGUBu}uCxsupBGI^B#Iqup^uIWx,C5CGd^5WxB5wCCGppW#w55Cuu^GIpB5}x5IxWW5,?CCRCG,GxBpII5}pGBxwp#W%Ip}Gu^BW#C5GqB^IC#wquG}^w}uW+,qCxpBIW,C5^GGx}Iu,G5}G^5xWuw#Cxw#C5B#wCCIqqxGB}wuCG,B.q^qw4wuq#puBWI,#,q55xuWGwWGwxCB=IIB,,5uuux5pxI}5xu}xqWp,p5B#xupGIwIC^ywCwGG^xIB,IpBB,}u#uq55xxB}W#Cw#q,uo}r,CqG#G(wp#B5w)u5^pW}w}5B##G,Wuw}5Gjqx#Wqw{Cp#DsqGxwp#}-5pxG#}ICWq,G,*GxwW#w552^I}p#IwIGpuIp5#BwGuC^xpI,I5uGB^xp5BxCPuWxWB5wWC^u^g5xC}CC5CqpBB}}5#I_IGCBI^xIW,kGBBpxBBGwwC#/5x-WGwxCB&IIp,G}5GBu#^wwq5Bf5GGWW,G5^uIu}WgwpCI=GqIGxW##,q}G5u5^WI_hBG#^,}BBxw#C5ubxGWxwBCIHwp#B5wECG^:I^w,C,uIq5Bg,u5Wfqx#Wpw,C###qG^w}qC,?pG5Bw}^IGCu5Bp,I,#}qppG^p^5wCqWG#^IIGwxquHwxqWC#u5#uC^GIB}x5^uuxII%BB5BC6u#B,}}#5#wu5Bqw^#CgwpuB}}wIW,*##uxxBWIwwC#l5xsWGwxCB.Ipw,^5xC=pIWC,}5uR#xIWpB=5B<#p,WBxxI#,5q?GG^xIB,I5wu#x5IP,G5xuBxIWwqIGC^pIp#TwB%^^}}u#u5^CGGupB}I5B1C^WW^,xw55CpCW5I}CCu^x^B}^5}uwx5#u5^_IG,x5BuIxwW#w55luGxxWBwICw^IIC,p5pG:_B^#,p5qGGxuIrwWC,#IuWG#BB#B!WpWWwwWC##5q#B5}WC,,5u^B}wuCuq^qJx#^GWICWG,Bp}p,W,GdquupwW}}5RBxWWW,w5Wu#_5p#w5CWu,q5^Iw}CqQWxxB,wpCx#BGGGIx5,h&upW^q}##pq,G#u5W,WCwq5BpWWC,^55u,^II,w#Cq##5Ip>BG}x#BqIGw^#I5#aqGGx^BII,w5#u5}}#I,xpxBW}5W#5uG^BB}I,qqBGu^qx#}BquGwp,I,wq52#5xuIrwI}B5#xpWq,GCuuspWB,^IwB,#u,Bu}}CGqqp#Bq}j#p,RpuBBxBw,5qp0BGI}#:5,G}uBB1,,qxY^^^W}ww}I>,xwWGB<,B(Cx}W#},Cwmup^GGW{IB5^G,Bp}##} Bp}^wICWw5CG#^xxG}I5qG,^5WC,#5puW_x^GBI#Cuu^GIxw,5G*Cx,pIIGCCuBqGWI}5#C&I5#QI^7IG,x5BuIxwW#w554uGxxWBwICwd#p5W=wGCxQB^,,B5,Gux^I^,I}B5^qwIG^5Ww#GqxGB^IIw,#55G1^GIx,B5Iuwx#W5,Y5GuxxBWICWuC^^I5,,qIG,x#WqB#,,C.GBWC,}5#Q,xwWuw^W##xqBGI^wI#,5qaGG^xIB,I5wu#x5I_,G5xuBxIWwC#GCBpxG}uwBVI^}Iq,Wqxu,^pIx^G}w##q5p4BG}x#BqIGw^#I5#OqGGx^BIIqqpwBGpwIG,x5BuIxwW#w55OuGxxWBwIuq^wIG^wwGCx*BpIBw}##5FoWW,GCw,GqwG#^5}lsWxGBwxGIw,#55G0wx#}*wpCB#}wW5CpG5Bp}},CqCpouwxYwGqpG}qGWq,w5G,w5#IWw,5#u#xuBqwx5uuGxGIuBG,}>pxxBpwI#WqwpBBu^wIoqIG^BG},,q,^#IqwBq,}qwu}^5WC,>5#uWuGW^wW5puwxGW^,w}x5pqIWIwu5^tpp^Wvw^C,Tqp5Bp^I#Ie}px^,}5#^qCG5uw}W,,qxGPuIp5wRqxGp^BWC,#qcGW(}u#Bx}B#IqwW^wx}gq^p}Www#CpMwp^WpBg,Wqqpx^q}wCG,-GpBGIwWIC5uCBlIW,WqI:B^WICB#qGuIxWIG^3}I#wq#G5BP}G#xqBWuwXI#uup^B5}wIBC^FWu#W,#qkWpW^,xI,,qwGGu_WG#Bq^GIxqI5#Gq}CGGu^pBI}#qxxWIxBx}xu^xwGw,dCCupxBWB}qCB-uqxWu}^#5qw5quIBW}}w55GppIC#pCIu,^5}GWGwGu^^xW#Bw##G1xqIGw}5Iu#^pG#W,wC#GqBx}W5C#qCp,B^^xIxvwpP^q}wBI,X5GuxxBWIwwC#T5xmWGwxCB^wWq#iqpGG^)pxI},5u#pCW,w^w/uGp,WqBG#{qqxGB}}}Cw5Ip}Bq^WBw,G5xuBxIWww#C5ulIW#G5w#G7wp#B5wsuW^GWw^G}w##q5pH,xC}uwxCW#wwI55}x<BI},5i#GpqBp}##I#z5BxI}##,q5G^Bx}I#q,u#x^uI#,xw,,5qkB^wqqNXq^xWpwB5GjCiIB,}CC5spxuB,},#,sIpwG0BqIxzxGCWuIq#uq#puBW},#w5q5x^x}^#.5WGw^uI},wwBGpxWIcw#wx#wPwp#B5},w5qBGI^wI#-wpqB^}^CG,IuWBuwG#I,GNuuBIq,qaSG#^uIq,}5}u}^BII,,5^GBx#I^w#wGC^5IpgBG}x#BxxW}}q#qc#qGx^wI#q8C5#p,^FCC#GqxGBwWBBw55)uGxx,q55CwpqIp#xqBuC^xWq,CwwqWx5I^,ICWupxpWIww}:>pxGBw^I,WAuxGBI^GwuCp5Iu#WG#WQGGWxWI,#w*zGuBZxGWG5^Gxx#pw#e5CGp^BIBwq5BuuAxIuw^C5EwqqGIWWw},5qGxB}^Cpq}puBu^HITjBG#^,}BBx}^C5u xGWx#WGw^uIqw},uyquG^ww}5WDCx^W^BG,u#BuuxpW^wWwwqGGx^BII,w5#u5^ACxq}pwBC}##ww5(5^p}u,,5,u,^IIwWIq^u}^GW5WB}#Gpx5IGw^C}up3GxC,oCWu^qCGqxGIw,#55GX}WCGqwCGuwx#W5,eG,^wxBw,5qpRBGI}#/5,G}uBWuwC5wu#xxW^,xCq#wpCW#wx}Gqup,W#wGI#C,sCGG^Bw#>upIBlW5#u-xpIx^}Bw#5CpWxWI,#I55Eu^uIw,CqGuWp3Wq,,55#5q5IxwwC}ux5GGw^#I5#lqGGx^BII)5GCBH}##W#GGqBB}C#uUhpxuwB^#I5qGCxW^!wCw5CxppW},ww^,I2/pGBx}B#IqwG#^55xgppBWG}C}I:^p#Wp}WCBZwq=p,}5#^VpuCGBIpIxwwU^^#}x,WqBuWx,I5W^IIC+4GpxBB}I#wq#G5,GCWuIx,WwwII#5#puBq}}#}q}pBBI^BCpqWpS^#^xWwNuG#BrIp,Wqu50G,I5,^qpC,SCGPBI}w##q5W^,3CI,nqIGw^#I5uGpWWIw,CwtI5#x#}u#qq}G}^}}B#I,Bpp^W}(,#,xCwuwx#W5w,,5x,IBw5w^,I5wI^w}5wuwpqBCwGCquTx/WqB9,W.uxGBuwB#^qIpx^q^IW5expxB}I,Iu}x#Bp5I#,pqCu,^wxII5CqupxCIxwWC,u^!w^uwIC,uVpwx}}5CFlppxp#WWC^_BpIBu}uCx,wGwB,}B,C-_GW^q}_W#CpGWx5}u,w5^C,55pBBI}w##xWWBBG#uu^p#WqwICp#5GmB^wp#C,wJ}p,^(Ix5,G,^}}w#,q#quuxxx#^qwCwp}IC,xqWGLx,xB}ICCu,x^pGIu,p#Iq#BpwpCuuGxpWxBwI#,#xGBI}WCGw65Iuwx#W5,L5GuxxB#xq}uqxqI#WG#IuW^#W,B#,,C/^xW},W5Cupx5WpBI,quppwWCwBCu#WCwGG^xIB,I5wu#x5IQq,GwuBW,,q<3pG^}}j,,q}5BxuWC,w5,G^^xW,wCC5##^#xCBGw^#Bx#WGwuC#wwqGGx^BII,w5#u5^fIG,x5BuIB5,CUGGuG_Wu#^q5uqpqI5,^5WuIQB^^Bw#qup^xIBwC5xnqxCpw}^CuV5pqW}wI#q%upGyw^GIx,B5Iuwx#W5,a5GuxxBWI#5uCBGIuIm#^uq^^BW,,qxu^p^Ixw,CCg5q#x,Bl#^N}xwW#wpCws^xpp)I,#W-xp^Bq}5#^qWGIy7xIWww#C5ugxGWxwBuC^II2^IwtCG-xpBBI}w##q5W}wI}xq}pCW5,:CW_5p}WWBx,uQIpGpq}C#q&p5BB#}G#uq##wuGxxWBwICw #p5W:wGCx)BpI,z5,GbO+IuW=}BXwqwW^w#}DuGp^BqwwCC#xuGBuwB#^#xuw^q}I#CquGBxWI,#}qqGu^#Ip,WwCCBx#I}^B}5C1jGpxBB}I#wq#G5Bi}G#xqBGI^wI#P^p^WB}w#,<BxNGx}bI}#dp,^W}u#5w#q,ueII#}qxu,^5I^,C55Cw^IWq,^CqC^5IpcBG}x#BqIGw^#I5#eqGGx^BII,w5#u5^lIG,x5BBu}lW#5uG^BB}I,qqBGu^qx#}}qZuwGWI^,W5,#5^xWww}5x,GqwG#^5}A#GqxGB^IIw,#55Gz^GIx,B5Iuwx#W5,X5GuxxBWIq#GuBG}^#xqG#06IpwB#}5CbOGpxBB}I#wq#G5B0}G#xqBGI^wI#,5p^B5wW#,wG5wu#x5I0,G5xuBxIWww#C5uFxGWxwBCINwp#B5w&CGaxpBBI5#uu^GI^,x5G#BxqB,w^5G#IxBBCwp#C#pCBu5^ IG,x5BuIxwW#w551uGxxWBwICw?#p5WEwGCxx,IBw5IB#5(SpGBx}B#IqwG#^5}l#GqxGB^IIw,#ppB5}BB5,B5Iuwx#W5,=5GuxxBWIwwC#^pI5,BI5CB{IpwB#}5C-?Gpxw,5B755BG5BR}G#xqBGI^wI#YWpBGGIW#,X#p5B^}##WH^qGxCI}#BqIG4^u}X,,wBG#^GIu,#IwCG!xpBBI}w##q5p?BG}x#BqIx5}C5GiuV3xBw,Cx)BpuWGI!#W+GG,B#}#,CgGG}Bu}GWB#^CwG7^1IkI#CxHBpIBw}##5/epGw}5xc#5xG#^5}n#GqxGB^IIwg^pxGbI^#}{wp#Bp}w#^fpqHpwIq#w5qG5xq}x,WwxGw^0Wq,wIIC%MGpxBB}I#wq#G5BR}G#xqBx#},5{qqq5^^}}Cp{u5wp}x5#BqppDB}ICBxw#C5u*xGWxwBCI)wp#B5wmCGGIWW,#C,CwGxW},xC}qwxuWWwuI5CCqGpxx>II,w5#u5^>IG,x5B^C}I#<}I54uGxxWBwICwr#p5,}5ICxp}WC,5qduWx5W},WwxqwpqBqwCC}:5qxWww-#qXwCIG4^GIx,B5Iuwx#W5,c5GuxxB}#5,p9xqx5}}q}GxppIpwq5}C)uqpxWBIG#wq#G5BV}G#xqBGI^wI#,5qfxB}^Cwq}qI^G}W#^{}<q^qI,#^,w75^}}B,W555BpWI^,#w75qbxxB^G}w##q5poBG}x#BqIGw^#I5#ruBB^ww#}#IGGBW}^C}CqGq^,}^IwC5G}BBIW,5,BbWxC}BWy,qCxuBGGBw}##5?bpGBx}B#IqwG#^5}:5Bp^Ww}}}IqGpWB^w}wqqqG,B^^w,Wqup}GGWp#uqIC#G,xJIGI5CB>IpwB#}5C)tGpxBB}I#wq#^Gwu5Bv^jx^5wpCuu^u,B,}WCu#BGp^Cw^I5CqG^B5xI}Ww#55qwxGWxwBCIHwp#B5wfuW^GWw^G}w##q5pZBG}x#BqIWpwGI5qppWWIwwCu_IppWu^5,^6xpI^CI,#lw5px^wI}#x}GCw8#p5WdwGCxYBpIBw}##5jl^Bw^5wl}_I^qw55G<Wp^BwBB,W2^p#GtBqIx#BCGuwx#W5, 5GuxxBWIwwC#:5xO}B5^Gwx}xI}q55GGxWW^wwwBqWpCIBB&wq#xEBuG^wI#,5qlGG^xIB,IGqBw}GBw,G5xuBxI,qqwGGqwIW#G5w5uqxGB,xq^G%xWIw,u5}uwq5^uwBCI5,x,WwBx#ILqpqBB}q#C#pCBu5^+IG,xpGBWIC,Cqw5dxxI^#x5#G}^}p5ICwGGI^^I,,555uWx5W}B#5p?}x5WxB#5GspxGBwwWCW#xq5G#^G}C#qbuppB^}W#}5,uCp.WIwwC#(5I##u5WuW^xpwI55CGI*G^uBB,#u#pCI^}p5pu}pWWw}q}x#WCwGG^xIB,Iu#Wu}#,pqWpBB#}u,CquqIpGI,#G5w #^}B5,p55uBx}II},55uux5pI}xC^uxp#W}w}}w#=jppb^B#5SqpwBuwx#,3ppxG=^pBBw55_uGxxWBwICw #Iw,q5^u^^GpIIqqxuW^pIBBx,p#IpxW,w,CG7,p}xNIuCC5*ppWp}^#}txG#^,}wCGCqGIu#I<#WqWu5^WI^#^wCCBu^xW}uqBu}^^II,}w_Exx,W,wGC,>}qquG^wI#,5qmGG^xIB,IppBGx5w^>wGCB}}#Ww5CG#^xxGw5q^G^x#I^,p,wqIxCIxw##=u^^SIp,B,WK5xuWBw&}B#GuwW}wp#}vIp,BW}x,xUpp^B#Ww,C88pxuxxCWBq#GG^uI#^wwGCx!BpIBw}##5T+pGBx}B#IxBW,wuCu*5qxx}wWC#PwppWGw^IxCp5Ixu}uCGCppuBB}x,Cq#GquBWw#uquuI^uWqW^IICndGpxBB}I#wq#G5Bk}G#xqBWxw}#qqqp#GGIxC^0,ppWN}W#qSOpWuBB^Ww#qGCBG}<,}qIG,uIB#,Cqpu,^IWq,W5Iuq5Ip8BG}x#BqIGw^#I5#AqGGx^BCx&}Gq^q}#IGz#UwBu}CC-w5qCuGBW#^qwGI^u}v#p,/qB^^I#,55,u,pGW,w,C5u#QIBx^5}C#GuWW^wwCIduxvWpB:,I1^pIxB}u#x.xqhx#pmWIwwC#45x=WGwxCB-IpwB#}5u#^uWWwW5x#w^^^Gw}5^uIqBx^^wwqOCxGW<}}CI7,qIp5}CCxbBppBpWw#pqpGBBx^lwCwB5^iw^q,CqGGyx}II,,wIY)xCIMI5C}=#x#pI}^WI#?qGGx^BII,w5#u5^fIG,x5BBx}},q5qG#uGWB#^qWG5p#IC#p5,GIxqIW,IwI#5GqI-}WC}uwpqWuw#} Cqqxx}}}CW!ux BuB#,,?^pwBB}R,GqquI^CI,#qqwG,B_}xwGqpuq^BI5WxCIuqxqWBwqCCCIGxIpwCCpuGx^Wu}5,5FCpqWBIx#W_wp5GwW5#qg^GCBw}u#}qw5WqwxGWxwBCIawp#B5wyCGbxpBBI5puGq5BpwW5IuwxuWIwp5u#5uxWpw5#C{C5#WG}I#WUGCEuIxwW#w553uGxxWBwICw&#p5W<wGCx(B^w,}qxC#pBW,,WCq?wxBWu^5wC#GGpWxI,#C 5ppB^w B5,B5Iuwx#W5,05GuxxBWIwwC#j5xHWGwxqI^W}GWwCuu}^#W}BB,^#wpGWpwp5BupxIpwBICwrpxWGww#wwaupCWb^wIO8,KI^q},#5,^#IuLxGWxwBCI6wp#B5w7CG2xpBBI}w##q5^G,u5#CxGIW}wqCWuxp,WpwxIICW5#xu}qCxoGG,Bw}CIw5GGqBGWh,,55G5qBp5WXwGCxHBpIBw}##5 gpGBxC,uBp5uB^5}%#GqxGB^IIw,#ppB#w^#}wX5Iuwx#W5,!5GuxxBWIwwC#l5BG#uq#5xp5Ip,q5WuGx5W}BB,^#wxGBqw#5^(}5gGI^wI#,5qZGG^xIB,I5wu#x5wG3up#p&Ww,qq}GCBBIWW#wq#G{wp#B5w{CG*xpBBI}w##q5pL}x5}uxG,Bqw55x-}p^B}W ,C?IG5BW}5#BCwpIBW}Ww5qpG5^BI}#IC,G5^uI5WICxu^^xW#,}5}CW5wpGBx}B#IqwG#^5}?tWxGBwxGIw,#55Gs}WCGqwquPx}u##qx##q5I##Wq#C#^Wx#WGqwCB^uIIB#55uux,IB,}wooxx,W,wGC,t}x}xGIuCuuGupBw}CCGq#p#Bu}#II,,5CuBI##}}BC5u!xGWx#Wu#x5Bu#uqDCw^wpq^GCquwxGuwx##5u^x^B#w^Cpupd/xW}5CuRBpkpq}x#Bq}GwpGBC#,q#G5^WIW#w,+G9BuI#,pqBuC^^IBWGCBuCxCWxwCC,Cu5xG#^5}z#Gu^Bw}#wq(qp5GII#CpRpGwBp}uIW}wGWBGIwIu}x#Bxo}^#sCWu,^w}j,^5uu^u1BBw,5B!5xuI=}p5BZ}xBWI}qCzCIupWuwGCxqCGCWN^B#BiWpG^}}##pq,G#uIx,^5wBCIAwp#,w5qu^x^IGBI#Wu,^pIpwW}x5pqI^qwqCpuGu,WGwBCCS5uqBpwGCIqCG}^CBxwpqppxpq}p#,q,uqpIIC,p5pGIxqIW,IwxCW5wpGBx}B#IuCW^,PCpo5p}pxIIC}2qpWWx},CpRx5IpWx#,xq^G^BI}^#w,#5w^#I^#}w#Op^WIq,q5pC5pwxOBB#^u}^uIuw^wgqCqquG}qCwRGq}4#p5CCJUppBI}pI F}G^^q}#IG,^C5^x}u^5wBCIOwp#,w5qu^x^IGBI#5RC^iWWwW5ICGqI^ww,5u#&2qGxWC#C%5JqBw}qC^q}p}B#^GI^}I54uGxxWBC#u,^5I^,^qB6x^^I,Bw,}#5pxWp,BCCVCx5G#}qC5XBqx^w}}C#YpppWxBMw#q,G}^5^ww5qqp^^C}w#uq}Gwb5Iq#xwxu#x}IB,q5p,wEGpxBB}IupxGG5}pCWuIxwWuwICpuuq5xp}CCpqwp}W=x5#u)YGIuBW#,,q5G^^^}BWx5WGBx5p#wpqpuW^B^q,B5wGu^GBpwW5Bu#xuBCwuwI5}x^^uw^CC:Cpux9w^CB:Ip^BBWw#5qpppB^I},w,!qq^w}p,C,Dm}^}WC,##^u#^+IW,I#wGuxwWuB#,Cuux}W}}Cw#uuxGWxwuCG#Iquuwwh#Bq^pFq5xBWIwwC#45xvWGwxGG^WWCwC5wCbGqIp,,5,Dqq#x,B/#WuWp,WwIpCwh5x^WBIW#,mwxkB^}u#^##n,^,}#wWq,ppBpIWwTq^u,x,}L,W5qGXn#pq^G}w##q5p4BG}x#BqIWWw,5puppWWuw^C5qqp5Bp}#Iw,#uBBW}CIw5B5JuqxxwpqWGq^qIpW5CwCCRBxWBw,GCwUcpw}x5^u,.IB^^5}C#GGuW^wCCC%uq#^}^,Ix#^5Ip9^^BI,(5GuxxB,CqIGHqII^#l5I#75quwx#W5,P5,uxxBWIw,C#=5xDIxwxCB?IpwB5}5C(!GxBBB}I#wq#GqB1}G#x+IGI^wIC,5qpGG^xIB,I5wu#x5Iy,x5xuIxIWww#C5uUxGW^wBC}Xwp#B5wXCG4xpWBI}w##q5p)BG}x#B");local function l(n,p,l)if l then local p=(n/u.nHhyjbud^(p-u.yAiZzFxw))%u.nHhyjbud^((l-u.yAiZzFxw)-(p-u.yAiZzFxw)+u.yAiZzFxw);return p-p%u.yAiZzFxw;else local p=u.nHhyjbud^(p-u.yAiZzFxw);return(n%(p+p)>=p)and u.yAiZzFxw or u.SAaAvYzh;end;end;local p=u.yAiZzFxw;local function n()local d,l,e,n=u.ckxzJRoK(d,p,p+u.jLVTBqls);p=p+u.XrxcfAJG;return(n*u.tJfHBzpP)+(e*u.XKbDLeEO)+(l*u.ASIB_OiP)+d;end;local function _()local n=u.ckxzJRoK(d,p,p);p=p+u.yAiZzFxw;return n;end;local function e()local n,l=u.ckxzJRoK(d,p,p+u.nHhyjbud);p=p+u.nHhyjbud;return(l*u.ASIB_OiP)+n;end;local function a()local p=n();local n=n();local d=u.yAiZzFxw;local e=(l(n,u.yAiZzFxw,u.kcgUZste)*(u.nHhyjbud^u.GszyXlwW))+p;local p=l(n,u.CLkcdlMd,u.PYcHaRLi);local n=((-u.yAiZzFxw)^l(n,u.GszyXlwW));if(p==u.SAaAvYzh)then if(e==u.SAaAvYzh)then return n*u.SAaAvYzh;else p=u.yAiZzFxw;d=u.SAaAvYzh;end;elseif(p==u.PKypxzfc)then return(e==u.SAaAvYzh)and(n*(u.yAiZzFxw/u.SAaAvYzh))or(n*(u.SAaAvYzh/u.SAaAvYzh));end;return u.gZhFjREM(n,p-u.uXnCkoaa)*(d+(e/(u.nHhyjbud^u.BePude_o)));end;local o=n;local function b(n)local l;if(not n)then n=o();if(n==u.SAaAvYzh)then return'';end;end;l=u.gtMPmUtc(d,p,p+n-u.yAiZzFxw);p=p+n;local p=""for n=u.yAiZzFxw,#l do p=p..u.oVprBUMI(u.ckxzJRoK(u.gtMPmUtc(l,n,n)))end return p;end;local p=n;local function k(...)return{...},u._EyRGrRY('#',...)end local function o()local h={};local t={};local p={};local c={h,t,nil,p};local p=n()local d={}for l=u.yAiZzFxw,p do local n=_();local p;if(n==u.SAaAvYzh)then p=(_()~=u.SAaAvYzh);elseif(n==u.nHhyjbud)then p=a();elseif(n==u.yAiZzFxw)then p=b();end;d[l]=p;end;for o=u.yAiZzFxw,n()do local p=_();if(l(p,u.yAiZzFxw,u.yAiZzFxw)==u.SAaAvYzh)then local _=l(p,u.nHhyjbud,u.jLVTBqls);local a=l(p,u.XrxcfAJG,u.eQSUWgeu);local p={e(),e(),nil,nil};if(_==u.SAaAvYzh)then p[u.jLVTBqls]=e();p[u.XrxcfAJG]=e();elseif(_==u.yAiZzFxw)then p[u.jLVTBqls]=n();elseif(_==u.nHhyjbud)then p[u.jLVTBqls]=n()-(u.nHhyjbud^u.pfwLOsEV)elseif(_==u.jLVTBqls)then p[u.jLVTBqls]=n()-(u.nHhyjbud^u.pfwLOsEV)p[u.XrxcfAJG]=e();end;if(l(a,u.yAiZzFxw,u.yAiZzFxw)==u.yAiZzFxw)then p[u.nHhyjbud]=d[p[u.nHhyjbud]]end if(l(a,u.nHhyjbud,u.nHhyjbud)==u.yAiZzFxw)then p[u.jLVTBqls]=d[p[u.jLVTBqls]]end if(l(a,u.jLVTBqls,u.jLVTBqls)==u.yAiZzFxw)then p[u.XrxcfAJG]=d[p[u.XrxcfAJG]]end h[o]=p;end end;for p=u.yAiZzFxw,n()do t[p-u.yAiZzFxw]=o();end;c[u.jLVTBqls]=_();return c;end;local function t(p,n,_)local l=p[u.yAiZzFxw];local n=p[u.nHhyjbud];local p=p[u.jLVTBqls];return function(...)local d=l;local n=n;local e=p;local p=k local l=u.yAiZzFxw;local p=-u.yAiZzFxw;local c={};local o={...};local a=u._EyRGrRY('#',...)-u.yAiZzFxw;local p={};local n={};for p=u.SAaAvYzh,a do if(p>=e)then c[p-e]=o[p+u.yAiZzFxw];else n[p]=o[p+u.yAiZzFxw];end;end;local p=a-e+u.yAiZzFxw local p;local e;while true do p=d[l];e=p[u.yAiZzFxw];_IIxluU=(0x1f5429)while e<=0x6 do _IIxluU=-_IIxluU;_IIxluU=(0x316b1e)while e<=0x2 do _IIxluU=-_IIxluU;_IIxluU=(0x4d0498)while e<=0x0 do _IIxluU=-_IIxluU;n[p[u.nHhyjbud]]=_[p[u.jLVTBqls]];break;end while 0x824==(_IIxluU)/(0x976)do _IIxluU=(0x7146cf)while 0x1<e do _IIxluU=-_IIxluU;_[p[u.jLVTBqls]]=n[p[u.nHhyjbud]];break end while(_IIxluU)/(0xba9)==0x9b7 do local l=(_6);(function()_[p[u.jLVTBqls]]=n[p[u.nHhyjbud]];end)();break end;break;end break;end while 0x5cf==(_IIxluU)/(0x882)do _IIxluU=(0x343aa7)while e<=0x4 do _IIxluU=-_IIxluU;_IIxluU=(0x18f670)while 0x3<e do _IIxluU=-_IIxluU;local p=p[u.nHhyjbud]n[p]=n[p](n[p+u.yAiZzFxw])break end while(_IIxluU)/(0x1d8)==0xd8a do do return end;break end;break;end while 0x419==(_IIxluU)/(0xcbf)do _IIxluU=(0xb22d95)while 0x5<e do _IIxluU=-_IIxluU;n[p[u.nHhyjbud]]=_[p[u.jLVTBqls]];break end while u.VbRzLlBx==(_IIxluU)/(0xf5d)do n[p[u.nHhyjbud]]=p[u.jLVTBqls];break end;break;end break;end break;end while 0x29d==(_IIxluU)/(0xbfd)do _IIxluU=(0x412e53)while e<=0xa do _IIxluU=-_IIxluU;_IIxluU=(0x206fab)while 0x8>=e do _IIxluU=-_IIxluU;_IIxluU=(0xb50ad6)while 0x7<e do _IIxluU=-_IIxluU;local p=p[u.nHhyjbud]n[p]=n[p](n[p+u.yAiZzFxw])break end while u.Ho_HsEVy==(_IIxluU)/(0xdeb)do local l=(_51);(function()n[p[u.nHhyjbud]]();end)();break end;break;end while 0x5ad==(_IIxluU)/(0x5b7)do _IIxluU=(0x2cb488)while 0x9<e do _IIxluU=-_IIxluU;local l=(_87);(function()n[p[u.nHhyjbud]]=(p[u.jLVTBqls]~=u.SAaAvYzh);end)();break end while(_IIxluU)/(0x404)==0xb22 do local e;(function()n[p[u.nHhyjbud]]=(p[u.jLVTBqls]~=u.SAaAvYzh);l=l+u.yAiZzFxw;p=d[l];end)();_[p[u.jLVTBqls]]=n[p[u.nHhyjbud]];l=l+u.yAiZzFxw;p=d[l];n[p[u.nHhyjbud]]=_[p[u.jLVTBqls]];l=l+u.yAiZzFxw;p=d[l];(function()n[p[u.nHhyjbud]]=p[u.jLVTBqls];l=l+u.yAiZzFxw;p=d[l];end)();(function()e=p[u.nHhyjbud]n[e]=n[e](n[e+u.yAiZzFxw])l=l+u.yAiZzFxw;p=d[l];end)();(function()n[p[u.nHhyjbud]]();l=l+u.yAiZzFxw;p=d[l];end)();do return end;break end;break;end break;end while(_IIxluU)/(0xe59)==0x48b do _IIxluU=(0x5ed71e)while 0xc>=e do _IIxluU=-_IIxluU;_IIxluU=(0x2a116e)while 0xb<e do _IIxluU=-_IIxluU;n[p[u.nHhyjbud]]=(p[u.jLVTBqls]~=u.SAaAvYzh);break end while u.UQMXbjbv==(_IIxluU)/(0x8aa)do do return end;break end;break;end while 0x92d==(_IIxluU)/(0xa56)do _IIxluU=(0x291102)while 0xd<e do _IIxluU=-_IIxluU;local l=(_27);(function()n[p[u.nHhyjbud]]();end)();break end while(_IIxluU)/(0xb0e)==0x3b7 do local l=(_22);(function()n[p[u.nHhyjbud]]=p[u.jLVTBqls];end)();break end;break;end break;end break;end l=l+u.yAiZzFxw;end;end;end;return t(o(),{},r())();
+local Settings = {
+    Aimbot = false,
+    Silent = false,
+    FovUsed = false,
+    Fov = 100,
+    Boxes = false,
+    Walkspeed = 1,
+    Instakill = false,
+    Recoil = false,
+    Wallbang = false,
+    Firerate = false, -- gon
+    InfAmmo = false, -- insta reload
+    Spread = false
+}
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local Camera = game:GetService("Workspace").CurrentCamera
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local Mouse = Player:GetMouse()
+local Zombies = game:GetService("Workspace").Baddies
+local Map = game:GetService("Workspace").Map
+local Interact = game:GetService("Workspace").Interact
+local Metatable = getrawmetatable(game)
+local Index = Metatable.__index
+local Namecall = Metatable.__namecall
+local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/NewUI"))()
+local Window = Lib:Window()
+local Main = Window:Tab('Main')
+local Gun = Window:Tab('Gun')
+local TargetPos = false
+local Circle = Drawing.new("Circle")
+Circle.Color = Color3.new(1, 1, 1)
+Circle.Thickness = 1
+Circle.Radius = Settings.Fov
+Circle.Visible = Settings.FovUsed
+Circle.NumSides = 1000
+Circle.Filled = false
+Circle.Transparency = 1
+
+Main:Toggle('Aimbot', function(Bool)
+    Settings.Aimbot = Bool
+end)
+
+Main:Toggle('Silent Aim', function(Bool)
+    Settings.Silent = Bool
+end)
+
+Main:Toggle('Use Fov', function(Bool)
+    Settings.FovUsed = Bool
+    Circle.Visible = Bool
+end)
+
+Main:Slider('Fov', 1, 1000, function(Number)
+    Settings.Fov = Number
+    Circle.Radius = Number
+end)
+
+Main:Toggle('Box Esp', function(Bool)
+    Settings.Boxes = Bool
+end)
+
+Main:Slider('Walkspeed', 1, 20, function(Number)
+    Settings.Walkspeed = Number
+    for i, v in pairs(Player.Backpack:GetChildren()) do
+        if v.Name == "Weapon1" or v.Name == "Weapon2" then
+            local Data = require(v)
+            Data.MoveSpeed = Number
+            Data.AimMoveSpeed = Number
+        end
+    end
+end)
+
+Main:Label("cum")
+
+Gun:Toggle('Wallbang', function(Bool)
+    Settings.Wallbang = Bool
+    for i, v in pairs(Player.Backpack:GetChildren()) do
+        if v.Name == "Weapon1" or v.Name == "Weapon2" then
+            local Data = require(v)
+            Data.BulletPenetration = 420
+        end
+    end
+end)
+
+Gun:Toggle('No Recoil', function(Bool)
+    Settings.Recoil = Bool
+    for i, v in pairs(Player.Backpack:GetChildren()) do
+        if v.Name == "Weapon1" or v.Name == "Weapon2" then
+            local Data = require(v)
+            Data.GunKick = 0
+            Data.ViewKick.Pitch.Min = 0
+            Data.ViewKick.Pitch.Max = 0
+            Data.ViewKick.Yaw.Min = 0
+            Data.ViewKick.Yaw.Max = 0
+        end
+    end
+end)
+
+Gun:Toggle('No Spread', function(Bool)
+    Settings.Spread = Bool
+    for i, v in pairs(Player.Backpack:GetChildren()) do
+        if v.Name == "Weapon1" or v.Name == "Weapon2" then
+            local Data = require(v)
+            Data.Spread.Min = 0
+            Data.Spread.Max = 0
+        end
+    end
+end)
+
+Gun:Toggle('Insta Kill', function(Bool)
+    Settings.Instakill = Bool
+end)
+
+Gun:Toggle('Insta Reload', function(Bool)
+    Settings.InfAmmo = Bool
+    for i, v in pairs(Player.Backpack:GetChildren()) do
+        if v.Name == "Weapon1" or v.Name == "Weapon2" then
+            local Data = require(v)
+            for o, b in pairs(Data.ReloadSequence) do
+                getfenv(b).wait = function(time)
+                    if Settings.InfAmmo then
+                        return
+                    else
+                        return wait(time)
+                    end
+                end
+            end
+        end
+    end
+end)
+
+--[[Gun:Toggle('Fire Rate (stupid)', function(Bool)
+    Settings.Firerate = Bool
+    for i, v in pairs(Player.Backpack:GetChildren()) do
+        if v.Name == "Weapon1" or v.Name == "Weapon2" then
+            local Data = require(v)
+            Data.Semi = false
+            Data.FireTime = 0
+        end
+    end
+end)]]
+
+function DrawSquare()
+    local Box = Drawing.new("Square")
+    Box.Color = Color3.fromRGB(190, 190, 0)
+    Box.Thickness = 0.5
+    Box.Filled = false
+    Box.Transparency = 1
+    return Box
+end
+
+function GetOffset(part, pos)
+    local FarPosition = Camera:WorldToViewportPoint(Vector3.new(part.Position.X, part.Position.Y + (part.Size.Y / 2), part.Position.Z))
+    return FarPosition.Y - pos.Y
+end
+
+function GetCorners(Char)
+    local TopY = math.huge
+    local BottomY = -math.huge
+    local RightX = -math.huge
+    local LeftX = math.huge
+    local Offsets
+    local Positions = {}
+    for i, v in next, Char:GetChildren() do
+        if v.ClassName == "Part" and v.Name ~= "HumanoidRootPart" then
+            local Position, OnScreen = Camera:WorldToViewportPoint(v.Position)
+            Positions[v.Name] = Position
+            Offsets = GetOffset(v, Position)
+            if OnScreen then
+                if Position.Y < TopY then
+                    TopY = Position.Y
+                end
+                if Position.Y > BottomY then
+                    BottomY = Position.Y
+                end
+                if Position.X < LeftX then
+                    LeftX = Position.X
+                end
+                if Position.X > RightX then
+                    RightX = Position.X
+                end
+            end
+        end
+    end
+    return {TopLeft = Vector2.new(LeftX + Offsets, TopY + Offsets), TopRight = Vector2.new(RightX - Offsets, TopY + Offsets), BottomLeft = Vector2.new(LeftX + Offsets, BottomY - Offsets), BottomRight = Vector2.new(RightX - Offsets, BottomY - Offsets), Positions = Positions}
+end
+
+function GetClosest()
+    local Closest = nil
+    local Pos = nil
+    local Magnitude = math.huge
+    for i, v in next, Zombies:GetChildren() do 
+        if v:FindFirstChild("Head") then
+            local Position, Visible = Camera:WorldToViewportPoint(v.Head.Position) 
+            if Visible then
+                local Mouse = Player:GetMouse()
+                local Distance = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Position.X, Position.Y)).Magnitude 
+                if not Settings.FovUsed and Distance < Magnitude or Settings.FovUsed and Distance < Magnitude and Distance < Settings.Fov then 
+                    Closest = v 
+                    Magnitude = Distance
+                    Pos = Position
+                end
+            end
+        end
+    end
+    return Closest, Pos
+end
+
+setreadonly(Metatable, false)
+
+Metatable.__index = newcclosure(function(self, Property)
+    if Settings.Silent and TargetPos then
+        if self == Mouse and Property == "Hit" or tostring(self) == "AimPart" and Property == "CFrame" then
+            return CFrame.new(TargetPos)
+        end
+    end
+    return Index(self, Property)
+end)
+
+Metatable.__namecall = newcclosure(function(self, ...)
+    local Meth = getnamecallmethod()
+    local Args = {...}
+    if Settings.Instakill and Meth == "FireServer" and tostring(self) == "Damage" then
+	    Args[1].Damage = 9999
+        return Namecall(self, unpack(Args))
+    end
+    if Settings.Wallbang and Meth == "FindPartOnRayWithIgnoreList" then
+        table.insert(Args[2], Map)
+        table.insert(Args[2], Interact)
+        return Namecall(self, unpack(Args))
+    end
+    return Namecall(self, ...)
+end)
+
+setreadonly(Metatable, true)
+
+Player.Backpack.ChildAdded:Connect(function(Module)
+    if Module.Name == "Weapon1" or Module.Name == "Weapon2" then
+        local Data = require(Module)
+        if Settings.Walkspeed ~= 1 then
+            Data.MoveSpeed = Settings.Walkspeed
+            Data.AimMoveSpeed = Settings.Walkspeed
+        end
+        if Settings.InfAmmo then
+            for o, b in pairs(Data.ReloadSequence) do
+                getfenv(b).wait = function(time)
+                    if Settings.InfAmmo then
+                        return
+                    else
+                        return wait(time)
+                    end
+                end
+            end
+        end
+        if Settings.Wallbang then
+            Data.BulletPenetration = 420
+        end
+        if Settings.Firerate then
+            Data.Semi = false
+            Data.FireTime = 0
+        end
+        if Settings.Recoil then
+            Data.GunKick = 0
+            Data.ViewKick.Pitch.Min = 0
+            Data.ViewKick.Pitch.Max = 0
+            Data.ViewKick.Yaw.Min = 0
+            Data.ViewKick.Yaw.Max = 0
+        end
+        if Settings.Spread then
+            Data.Spread.Min = 0
+            Data.Spread.Max = 0
+        end
+    end
+end)
+
+function AddEsp(Zombie)
+    local Random = tostring(math.random(0, 9999999))
+    local Box = DrawSquare()
+    RunService:BindToRenderStep(Random, 1, function()
+        local Exist = Zombie:IsDescendantOf(Zombies) --Exists(Zombie)
+        if Exist and Zombie:FindFirstChild("HumanoidRootPart") then
+            local Corners = GetCorners(Zombie)
+            local Positions = Corners.Positions
+            local xDist = Corners.BottomRight.X - Corners.TopLeft.X
+            local yDist = Corners.BottomRight.Y - Corners.TopLeft.Y
+            local RootPosition, OnScreen = Camera:WorldToViewportPoint(Zombie.HumanoidRootPart.Position)
+            if Settings.Boxes then
+                Box.Visible = OnScreen
+                Box.Size = Vector2.new(xDist, yDist)
+                Box.Position = Corners.TopLeft
+            end
+        else
+            Box.Visible = false
+            Box:Remove()
+            RunService:UnbindFromRenderStep(Random)
+        end
+    end)
+end
+
+for i, v in pairs(Zombies:GetChildren()) do
+    AddEsp(v)
+end
+
+Zombies.ChildAdded:Connect(function(Zombie)
+    AddEsp(Zombie)
+end)
+
+RunService.RenderStepped:Connect(function()
+    local Mouse = UserInputService:GetMouseLocation()
+    Circle.Position = Vector2.new(Mouse.X, Mouse.Y)
+end)
+
+while wait() do
+    local Target, Pos = GetClosest()
+    TargetPos = Target and Target.Head.Position or false
+    if Settings.Aimbot and Target and UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton2) then
+        local Mouse = UserInputService:GetMouseLocation()
+        mousemoverel((Pos.X - Mouse.X) / 6, (Pos.Y - Mouse.Y) / 6)
+    end
+end
