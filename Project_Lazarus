@@ -1,15 +1,18 @@
 local Settings = {
     Aimbot = false,
     Silent = false,
+    Vis = false,
+    HeadShot = false,
     FovUsed = false,
     Fov = 100,
     Boxes = false,
     Walkspeed = 1,
     Instakill = false,
+    InstaReload = false,
     Recoil = false,
     Wallbang = false,
-    Firerate = false, -- gon
-    InfAmmo = false, -- insta reload
+    Firerate = false,
+    InfAmmo = false,
     Spread = false
 }
 local RunService = game:GetService("RunService")
@@ -21,6 +24,8 @@ local Mouse = Player:GetMouse()
 local Zombies = game:GetService("Workspace").Baddies
 local Map = game:GetService("Workspace").Map
 local Interact = game:GetService("Workspace").Interact
+local Ignore = game:GetService("Workspace").Ignore
+local SendData = game:GetService("ReplicatedStorage").ClientRemotes.SendData
 local Metatable = getrawmetatable(game)
 local Index = Metatable.__index
 local Namecall = Metatable.__namecall
@@ -46,6 +51,14 @@ Main:Toggle('Silent Aim', function(Bool)
     Settings.Silent = Bool
 end)
 
+Main:Toggle('Visable Check', function(Bool)
+    Settings.Vis = Bool
+end)
+
+Main:Toggle('Head Shots', function(Bool)
+    Settings.HeadShot = Bool
+end)
+
 Main:Toggle('Use Fov', function(Bool)
     Settings.FovUsed = Bool
     Circle.Visible = Bool
@@ -63,7 +76,7 @@ end)
 Main:Slider('Walkspeed', 1, 20, function(Number)
     Settings.Walkspeed = Number
     for i, v in pairs(Player.Backpack:GetChildren()) do
-        if v.Name == "Weapon1" or v.Name == "Weapon2" then
+        if v.Name == "Weapon1" or v.Name == "Weapon2" or v.Name == "Weapon3" then
             local Data = require(v)
             Data.MoveSpeed = Number
             Data.AimMoveSpeed = Number
@@ -76,7 +89,7 @@ Main:Label("cum")
 Gun:Toggle('Wallbang', function(Bool)
     Settings.Wallbang = Bool
     for i, v in pairs(Player.Backpack:GetChildren()) do
-        if v.Name == "Weapon1" or v.Name == "Weapon2" then
+        if v.Name == "Weapon1" or v.Name == "Weapon2" or v.Name == "Weapon3" then
             local Data = require(v)
             Data.BulletPenetration = 420
         end
@@ -86,7 +99,7 @@ end)
 Gun:Toggle('No Recoil', function(Bool)
     Settings.Recoil = Bool
     for i, v in pairs(Player.Backpack:GetChildren()) do
-        if v.Name == "Weapon1" or v.Name == "Weapon2" then
+        if v.Name == "Weapon1" or v.Name == "Weapon2" or v.Name == "Weapon3" then
             local Data = require(v)
             Data.GunKick = 0
             Data.ViewKick.Pitch.Min = 0
@@ -100,7 +113,7 @@ end)
 Gun:Toggle('No Spread', function(Bool)
     Settings.Spread = Bool
     for i, v in pairs(Player.Backpack:GetChildren()) do
-        if v.Name == "Weapon1" or v.Name == "Weapon2" then
+        if v.Name == "Weapon1" or v.Name == "Weapon2" or v.Name == "Weapon3" then
             local Data = require(v)
             Data.Spread.Min = 0
             Data.Spread.Max = 0
@@ -113,13 +126,13 @@ Gun:Toggle('Insta Kill', function(Bool)
 end)
 
 Gun:Toggle('Insta Reload', function(Bool)
-    Settings.InfAmmo = Bool
+    Settings.InstaReload = Bool
     for i, v in pairs(Player.Backpack:GetChildren()) do
-        if v.Name == "Weapon1" or v.Name == "Weapon2" then
+        if v.Name == "Weapon1" or v.Name == "Weapon2" or v.Name == "Weapon3" then
             local Data = require(v)
             for o, b in pairs(Data.ReloadSequence) do
                 getfenv(b).wait = function(time)
-                    if Settings.InfAmmo then
+                    if Settings.InstaReload then
                         return
                     else
                         return wait(time)
@@ -130,16 +143,28 @@ Gun:Toggle('Insta Reload', function(Bool)
     end
 end)
 
---[[Gun:Toggle('Fire Rate (stupid)', function(Bool)
+Gun:Toggle('Inf Ammo', function(Bool)
+    Settings.InfAmmo = Bool
+    for i, v in pairs(Player.Backpack:GetChildren()) do
+        if v.Name == "Weapon1" or v.Name == "Weapon2" or v.Name == "Weapon3" then
+            local Data = require(v)
+        	Data.MagSize = math.huge
+        	Data.StoredAmmo = math.huge
+        	Data.MaxAmmo = math.huge
+        end
+    end
+end)
+
+Gun:Toggle('Firerate', function(Bool)
     Settings.Firerate = Bool
     for i, v in pairs(Player.Backpack:GetChildren()) do
-        if v.Name == "Weapon1" or v.Name == "Weapon2" then
+        if v.Name == "Weapon1" or v.Name == "Weapon2" or v.Name == "Weapon3" then
             local Data = require(v)
             Data.Semi = false
             Data.FireTime = 0
         end
     end
-end)]]
+end)
 
 function DrawSquare()
     local Box = Drawing.new("Square")
@@ -186,22 +211,31 @@ function GetCorners(Char)
     return {TopLeft = Vector2.new(LeftX + Offsets, TopY + Offsets), TopRight = Vector2.new(RightX - Offsets, TopY + Offsets), BottomLeft = Vector2.new(LeftX + Offsets, BottomY - Offsets), BottomRight = Vector2.new(RightX - Offsets, BottomY - Offsets), Positions = Positions}
 end
 
+function VisCheck(Pos)
+  	local Parts = Camera:GetPartsObscuringTarget({Player.Character.Head.Position, Pos}, {Ignore, Zombies})
+  	if #Parts == 0 then
+    	return true
+  	end
+end
+
 function GetClosest()
     local Closest = nil
     local Pos = nil
     local Magnitude = math.huge
     for i, v in next, Zombies:GetChildren() do 
-        if v:FindFirstChild("Head") then
-            local Position, Visible = Camera:WorldToViewportPoint(v.Head.Position) 
-            if Visible then
-                local Mouse = Player:GetMouse()
-                local Distance = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Position.X, Position.Y)).Magnitude 
-                if not Settings.FovUsed and Distance < Magnitude or Settings.FovUsed and Distance < Magnitude and Distance < Settings.Fov then 
-                    Closest = v 
-                    Magnitude = Distance
-                    Pos = Position
-                end
-            end
+        if Player.Character and Player.Character:FindFirstChild("Head") and v:FindFirstChild("Head") and v:FindFirstChild("Torso") then
+            if Settings.Vis and VisCheck(v.Head.Position) or not Settings.Vis then
+	            local Position, Visible = Camera:WorldToViewportPoint(v.Head.Position) 
+	            if Visible then
+	                local Mouse = Player:GetMouse()
+	                local Distance = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Position.X, Position.Y)).Magnitude 
+	                if not Settings.FovUsed and Distance < Magnitude or Settings.FovUsed and Distance < Magnitude and Distance < Settings.Fov then 
+	                    Closest = v 
+	                    Magnitude = Distance
+	                    Pos = Position
+	                end
+	            end
+        	end
         end
     end
     return Closest, Pos
@@ -218,7 +252,7 @@ Metatable.__index = newcclosure(function(self, Property)
     return Index(self, Property)
 end)
 
-Metatable.__namecall = newcclosure(function(self, ...)
+Metatable.__namecall = function(self, ...)
     local Meth = getnamecallmethod()
     local Args = {...}
     if Settings.Instakill and Meth == "FireServer" and tostring(self) == "Damage" then
@@ -230,22 +264,25 @@ Metatable.__namecall = newcclosure(function(self, ...)
         table.insert(Args[2], Interact)
         return Namecall(self, unpack(Args))
     end
+    if Meth == "FireServer" and self == SendData then -- anti cheat bypass btw
+    	return
+    end
     return Namecall(self, ...)
-end)
+end
 
 setreadonly(Metatable, true)
 
 Player.Backpack.ChildAdded:Connect(function(Module)
-    if Module.Name == "Weapon1" or Module.Name == "Weapon2" then
+    if Module.Name == "Weapon1" or Module.Name == "Weapon2" or Module.Name == "Weapon3" then
         local Data = require(Module)
         if Settings.Walkspeed ~= 1 then
             Data.MoveSpeed = Settings.Walkspeed
             Data.AimMoveSpeed = Settings.Walkspeed
         end
-        if Settings.InfAmmo then
+        if Settings.InstaReload then
             for o, b in pairs(Data.ReloadSequence) do
                 getfenv(b).wait = function(time)
-                    if Settings.InfAmmo then
+                    if Settings.InstaReload then
                         return
                     else
                         return wait(time)
@@ -271,6 +308,15 @@ Player.Backpack.ChildAdded:Connect(function(Module)
             Data.Spread.Min = 0
             Data.Spread.Max = 0
         end
+        if Settings.InfAmmo then
+        	Data.MagSize = math.huge
+        	Data.StoredAmmo = math.huge
+        	Data.MaxAmmo = math.huge
+        end
+        if Settings.Firerate then
+            Data.Semi = false
+            Data.FireTime = 0
+        end
     end
 end)
 
@@ -278,7 +324,7 @@ function AddEsp(Zombie)
     local Random = tostring(math.random(0, 9999999))
     local Box = DrawSquare()
     RunService:BindToRenderStep(Random, 1, function()
-        local Exist = Zombie:IsDescendantOf(Zombies) --Exists(Zombie)
+        local Exist = Zombie:IsDescendantOf(Zombies)
         if Exist and Zombie:FindFirstChild("HumanoidRootPart") then
             local Corners = GetCorners(Zombie)
             local Positions = Corners.Positions
@@ -313,7 +359,8 @@ end)
 
 while wait() do
     local Target, Pos = GetClosest()
-    TargetPos = Target and Target.Head.Position or false
+    local TargetP = Target and Settings.HeadShot and Target.Head.Position or Target and not Settings.HeadShot and Target.Torso.Position or false
+    TargetPos = Target and TargetP or false
     if Settings.Aimbot and Target and UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton2) then
         local Mouse = UserInputService:GetMouseLocation()
         mousemoverel((Pos.X - Mouse.X) / 6, (Pos.Y - Mouse.Y) / 6)
