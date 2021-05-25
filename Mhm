@@ -1,5 +1,6 @@
 Old = hookfunction(game.FindFirstChild,function(...)
     if pcall(function() x = getcallingscript().Parent end) and getcallingscript().Parent == game.Players.LocalPlayer.PlayerGui.Menew then
+        warn('ass')
         return nil
     end
     return Old(...)
