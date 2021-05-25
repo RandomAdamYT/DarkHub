@@ -1,12 +1,12 @@
-if game.CoreGui:FindFirstChild("MarkBeatsIsGay") then
-    game.CoreGui.MarkBeatsIsGay:Destroy()
+if game.CoreGui:FindFirstChild("MarkBeatsIsGay1") then
+    game.CoreGui.MarkBeatsIsGay1:Destroy()
 end
 game:GetService("UserInputService").InputBegan:connect(
     function(key, gpe)
         if key.KeyCode == Enum.KeyCode.RightControl then
             pcall(
                 function()
-                    for i, v in pairs(game.CoreGui.MarkBeatsIsGay:GetChildren()) do
+                    for i, v in pairs(game.CoreGui.MarkBeatsIsGay1:GetChildren()) do
                         v.Visible = not v.Visible
                     end
                 end
@@ -116,7 +116,7 @@ function Ripple(obj)
 end
 
 local DarkHubLib = Instance.new("ScreenGui")
-DarkHubLib.Name = "MarkBeatsIsGay"
+DarkHubLib.Name = "MarkBeatsIsGay1"
 DarkHubLib.Parent = game.CoreGui
 DarkHubLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
