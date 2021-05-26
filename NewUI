@@ -117,7 +117,14 @@ end
 
 local DarkHubLib = Instance.new("ScreenGui")
 DarkHubLib.Name = "MarkBeatsIsGay"
-DarkHubLib.Parent = game.CoreGui
+if syn and syn.protect_gui then
+    syn.protect_gui(DarkHubLib)
+    DarkHubLib.Parent = game.CoreGui
+elseif hiddenUI then
+    DarkHubLib.Parent = hiddenUI()
+else
+    DarkHubLib.Parent = game.CoreGui
+end
 DarkHubLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 function DarkLib:Window()
