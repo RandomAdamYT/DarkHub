@@ -2,6 +2,7 @@ if game.GameId == 111958650 then
     spawn(function()
         loadstring(game:HttpGet(('https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/Mhm'), true))()
     end)
+    wait(.5)
 end
 
 if getconnections then
