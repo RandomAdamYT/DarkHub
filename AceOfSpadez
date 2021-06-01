@@ -13,6 +13,12 @@ Client = {
         FOV = 250
     }
 }
+for i,v in pairs(getgc(true)) do
+    if type(v) == 'table' and rawget(v,'Bullet') and rawget(v,'TouchBullet') then
+        Yawninglmao = v
+        break
+    end
+end
 
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/NewUI"))();main = lib:Window();
 CombatW = main:Tab('Combat')
@@ -61,15 +67,15 @@ function GetClosestPlr()
     return Plr
 end
 
-OldFire = (require(game:GetService("Players").LocalPlayer.PlayerScripts.WeaponSystem.Module).discharge.Bullet)
-require(game:GetService("Players").LocalPlayer.PlayerScripts.WeaponSystem.Module).discharge.Bullet = function(...)
+OldFire = (Yawninglmao.Bullet)
+Yawninglmao.Bullet = function(...)
     Args = {...}
     if Client.Toggles.SilentAim == true and GetClosestPlr() ~= nil then
         Targ = GetClosestPlr()
         Camera = {CFrame = CFrame.new(game.Workspace.CurrentCamera.CFrame.p,Targ.Character.Head.Position)}
         v141 = (Camera.CFrame * CFrame.new(0, 0, -1)).p
         local v146, v147, v148 = workspace:FindPartOnRayWithWhitelist(Ray.new(Camera.CFrame.p, (v141 - Camera.CFrame.p).unit * 100), {}, false, true);
-        Args[2] = Camera.CFrame.p
+        Args[2] = Camera.CFrame
         Args[3] = v147
     end
     return OldFire(unpack(Args))
@@ -89,18 +95,18 @@ end)
 spawn(function()
     while true do wait(.1)
         if Client.Toggles.NoRecoil == true then
-            getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.WeaponSystem.Module).discharge.TouchBullet,1).Gun.VRecoil = 0
-            getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.WeaponSystem.Module).discharge.TouchBullet,1).Gun.HRecoil = 0
-            getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.WeaponSystem.Module).discharge.TouchBullet,1).Gun.VerticalRecoil = 0
-            getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.WeaponSystem.Module).discharge.TouchBullet,1).Gun.HorizontalRecoil = 0
-            getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.WeaponSystem.Module).discharge.TouchBullet,1).Gun.HorizontalRecoilADS = 0
-            getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.WeaponSystem.Module).discharge.TouchBullet,1).Gun.HorizontalRecoilADS = 0
+            getupvalue(Yawninglmao.TouchBullet,1).Gun.VRecoil = 0
+            getupvalue(Yawninglmao.TouchBullet,1).Gun.HRecoil = 0
+            getupvalue(Yawninglmao.TouchBullet,1).Gun.VerticalRecoil = 0
+            getupvalue(Yawninglmao.TouchBullet,1).Gun.HorizontalRecoil = 0
+            getupvalue(Yawninglmao.TouchBullet,1).Gun.HorizontalRecoilADS = 0
+            getupvalue(Yawninglmao.TouchBullet,1).Gun.HorizontalRecoilADS = 0
         end
         if Client.Toggles.NoSpread == true then
-            getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.WeaponSystem.Module).discharge.TouchBullet,1).Gun.Spread = 0
+            getupvalue(Yawninglmao.TouchBullet,1).Gun.Spread = 0
         end
         if Client.Toggles.InfAmmo == true then
-            pcall(function() getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.WeaponSystem.Module).discharge.TouchBullet,1).Gun.Ammo.Value = getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.WeaponSystem.Module).discharge.TouchBullet,1).Gun.AmmoMax.Value end)
+            pcall(function() getupvalue(Yawninglmao.TouchBullet,1).Gun.Ammo.Value = getupvalue(Yawninglmao.TouchBullet,1).Gun.AmmoMax.Value end)
         end
     end
 end)
