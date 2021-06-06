@@ -1,9 +1,12 @@
 --Give credits if u use anything :3
 --this code is messy :rolling_eyes:
 
-BulletClient = getconnections(game:GetService("ReplicatedStorage")["RS_Package"].Assets.Remotes.Bullet.OnClientEvent)[1].Function
-FuncNew = getupvalue(BulletClient,3).new
-RemoteKey = getupvalue(FuncNew,17)
+repeat pcall(function()
+    wait()
+    BulletClient = getconnections(game:GetService("ReplicatedStorage")["RS_Package"].Assets.Remotes.Bullet.OnClientEvent)[1].Function
+    FuncNew = getupvalue(BulletClient,3).new
+    RemoteKey = getupvalue(FuncNew,17)
+end) until BulletClient
 
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/NewUI"))()
 main = lib:Window()
@@ -32,12 +35,12 @@ MainW:Button('Destroy All Cameras',function()
         local v6 = Vector3.new(3.02631664, 2.68741488, 3.29028654)
         game:GetService("ReplicatedStorage")["RS_Package"].Assets.Remotes.HitObject:FireServer(v1, v2, v3, v4, v5, v6)
     end
-    game:GetService("Players").Wowtheskyispurple.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - Cameras Destroyed')
+    game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - Cameras Destroyed')
 end)
 MainW:Button('Grab Lootables',function()
     for i = 1,10 do
         wait(.3)
-        game:GetService("Players").Wowtheskyispurple.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - GRABBING LOOTABLES')
+        game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - GRABBING LOOTABLES')
         for i,v in pairs(game:GetService("Workspace").Lootables:GetChildren()) do
             if v:FindFirstChildOfClass('Part') then
                 game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(v:FindFirstChildOfClass('Part').Position))
@@ -51,16 +54,16 @@ MainW:Button('Grab Lootables',function()
             end
         end
     end
-    game:GetService("Players").Wowtheskyispurple.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - COMPLETE')
+    game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - COMPLETE')
 end)
 MainW:Button('Put Bags In Van',function()
-    game:GetService("Players").Wowtheskyispurple.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - Transporting Bags... Please dont move until complete')
+    game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - Transporting Bags... Please dont move until complete')
     game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(game:GetService("Workspace").BagSecuredArea.PrimaryPart.Position + Vector3.new(0,6,0)))
     wait(1)
     local v1 = CFrame.new(game.Workspace.CurrentCamera.CFrame.p,game:GetService("Workspace").BagSecuredArea.PrimaryPart.Position).lookVector
     local event = game:GetService("ReplicatedStorage")["RS_Package"].Remotes.ThrowBag
     event:FireServer(v1)
-    game:GetService("Players").Wowtheskyispurple.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - Transporting Bags Complete')
+    game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - Transporting Bags Complete')
 end)
 
 spawn(function()
@@ -88,4 +91,4 @@ spawn(function()
         end)
     end
 end)
-game:GetService("Players").Wowtheskyispurple.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire('~ DARKHUB LOADED ~')
+game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire('~ DARKHUB LOADED ~')
