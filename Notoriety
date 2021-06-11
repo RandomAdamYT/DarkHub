@@ -14,7 +14,8 @@ main = lib:Window()
 Client = {
     Toggles = {
         KillAllPolice = false,
-        InfStamina = false
+        InfStamina = false,
+        InfAmmo = false
     }
 }
 
@@ -24,6 +25,9 @@ MainW:Toggle('Kill All Police',function(state)
 end)
 MainW:Toggle('Inf Stamina',function(state)
     Client.Toggles.InfStamina = state
+end)
+MainW:Toggle('Inf Ammo',function(state)
+    Client.Toggles.InfAmmo = state
 end)
 MainW:Button('Destroy All Cameras',function()
     for i,v in pairs(game:GetService("Workspace").Cameras:GetChildren()) do
@@ -36,6 +40,18 @@ MainW:Button('Destroy All Cameras',function()
         game:GetService("ReplicatedStorage")["RS_Package"].Assets.Remotes.HitObject:FireServer(v1, v2, v3, v4, v5, v6)
     end
     game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - Cameras Destroyed')
+end)
+MainW:Button('God Mode',function()
+    local v1 = "Damage"
+    local v2 = RemoteKey
+    local v3 = game:GetService("Players").LocalPlayer.Character.Humanoid
+    local v4 = -9000000000
+    local v5 = game:GetService("Players").LocalPlayer.Character.Head
+    local v6 = "Knife"
+    local v7 = Vector3.new(-4.93716431, -0.482243985, -0.680375397)
+    local event = game:GetService("ReplicatedStorage")["RS_Package"].Assets.Remotes.Damage
+    event:FireServer(v1, v2, v3, v4, v5, v6, v7)
+    game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - Godded LocalPlayer')
 end)
 MainW:Button('Grab Lootables',function()
     for i = 1,10 do
@@ -91,4 +107,19 @@ spawn(function()
         end)
     end
 end)
+
+GameMT = getrawmetatable(game)
+setreadonly(GameMT,false)
+OldNC = GameMT.__namecall
+GameMT.__namecall = function(self,...)
+    if getnamecallmethod() == 'FireServer' and tostring(self) == 'Bullet' and Client.Toggles.InfAmmo then
+        Args = {...}
+        if Args[1] and Args[1]['UseAmmo'] then
+            Args[1]['UseAmmo'] = false
+        end
+        return OldNC(self,unpack(Args))
+    end
+    return OldNC(self,...) 
+end
+
 game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire('~ DARKHUB LOADED ~')
