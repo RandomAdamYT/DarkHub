@@ -340,6 +340,18 @@ OldRecoil = hookfunction(Main.Camera.Recoil.Fire,function(self, name, ...)
 end)
 
 
+Main = require(game:GetService("ReplicatedStorage"):WaitForChild("TS"));
+Old = Main.Timer.Wait
+Main.Timer.Wait = function(...)
+    Args = {...}
+    if tostring(getcallingscript()) == 'ItemControlScript' then
+        if Client.Toggles.RapidFire then
+            Args[2] = 0.01
+        end
+    end
+    return Old(unpack(Args))
+end
+
 --ESP 
 
 Esp:Toggle('Boxes',function(state)
