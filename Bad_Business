@@ -23,39 +23,46 @@ MainWindow = main:Tab('Bad Business')
 Aimbotz = main:Tab('Aimbot')
 Esp = main:Tab('Esp')
 
-Client = {
-    Toggles = {
-        SilentAim = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.SilentAim or false,
-        FOV = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.FOV or false,
-        NoRecoil = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoRecoil or false,
-        Fly = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Fly or false,
-        BHOP = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.BHOP or false,
-        BoxEsp = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.BoxEsp or false,
-        TracerEsp = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.TracerEsp or false,
-        ShowTeam = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.ShowTeam or false,
-        Rainbow =  DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Rainbow or false,
-        Rainbow2 = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Rainbow2 or false,
-        Wallbang = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Wallbang or false
-    },
-    Visuals = {
-        BoxEsp = false,
-        TracerEsp = false,
-        Names = false,
-        TeamCheck = true,
-        EnemyColor = Color3.fromRGB(255,0,0),
-        TeamColor = Color3.fromRGB(0,255,0),
-        ShowTeam = false,
-        Rainbow = false,
-        Rainbow2 = false
-    },
-    Values = {
-        AimPart = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.AimPart or "Head",
-        FOV = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.FOV or 100,
-        ChatMsg = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.ChatMsg or "Dark HUB Winning! Dizzy: DarkHUB",
-        ChatDelay = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.ChatDelay or 1,
-        Speed = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.Speed or 2
+IsUpToDate = pcall(function()
+    Client = {
+        Toggles = {
+            SilentAim = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.SilentAim or false,
+            FOV = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.FOV or false,
+            NoRecoil = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoRecoil or false,
+            Fly = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Fly or false,
+            BHOP = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.BHOP or false,
+            BoxEsp = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.BoxEsp or false,
+            TracerEsp = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.TracerEsp or false,
+            ShowTeam = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.ShowTeam or false,
+            Rainbow =  DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Rainbow or false,
+            Rainbow2 = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Rainbow2 or false,
+            Wallbang = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Wallbang or false,
+            RapidFire = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.RapidFire or false
+        },
+        Visuals = {
+            BoxEsp = false,
+            TracerEsp = false,
+            Names = false,
+            TeamCheck = true,
+            EnemyColor = Color3.fromRGB(255,0,0),
+            TeamColor = Color3.fromRGB(0,255,0),
+            ShowTeam = false,
+            Rainbow = false,
+            Rainbow2 = false
+        },
+        Values = {
+            AimPart = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.AimPart or "Head",
+            FOV = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.FOV or 100,
+            ChatMsg = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.ChatMsg or "Dark HUB Winning! Dizzy: DarkHUB",
+            ChatDelay = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.ChatDelay or 1,
+            Speed = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.Speed or 2
+        }
     }
-}
+end)
+if not IsUpToDate and DarkHub_Client.SavedSettings and isfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB') then
+    delfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB')
+    game.Players.LocalPlayer:Kick('DarkHub Settings Out Of Date - Issue Fixed | Restart DarkHub to Continue')
+end
 
 
 MainWindow:Toggle("Fly", function(state)
@@ -130,6 +137,9 @@ end,Client.Values.Speed)
 MainWindow:Toggle("No Recoil", function(state)
     Client.Toggles.NoRecoil = state
 end,Client.Toggles.NoRecoil)
+MainWindow:Toggle("Rapid Fire", function(state)
+    Client.Toggles.RapidFire = state
+end,Client.Toggles.RapidFire)
 
 
 MainWindow:Toggle("Wallbang(20m Close Range)", function(state)
@@ -226,9 +236,20 @@ Aimbotz:Slider("FOV", 15, 1000, function(num)
     Client.Values.FOV = num
 end,Client.Values.FOV)
 
-Aimbotz:Dropdown('BodyPart',{'Chest','Head'},function(Sele)
+Aimbotz:Dropdown('BodyPart',{'Chest','Head','Random'},function(Sele)
     Client.Values.AimPart = Sele
 end)
+function GetAimPart()
+    if Client.Values.AimPart == 'Random' then
+        if math.random(1,3) == 1 then
+            return 'Head'
+        else
+            return 'Chest'
+        end
+    else
+        return Client.Values.AimPart
+    end
+end
 
 --Visuals Below
 --FOV
@@ -295,10 +316,11 @@ OldLV = hookfunction(Main.Input.Reticle.LookVector , function()
     Camera = game.Workspace.CurrentCamera
     xt = target
     Camera  = {
-        CFrame = CFrame.new(Camera.CFrame.p,xt.Body[Client.Values.AimPart].Position)
+        CFrame = CFrame.new(Camera.CFrame.p,xt.Body[GetAimPart()].Position)
     }
     x = (Camera.CFrame).LookVector
-    if not xt:FindFirstChild('Body') or not xt.Body:FindFirstChild(Client.Values.AimPart) or x == nil then
+
+    if not xt:FindFirstChild('Body') or not xt.Body:FindFirstChild(GetAimPart()) or x == nil then
         return game.Workspace.CurrentCamera.CFrame.LookVector
     end
     if x ~= nil then
@@ -307,6 +329,7 @@ OldLV = hookfunction(Main.Input.Reticle.LookVector , function()
         return game.Workspace.CurrentCamera.CFrame.LookVector
     end
 end)
+
 OldRecoil = hookfunction(Main.Camera.Recoil.Fire,function(self, name, ...)
     local args = {...}
     if Client.Toggles.NoRecoil then
@@ -315,16 +338,6 @@ OldRecoil = hookfunction(Main.Camera.Recoil.Fire,function(self, name, ...)
         return OldRecoil(self, name, unpack(args))
     end
 end)
-
-
-OldShoot = Main.Network.Fire
-Main.Network.Fire = function(...)
-    local args = {...};
-    if tostring(args[1]) == 'Admin' or tostring(args[2]) == 'Admin' then
-        return
-    end
-    return OldShoot(...)
-end
 
 
 --ESP 
