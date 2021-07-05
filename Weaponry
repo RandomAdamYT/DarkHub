@@ -29,7 +29,8 @@ IsUpToDate = pcall(function()
             InfAmmo = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.InfAmmo or false,
             SilentAim = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.SilentAim or false,
             NoSpread = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoSpread or false,
-            NoRecoil = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoRecoil or false
+            NoRecoil = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoRecoil or false,
+            Auto = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Auto or false
         },
         Values = {
         }
@@ -54,6 +55,9 @@ end,Client.Toggles.NoSpread)
 Main:Toggle('No Recoil',function(state)
     Client.Toggles.NoRecoil = state
 end,Client.Toggles.NoRecoil)
+Main:Toggle('Always Auto',function(state)
+    Client.Toggles.Auto = state
+end,Client.Toggles.Auto)
 OldRecoil = RecoilHandler.accelerate
 RecoilHandler.accelerate = function(...)
     if Client.Toggles.NoRecoil then
@@ -67,6 +71,18 @@ game:GetService('RunService').RenderStepped:Connect(function()
     end
     if Client.Toggles.NoSpread then
         pcall(function() getupvalue(ClientVars,1)[1].WeaponStates.CurrentAccuracy = 0 getupvalue(ClientVars,1)[2].WeaponStates.CurrentAccuracy = 0 end)
+    end
+    if Client.Toggles.Auto then
+        pcall(function() 
+            getupvalue(ClientVars,1)[1].WeaponStats.FireMode = {
+                ['Name'] = 'Auto',
+                ['Round'] = 1
+            }
+            getupvalue(ClientVars,1)[2].WeaponStats.FireMode = {
+                ['Name'] = 'Auto',
+                ['Round'] = 1
+            } 
+        end)
     end
 end)
 function GetClosestPlr()
