@@ -65,7 +65,6 @@ game:GetService('RunService').RenderStepped:Connect(function()
             if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild('HumanoidRootPart') and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart') and game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass('Tool') then
                 Mag = (v.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude
                 if Mag < 22 then
-                    print(Mag,v)
                     local v1 = "T"
                     local v2 = v.Character.HumanoidRootPart
                     local event = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass('Tool').WeaponRemote
