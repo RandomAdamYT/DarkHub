@@ -65,8 +65,13 @@ game:GetService('RunService').RenderStepped:Connect(function()
             if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild('HumanoidRootPart') and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart') and game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass('Tool') then
                 Mag = (v.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude
                 if Mag < 22 then
+                    local v1 = "Swing"
+                    local v2 = 1
+                    local event = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass('Tool').WeaponRemote
+                    
+                    event:FireServer(v1, v2)
                     local v1 = "T"
-                    local v2 = v.Character.HumanoidRootPart
+                    local v2 = v.Character['Left Leg']
                     local event = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass('Tool').WeaponRemote
                     event:FireServer(v1, v2)
                     wait(.1)
@@ -76,7 +81,7 @@ game:GetService('RunService').RenderStepped:Connect(function()
     end
     if Client.Toggles.AutoBlock then
         game:GetService("ReplicatedStorage").Remotes.MainRemote:FireServer({
-            Block = true
+            Block = truwe
         });
     end
 end)
