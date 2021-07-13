@@ -68,53 +68,6 @@ end
 MainWindow:Toggle("Fly", function(state)
     Client.Toggles.Fly = state
 end,Client.Toggles.Fly)
-if not KRNL_LOADED then
-    MainWindow:Toggle("Rainbow Hands", function(state)
-        Client.Toggles.Rainbow = state
-    end,Client.Toggles.Rainbow)
-
-    local RunService = game:GetService("RunService")
-    RunService.Heartbeat:Connect(function()
-        pcall(function()
-            if Client.Toggles.Rainbow == true then
-                wait(.45)
-                for i, v in pairs(game:GetService("Workspace").Arms:GetChildren()) do
-                    v.Color = Color3.fromHSV(tick()%5/5,1,1)
-                    v.Material = "ForceField"
-                    v.Transparency = 0.5
-                end
-            else
-                wait(.45)
-                for i, v in pairs(game:GetService("Workspace").Arms:GetChildren()) do
-                    v.Color = Color3.fromHSV(243, 187, 19)
-                    v.Material = "SmoothPlastic"
-                    v.Transparency = 0
-                end
-            end
-        end)
-    end)  
-end
-
-MainWindow:Button("Rainbow Gun", function()
-    game:GetService("Workspace").ChildAdded:Connect(function(model)
-            local RunService = game:GetService("RunService")
-            RunService.Heartbeat:Connect(function()
-                pcall(function()
-                wait(.45)
-                if model:FindFirstChild("RightHand") then
-                    for i, v in pairs(model.Body:GetDescendants()) do
-                        if v.ClassName == "MeshPart" and v.Transparency ~= 1 then
-                            v.Color = Color3.fromHSV(tick()%5/5,1,1)
-                            v.Material = "ForceField"
-                            v.Transparency = 0.5
-                        end
-                    end
-
-                end
-            end)
-        end)
-    end)
-end)
 
 
 
