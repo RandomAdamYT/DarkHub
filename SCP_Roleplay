@@ -1,1 +1,107 @@
-print('g')
+hookfunction(game.Players.LocalPlayer.Kick,function() return end)
+hookfunction(workspace.Loadstring.InvokeServer,function() return wait(9e9) end)
+
+game.StarterGui:SetCore("SendNotification", {
+	Title = "Success!"; 
+	Text = "Successfully bypassed anticheat.";
+	Icon = ""; 
+	Duration = 5; 
+})
+
+
+DarkLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/NewUI"))()
+	@@ -197,6 +191,14 @@ player:Toggle("Auto global XP farm",function(t)
+	Toggles.autofarming = t 
+end)
+
+local togglesx2 = {
+	RespawnOnDeath = false 
+}
+
+player:Toggle("Spawn where you die",function(t)
+	togglesx2.RespawnOnDeath = t 
+end)
+
+
+spawn(function()
+	while true do wait(0.001)
+	@@ -205,6 +207,29 @@ spawn(function()
+			game.Players.LocalPlayer.Character.Humanoid:MoveTo(Vector3.new(-47.2952957, 92.0479736, 521.250244))
+			wait(8.7)
+		end
+
+		if togglesx2.RespawnOnDeath == true then 
+			if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then 
+				local localpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
+				local ohString1 = game.Players.LocalPlayer.Team.Name
+				local ohBoolean2 = false
+				local ohBoolean3 = false
+
+				game:GetService("ReplicatedStorage").Remotes.Spawn:InvokeServer(ohString1, ohBoolean2, ohBoolean3)
+				game.StarterGui:SetCore("SendNotification", {
+					Title = "Please wait..."; 
+					Text = "Bypassing teleport anticheat...";
+					Duration = 2; 
+				})
+				wait(2)
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = localpos
+				--\\ If that doesn't work then 
+				tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(1, Enum.EasingStyle.Linear)
+				tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = localpos})
+				tween:Play()
+			end
+		end
+	end
+end)
+
+	@@ -222,11 +247,13 @@ player:Button("Fullbright",function()
+end)
+
+player:Button("Respawn",function()
+	spawn(function()
+		local ohString1 = game.Players.LocalPlayer.Team.Name
+		local ohBoolean2 = false
+		local ohBoolean3 = false
+
+		game:GetService("ReplicatedStorage").Remotes.Spawn:InvokeServer(ohString1, ohBoolean2, ohBoolean3)
+	end)
+end)
+
+player:Button("FE Blockhead",function()
+	@@ -242,29 +269,13 @@ end)
+print("AntiAFK successfully executed!")
+
+
+	player:Slider("Walkspeed",16,300,function(t)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = t 
+	end)
+
+	player:Slider("Jumppower",50,300,function(t)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = t 
+	end)
+
+local localplayerthang = game.Players.LocalPlayer.Character
+
+	@@ -293,11 +304,11 @@ end)
+local SCPS = s:Tab("SCPs")
+
+local scptplist = {
+	["SCP 131"] = CFrame.new(-216.751175, 40.3499756, 301.37085),
+	["SCP 023"] = CFrame.new(258.827637, 40.3479881, 249.418304),
+	["SCP 999"] = CFrame.new(-285.280609, 40.3499489, 39.3958855),
+	["SCP 2950"] = CFrame.new(-210.538681, 40.3499718, 190.682281),
+	["SCP 173"] = CFrame.new(176.146118, 40.3499832, 53.8309669),
+}
+
+SCPS:Toggle("Check alarms",function(t)
+	@@ -401,3 +412,9 @@ miscthings:Textbox("Target's Nametag name",false,function(t)
+		Duration = 5; 
+	})
+end)
+
+miscthings:Button("Remove all doors",function()
+	for i,v in pairs(game:GetService("Workspace").Interactions:GetDescendants()) do 
+		v:Destroy()
+	end 
+end)
