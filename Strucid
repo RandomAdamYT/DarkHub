@@ -10,7 +10,7 @@ $$$$$$$  |\$$$$$$$ |$$ |      $$ | \$$\ $$ |  $$ |\$$$$$$  |$$$$$$$  |
 \_______/  \_______|\__|      \__|  \__|\__|  \__| \______/ \_______/ 
                                                            
                                                                       
-~Updated 7/17/2021
+~Updated 7/19/2021
 ]]
 
 
@@ -729,7 +729,7 @@ if b.Name ~= "Pickaxe" then
     require(b).Auto = true
   else
     require(b).Auto = require(game:GetService("ReplicatedStorage").Weapons.Modules[b.Name]).Auto
-  end
+    end
 end
 end
 end
@@ -782,7 +782,7 @@ else
 FOVCircle.Visible = false
 end
 if game.PlaceId == 2377868063 then
-if game.Players.LocalPlayer.PlayerGui.GameUI.CoreFrames.RoundStats.Gamemode.Text == "FFA" then
+if game:GetService("Players").LocalPlayer.PlayerGui.GameUI.CoreFrames.RoundStats.Gamemode.Text == " FFA" then
 Config.Visuals.TeamCheck = false
 else
 Config.Visuals.TeamCheck = true
@@ -856,6 +856,7 @@ end))
 if game.GameId == 833423526 then
     print('Strucid')
 game:GetService("RunService").RenderStepped:Connect(function()
+Game:GetService("ReplicatedStorage").Network.Remotes.VoteKick:FireServer()
 
     for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui:GetChildren()) do
         if v:IsA("LocalScript") then
