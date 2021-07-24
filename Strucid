@@ -73,7 +73,9 @@ LocalPlayer = {
 Nofatigue = false,
 NoFD = false,
 WS = 17,
-JP = 35
+JP = 35,
+Fly = false,
+FlySpeed = 100
 }
 }
 
@@ -163,7 +165,12 @@ LPTab:Toggle('No Fatigue',function(state)
 Config.LocalPlayer.Nofatigue = state
 end)
 
-LPTab:Slider('WalkSpeed', 17, 100, function(num)
+LPTab:Toggle('Fly',function(state)
+Config.LocalPlayer.Fly = state
+end)
+
+
+LPTab:Slider('WalkSpeed/FlySpeed', 17, 100, function(num)
 Config.LocalPlayer.WS = num
 end)
 
@@ -177,6 +184,46 @@ game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Config.LocalPlayer.WS
 game.Players.LocalPlayer.Character.Humanoid.JumpPower = Config.LocalPlayer.JP
 end)
 
+game:GetService('UserInputService').InputBegan:connect(function(key, gpe)
+    if key.KeyCode == Enum.KeyCode.Space then
+        Temp_Up = true
+    end
+    if key.KeyCode == Enum.KeyCode.LeftShift then
+        Temp_Down = true
+    end
+end)
+game:GetService('UserInputService').InputEnded:connect(function(key, gpe)
+    if key.KeyCode == Enum.KeyCode.Space then
+        Temp_Up = false
+    end
+    if key.KeyCode == Enum.KeyCode.LeftShift then
+        Temp_Down = false
+    end
+end)
+spawn(function()
+    while true do
+        wait()
+        pcall(function()
+            if Config.LocalPlayer.Fly == true then
+                game:GetService("Workspace").Gravity = 0
+                Me = game.Players.LocalPlayer.Character
+                if Temp_Up == true then
+                    Me.HumanoidRootPart.Velocity = Vector3.new(0,40,0)
+                end
+                if Temp_Down == true then
+                    Me.HumanoidRootPart.Velocity = Vector3.new(0,-40,0)
+                end
+                if Temp_Down == false and Temp_Up == false then
+                    if Me.HumanoidRootPart.Velocity.Y ~= 0 then
+                        Me.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                    end
+                end
+            else
+                game:GetService("Workspace").Gravity = 196.19999694824 
+            end
+        end)
+    end
+end)
 
 if game.PlaceId == 2377868063 then
  
