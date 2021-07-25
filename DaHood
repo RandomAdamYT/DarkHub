@@ -1,7 +1,4 @@
---open source lmao so if u made it this far to "bypass" exe only just use it...
-if identifyexecutor then
-    Exploit,Ver = identifyexecutor()
-    if Exploit == 'DarkHub.exe' then
+
         local Settings = {
             Silent = false,
             FovUsed = false,
@@ -419,7 +416,4 @@ if identifyexecutor then
                 end
             end)
         end
-    else
-        game.Players.LocalPlayer:Kick('DarkHub.exe Only')
-    end
-end
+
