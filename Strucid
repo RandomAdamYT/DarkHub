@@ -10,7 +10,7 @@ $$$$$$$  |\$$$$$$$ |$$ |      $$ | \$$\ $$ |  $$ |\$$$$$$  |$$$$$$$  |
 \_______/  \_______|\__|      \__|  \__|\__|  \__| \______/ \_______/ 
                                                            
                                                                       
-~Updated 7/19/2021
+~Updated 7/24/2021
 ]]
 
 
@@ -65,7 +65,6 @@ GunMods = {
 Recoil = false,
 Spread = false,
 FireRate = false,
-InfAmmo = false,
 InfRange = false,
 Wallbang = false
 },
@@ -73,9 +72,11 @@ LocalPlayer = {
 Nofatigue = false,
 NoFD = false,
 WS = 17,
-JP = 35,
+JP = 50,
 Fly = false,
-FlySpeed = 100
+FlySpeed = 100,
+Hitbox = false,
+HitboxSize = 10
 }
 }
 
@@ -174,9 +175,18 @@ LPTab:Slider('WalkSpeed/FlySpeed', 17, 100, function(num)
 Config.LocalPlayer.WS = num
 end)
 
-LPTab:Slider('JumpPower', 35, 100, function(num)
+LPTab:Slider('JumpPower', 50, 100, function(num)
 Config.LocalPlayer.JP = num
 end)
+
+LPTab:Toggle('Hitbox',function(state)
+Config.LocalPlayer.Hitbox = state
+end)
+
+LPTab:Slider('Hitbox Size', 2, 50, function(num)
+Config.LocalPlayer.HitboxSize = num
+end)
+
 
    game:GetService("RunService").RenderStepped:Connect(function()
 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Config.LocalPlayer.WS
@@ -425,11 +435,6 @@ Config.GunMods.FireRate = state
 Funcs:UpdateGuns()
 end)
 
---[[
-GunMods:Toggle('Infinite Ammo',function(state)
-Config.GunMods.InfAmmo = state
-end)
-]]
 
  
 
@@ -855,17 +860,6 @@ end
 
 
 
-
-X = require(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.NewLocal.Controller)
-
-    game:GetService("RunService").RenderStepped:Connect(function()
-if Config.GunMods.InfAmmo then
-
-    getupvalue(X.UpdateAmmoLabel,4)['Ammo'] = 40
-end
-end)
-
-
 if Config.GunMods.InfRange and hooked == false then
   pcall(function()
     if game:GetService("Players").LocalPlayer.PlayerGui.MenuUI.MenuLocal and game:GetService("Players").LocalPlayer.PlayerGui.MainGui.NewLocal then
@@ -900,10 +894,30 @@ RayHook = hookfunction(workspace.FindPartOnRayWithIgnoreList,newcclosure(functio
 end))
 
 
+
 if game.GameId == 833423526 then
     print('Strucid')
 game:GetService("RunService").RenderStepped:Connect(function()
-Game:GetService("ReplicatedStorage").Network.Remotes.VoteKick:FireServer()
+    local localplayer = game.Players.LocalPlayer
+if Config.LocalPlayer.Hitbox == true then
+            for i,v in next, game:GetService('Players'):GetPlayers() do 
+    if v.Name ~= localplayer.Name then
+                pcall(function()
+                    v.Character.HumanoidRootPart.Name = "DarkHubTorso"
+                    v.Character.DarkHubTorso.Size = Vector3.new(Config.LocalPlayer.HitboxSize, Config.LocalPlayer.HitboxSize, Config.LocalPlayer.HitboxSize, Config.LocalPlayer.HitboxSize) --Any size it's bypassed now
+                    v.Character.DarkHubTorso.Transparency=0.5
+                    v.Character.DarkHubTorso.CanCollide  = false
+                    v.Character.DarkHubTorso.Color = Color3.fromHSV(i,3,5,2)
+
+                end)
+                    elseif Config.LocalPlayer.Hitbox == false then
+game.Players.LocalPlayer.Character.DarkHubTorso.Name = "HumanoidRootPart"
+v.Character.HumanoidRootPart.Size = Vector3.new(2, 2, 1)
+
+            end
+        end
+        wait()
+end
 
     for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui:GetChildren()) do
         if v:IsA("LocalScript") then
