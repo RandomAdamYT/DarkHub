@@ -51,7 +51,7 @@ MainWindow:Toggle("Kill Aura", function(state)
 end,Client.Toggles.KillAura)
 MainWindow:Button('Inf Stamina',function()
     spawn(function()
-        while wait(.5) do
+        while wait(1) do
             for i,v in pairs(getconnections(game.Players.LocalPlayer.PlayerGui.ChildAdded)) do
                 setupvalue(v.Function,1,100)
             end
@@ -59,8 +59,8 @@ MainWindow:Button('Inf Stamina',function()
     end)
 end)
 
-game:GetService('RunService').RenderStepped:Connect(function()
-    if Client.Toggles.KillAura then
+game:GetService('Players').LocalPlayer.CharacterAdded:Connect(function()
+while wait(.35) and  Client.Toggles.KillAura do
         for i,v in pairs(game:GetService('Players'):GetPlayers()) do
             if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild('HumanoidRootPart') and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart') and game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass('Tool') then
                 Mag = (v.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude
@@ -71,20 +71,22 @@ game:GetService('RunService').RenderStepped:Connect(function()
                     
                     event:FireServer(v1, v2)
                     local v1 = "T"
-                    local v2 = v.Character['Left Leg']
+                    local v2 = v.Character['HumanoidRootPart']
                     local event = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass('Tool').WeaponRemote
                     event:FireServer(v1, v2)
                     wait(.1)
                 end
             end
         end
-    end
+end
     if Client.Toggles.AutoBlock then
         game:GetService("ReplicatedStorage").Remotes.MainRemote:FireServer({
-            Block = truwe
+            Block = true
         });
     end
-end)
+    end)
+
+
 
 while true do wait(5)
     if DarkHub_Client.SaveSettings then
