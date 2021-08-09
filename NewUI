@@ -286,7 +286,7 @@ function DarkLib:Window()
         AdImg.InputBegan:Connect(function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not closebtnhover then
                 spawn(function()
-                    setclipboard("https://bloxcrusher.com/")
+                    setclipboard("https://bloxcrusher.com?ref=0ZSmTc2PdJccHEr0")
                     ClickedFrame.BackgroundTransparency = 0.2
                     ClickLabel.TextTransparency = 0
                     wait(1)
