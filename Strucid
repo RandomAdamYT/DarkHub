@@ -144,7 +144,7 @@ local newClose = newcclosure or function(f) return f end
 if setreadonly then setreadonly(mt, false) else make_writeable(mt, true) end
 
 
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Ihaveash0rtnamefordiscord/DarkHUB/main/Lib"))()
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/NewUI"))()
 main = lib:Window()
 Aimbot = main:Tab('Aimbot')
 LPTab = main:Tab('LocalPlayer')
