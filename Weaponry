@@ -19,7 +19,7 @@ end
 
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub_V3/main/UILIB",true))()
 main = lib:Window()
-local ClientVars = getsenv(game:GetService("Players").LocalPlayer.PlayerScripts.Weaponry_ClientFramework).CheckIsToolValid
+local ClientVars = getsenv(game:GetService("Players").LocalPlayer.PlayerScripts.WeaponryClientFramework).CheckIsToolValid
 local RecoilHandler = require(game:GetService("ReplicatedStorage").ClientModules.RecoilCamHandler)
 local RayCastClient = require(game:GetService("ReplicatedStorage").ClientModules.RayCastClient)
 
@@ -67,10 +67,10 @@ RecoilHandler.accelerate = function(...)
 end
 game:GetService('RunService').RenderStepped:Connect(function()
     if Client.Toggles.InfAmmo then
-        pcall(function() getupvalue(ClientVars,1)[1].WeaponStates.CurrentAmmo = getupvalue(ClientVars,1)[1].WeaponStats.MaxAmmo getupvalue(ClientVars,1)[2].WeaponStates.CurrentAmmo = getupvalue(ClientVars,1)[2].WeaponStats.MaxAmmo end)
+        pcall(function() getupvalue(ClientVars,1)[1].CurrentAmmo = getupvalue(ClientVars,1)[1].WeaponStats.MaxAmmo getupvalue(ClientVars,1)[2].CurrentAmmo = getupvalue(ClientVars,1)[2].WeaponStats.MaxAmmo end)
     end
     if Client.Toggles.NoSpread then
-        pcall(function() getupvalue(ClientVars,1)[1].WeaponStates.CurrentAccuracy = 0 getupvalue(ClientVars,1)[2].WeaponStates.CurrentAccuracy = 0 end)
+        pcall(function() getupvalue(ClientVars,1)[1].CurrentAccuracy = 0 getupvalue(ClientVars,1)[2].CurrentAccuracy = 0 end)
     end
     if Client.Toggles.Auto then
         pcall(function() 
@@ -93,7 +93,7 @@ function GetClosestPlr()
             local Pos, Vis = game.Workspace.CurrentCamera.WorldToScreenPoint(game.Workspace.CurrentCamera,v.Character.FindFirstChild(v.Character,"Head").Position)
             if Vis then
                 mag = (Vector2.new(Pos.X,Pos.Y) - Vector2.new(game.Players.LocalPlayer.GetMouse(game.Players.LocalPlayer).X,game.Players.LocalPlayer.GetMouse(game.Players.LocalPlayer).Y)).magnitude
-                if mag < MaxDis and mag <= 200 then
+                if mag < MaxDis and mag <= 500 then
                     Plr = v
                     MaxDis = mag
                 end
