@@ -10,7 +10,8 @@ $$$$$$$  |\$$$$$$$ |$$ |      $$ | \$$\ $$ |  $$ |\$$$$$$  |$$$$$$$  |
 \_______/  \_______|\__|      \__|  \__|\__|  \__| \______/ \_______/ 
                                                            
                                                                       
-~Updated 7/24/2021
+~Updated 8/8/2021
+
 ]]
 
 
@@ -45,7 +46,8 @@ SkeletonEsp = false,
 EnemyColor = Color3.fromRGB(190, 190, 0),
 TeamColor = Color3.fromRGB(0, 190, 0),
 TeamCheck = true, -- Auto changes if gamemode is ffa
-ItemEsp = false
+ItemEsp = false,
+CrossairColor = Color3.fromRGB(225, 225, 225)
 },
 Aimbot = {
 Aimbot = false,
@@ -65,18 +67,15 @@ GunMods = {
 Recoil = false,
 Spread = false,
 FireRate = false,
-InfRange = false,
 Wallbang = false
 },
 LocalPlayer = {
 Nofatigue = false,
-NoFD = false,
 WS = 17,
 JP = 50,
 Fly = false,
 FlySpeed = 100,
-Hitbox = false,
-HitboxSize = 10
+Rejoin = true
 }
 }
 
@@ -159,9 +158,10 @@ Aimbot:Toggle('Aimbot',function(state)
 Config.Aimbot.Aimbot = state
 end)
 
-LPTab:Toggle('No Fall Damage',function(state)
-Config.LocalPlayer.NoFD = state
+LPTab:Toggle('Rejoin on Votekick',function(state)
+Config.LocalPlayer.Rejoin = state
 end)
+
 LPTab:Toggle('No Fatigue',function(state)
 Config.LocalPlayer.Nofatigue = state
 end)
@@ -178,15 +178,6 @@ end)
 LPTab:Slider('JumpPower', 50, 100, function(num)
 Config.LocalPlayer.JP = num
 end)
-
-LPTab:Toggle('Hitbox',function(state)
-Config.LocalPlayer.Hitbox = state
-end)
-
-LPTab:Slider('Hitbox Size', 2, 50, function(num)
-Config.LocalPlayer.HitboxSize = num
-end)
-
 
    game:GetService("RunService").RenderStepped:Connect(function()
 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Config.LocalPlayer.WS
@@ -255,18 +246,14 @@ RunService.Heartbeat:Connect(function()
 if Config.LocalPlayer.Nofatigue == true then
 game.Players.LocalPlayer.Character.Humanoid.JumpPower = 38
 end
-if Config.LocalPlayer.NoFD == true then
-game:GetService("ReplicatedStorage").Network.Remotes.Bouncing:FireServer()
-end
 end)
 
 
 
-if game.PlaceId == 2377868063 then
 Aimbot:Toggle('Silent Aim',function(state)
 Config.Aimbot.Silent = state
 end)
-end
+
 
 
 Aimbot:Toggle('Trigger Bot',function(state)
@@ -351,14 +338,32 @@ Config.Visuals.TracersOrigin = selected
 end
 )
 
-Esp:Colorpicker("Team Esp Color",Color3.fromRGB(0, 190, 0), function(color)
+Esp:Colorpicker("Team Esp Color",Color3.fromRGB(40, 127, 71), function(color)
 Config.Visuals.TeamColor = color
 end)
 
-Esp:Colorpicker("Enemy Esp Color",Color3.fromRGB(190, 190, 0), function(color)
+Esp:Colorpicker("Enemy Esp Color",Color3.fromRGB(205, 84, 75), function(color)
 Config.Visuals.EnemyColor = color
 end)
+
+Esp:Colorpicker("Crossair",Color3.fromRGB(225,225,225), function(color)
+Config.Visuals.CrossairColor = color
+end)
+
    game:GetService("RunService").RenderStepped:Connect(function()
+pcall(function()
+for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CrossHairs:GetChildren()) do
+    if v.ClassName == "Frame" then
+        v.BackgroundColor3 = Config.Visuals.CrossairColor
+        end
+end
+for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.ShotgunCrossHairs:GetChildren()) do
+    if v.ClassName == "Frame" or v.ClassName == "ImageLabel" then
+        v.BackgroundColor3 = Config.Visuals.CrossairColor
+        v.ImageColor3 = Config.Visuals.CrossairColor
+
+        end
+end
 
 if Config.Visuals.ItemEsp and wait(.45) then
     pcall(function()
@@ -390,6 +395,7 @@ end
 end
 end)
 end
+end)
 end)
 
     function Property(instance, property)
@@ -433,14 +439,6 @@ end)
 GunMods:Toggle('FireRate',function(state)
 Config.GunMods.FireRate = state
 Funcs:UpdateGuns()
-end)
-
-
- 
-
-
-GunMods:Toggle('Infinite Range ( Buggy )',function(state)
-Config.GunMods.InfRange = state
 end)
 
 GunMods:Toggle('Wallbang',function(state)
@@ -786,18 +784,22 @@ end
 end
 end
 
-        local mt = getrawmetatable(game)
-        local oldIndex = mt.__index 
-        setreadonly(mt, false)
-            
-        mt.__index = newcclosure(function(self, ...)
-    if tostring(...) == "Hit" and Config.Aimbot.Silent and Funcs:GetTarget() ~= nil then
-            return Funcs:GetTarget().Character[Config.Aimbot.AimBone].CFrame--pos to shoot and where to shoot
-            
+ game:GetService("RunService").RenderStepped:Connect(function()
+ local ConeOfFire = require(game.Players.LocalPlayer.PlayerGui:WaitForChild("MainGui").NewLocal.Tools.Tool.Gun).ConeOfFire
+if Config.Aimbot.Silent then
+  local ConeOfFire = require(game.Players.LocalPlayer.PlayerGui:WaitForChild("MainGui").NewLocal.Tools.Tool.Gun).ConeOfFire
+  require(game.Players.LocalPlayer.PlayerGui:WaitForChild("MainGui").NewLocal.Tools.Tool.Gun).ConeOfFire = function(...)
+    if tostring(getfenv(2).script.Name) == "Extra" then
+      return ConeOfFire(...)
     end
-     return oldIndex(self, ...)
-        end)
-setreadonly(mt, true)
+    if Funcs:GetTarget() ~= nil then
+      return Funcs:GetTarget().Character[Config.Aimbot.AimBone].Position
+    end
+    return ({...})[3]
+  end
+end
+end)
+
 
 
 
@@ -821,6 +823,13 @@ end
 
 
 Services.RunService.Stepped:Connect(function()
+    if Config.LocalPlayer.Rejoin then
+    if game:GetService("Players").LocalPlayer.PlayerGui.MenuUI.VoteKick and game:GetService("Players").LocalPlayer.PlayerGui.MenuUI.VoteKick.Title.Text == "Vote Kick <font color = '#FFA500'>".. game.Players.LocalPlayer.Name .. "</font>?" then
+game:GetService("TeleportService"):Teleport(game.PlaceId)
+    else
+wait()
+end
+end
 for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui:GetChildren()) do
 if v:FindFirstChild("ImageLabel") then
   game.Players.LocalPlayer:Kick("tell the darkhub people to fix their script (and dont worry you're not banned)")
@@ -840,6 +849,9 @@ else
 Config.Visuals.TeamCheck = true
 end
 end
+if game.PlaceId == 3606833500 then
+Config.Visuals.TeamCheck = false
+end
 if Config.Aimbot.RandomAimBone then
 random = math.random(1,3)
 if random == 1 then
@@ -857,33 +869,14 @@ end
 if Config.GunMods.FireRate == true then
  getupvalue(getsenv(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.NewLocal).Reload, 3).Debounce = 0
 end
-
-
-
-if Config.GunMods.InfRange and hooked == false then
-  pcall(function()
-    if game:GetService("Players").LocalPlayer.PlayerGui.MenuUI.MenuLocal and game:GetService("Players").LocalPlayer.PlayerGui.MainGui.NewLocal then
-    local RayCast = getsenv(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.NewLocal).RayCast
-      getsenv(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.NewLocal).RayCast = function(Argument_1, Argument_2, Argument_3, Argument_4, Argument_5, ...)
-        hooked = true
-        if Argument_1 ~= game:GetService("Players").LocalPlayer.Character.Head.Position then
-          local RayHit, RayPosition = game:GetService("Workspace").FindPartOnRayWithIgnoreList(game:GetService("Workspace"), Ray.new(Argument_1, (Argument_2 - Argument_1).unit * 9.0071993e+15), Argument_3)
-          return RayHit, RayPosition
-        end
-        return RayCast(Argument_1, Argument_2, Argument_3, Argument_4, Argument_5, ...)
-      end
-    else
-      hooked = false
-    end
-  end)
-end
 end)
 end)
+
      local RayHook;
 RayHook = hookfunction(workspace.FindPartOnRayWithIgnoreList,newcclosure(function(...)
     args = {...}
     if Config.GunMods.Wallbang == true then
-        args[3] = {game:GetService("Workspace").IgnoreThese, game:GetService("Players").LocalPlayer.Character, game:GetService("Workspace").BuildStuff, game:GetService("Workspace").Map}
+        args[3] = {game:GetService("Terrain"), game:GetService("Workspace").IgnoreThese, game:GetService("Players").LocalPlayer.Character, game:GetService("Workspace").BuildStuff, game:GetService("Workspace").Map, game:GetService("Workspace").Terrain}
             if Config.GunMods.Wallbang == true then
         return RayHook(unpack(args))
             else
@@ -895,37 +888,13 @@ end))
 
 
 
-if game.GameId == 833423526 then
-    print('Strucid')
-game:GetService("RunService").RenderStepped:Connect(function()
-    local localplayer = game.Players.LocalPlayer
-if Config.LocalPlayer.Hitbox == true then
-            for i,v in next, game:GetService('Players'):GetPlayers() do 
-    if v.Name ~= localplayer.Name then
-                pcall(function()
-                    v.Character.HumanoidRootPart.Name = "DarkHubTorso"
-                    v.Character.DarkHubTorso.Size = Vector3.new(Config.LocalPlayer.HitboxSize, Config.LocalPlayer.HitboxSize, Config.LocalPlayer.HitboxSize, Config.LocalPlayer.HitboxSize) --Any size it's bypassed now
-                    v.Character.DarkHubTorso.Transparency=0.5
-                    v.Character.DarkHubTorso.CanCollide  = false
-                    v.Character.DarkHubTorso.Color = Color3.fromHSV(i,3,5,2)
-
-                end)
-                    elseif Config.LocalPlayer.Hitbox == false then
-game.Players.LocalPlayer.Character.DarkHubTorso.Name = "HumanoidRootPart"
-v.Character.HumanoidRootPart.Size = Vector3.new(2, 2, 1)
-
-            end
-        end
-        wait()
-end
 
     for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui:GetChildren()) do
         if v:IsA("LocalScript") then
             v:Destroy()
         end
     end
-end)
+
+
 print('Hazzel made my Wood ;)')
 print('Woophunter said this was discontinued')
-
-end
