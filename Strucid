@@ -10,7 +10,7 @@ $$$$$$$  |\$$$$$$$ |$$ |      $$ | \$$\ $$ |  $$ |\$$$$$$  |$$$$$$$  |
 \_______/  \_______|\__|      \__|  \__|\__|  \__| \______/ \_______/ 
                                                            
                                                                       
-~Updated 8/8/2021
+~Updated 8/16/2021
 
 ]]
 
@@ -71,6 +71,7 @@ Wallbang = false
 },
 LocalPlayer = {
 Nofatigue = false,
+NoFD = false,
 WS = 17,
 JP = 50,
 Fly = false,
@@ -162,9 +163,19 @@ LPTab:Toggle('Rejoin on Votekick',function(state)
 Config.LocalPlayer.Rejoin = state
 end)
 
+LPTab:Toggle('No Fall Damage',function(state)
+  Config.LocalPlayer.NoFD = state  
+end)
+
+
+
+
 LPTab:Toggle('No Fatigue',function(state)
 Config.LocalPlayer.Nofatigue = state
 end)
+
+
+
 
 LPTab:Toggle('Fly',function(state)
 Config.LocalPlayer.Fly = state
@@ -179,7 +190,10 @@ LPTab:Slider('JumpPower', 50, 100, function(num)
 Config.LocalPlayer.JP = num
 end)
 
+
    game:GetService("RunService").RenderStepped:Connect(function()
+
+
 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Config.LocalPlayer.WS
 
 game.Players.LocalPlayer.Character.Humanoid.JumpPower = Config.LocalPlayer.JP
@@ -241,8 +255,7 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:Get
 end)
 end
 
-local RunService = game:GetService("RunService")
-RunService.Heartbeat:Connect(function()
+game:GetService("RunService").Heartbeat:Connect(function()
 if Config.LocalPlayer.Nofatigue == true then
 game.Players.LocalPlayer.Character.Humanoid.JumpPower = 38
 end
@@ -436,10 +449,10 @@ Config.GunMods.Spread = state
 Funcs:UpdateGuns()
 end)
 
-GunMods:Toggle('FireRate',function(state)
-Config.GunMods.FireRate = state
-Funcs:UpdateGuns()
-end)
+--GunMods:Toggle('FireRate',function(state)
+--Config.GunMods.FireRate = state
+--Funcs:UpdateGuns()
+--end)
 
 GunMods:Toggle('Wallbang',function(state)
 Config.GunMods.Wallbang = state
@@ -765,21 +778,21 @@ if b.Name ~= "Pickaxe" then
   else
     require(b).Recoil = require(game:GetService("ReplicatedStorage").Weapons.Modules[b.Name]).Recoil
   end
-  if Config.GunMods.FireRate == true then
-    require(b).Debounce = 0
-  else
-    require(b).Debounce = require(game:GetService("ReplicatedStorage").Weapons.Modules[b.Name]).Debounce
-  end
+--  if Config.GunMods.FireRate == true then
+  --  require(b).Debounce = 0
+--  else
+  --  require(b).Debounce = require(game:GetService("ReplicatedStorage").Weapons.Modules[b.Name]).Debounce
+--  end
   if Config.GunMods.Spread == true then
     require(b).Inaccuracy = 0
   else
     require(b).Inaccuracy = require(game:GetService("ReplicatedStorage").Weapons.Modules[b.Name]).Inaccuracy
   end
-    if Config.GunMods.FireRate == true then
-    require(b).Auto = true
-  else
-    require(b).Auto = require(game:GetService("ReplicatedStorage").Weapons.Modules[b.Name]).Auto
-    end
+    --if Config.GunMods.FireRate == true then
+  --  require(b).Auto = true
+ -- else
+   -- require(b).Auto = require(game:GetService("ReplicatedStorage").Weapons.Modules[b.Name]).Auto
+   -- end
 end
 end
 end
@@ -866,9 +879,9 @@ pcall(function()
 if Config.GunMods.Recoil == true then
   --getsenv(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.NewLocal).CameraRecoil = function() end
 end
-if Config.GunMods.FireRate == true then
- getupvalue(getsenv(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.NewLocal).Reload, 3).Debounce = 0
-end
+--if Config.GunMods.FireRate == true then
+ --getupvalue(getsenv(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.NewLocal).Reload, 3).Debounce = 0
+--end
 end)
 end)
 
@@ -894,7 +907,12 @@ end))
             v:Destroy()
         end
     end
-
-
+    
+while wait(1) do
+         if Config.LocalPlayer.NoFD == true then 
+             wait(1)
+game:GetService("ReplicatedStorage").Network.Remotes.Bouncing:FireServer()
+end
+end
 print('Hazzel made my Wood ;)')
 print('Woophunter said this was discontinued')
