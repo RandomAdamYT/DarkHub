@@ -244,7 +244,7 @@ function DarkLib:Window()
         AdImg.Size = UDim2.new(1, 0, 1, 0)
         AdImg.Image = "rbxassetid://"..tostring(decals[math.random(#decals)])
         AdImg.BackgroundTransparency = 1.000
-        AdClose.Name = "AdClose"
+        AdClose.Name = "AdClose?"
         AdClose.Parent = AdImg
         AdClose.AnchorPoint = Vector2.new(1, 0)
         AdClose.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
