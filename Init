@@ -3,6 +3,11 @@ if getconnections then
   for i,v in pairs(getconnections(game:GetService("ScriptContext").Error)) do
     v:Disable()
   end
+  for i,v in pairs(getconnections(game.CoreGui.DescendantAdded)) do
+      if table.find(getconstants(v.Function),'IsA') then
+          while true do end
+      end
+  end
 end
 
 if game.GameId == 2429242760 then
