@@ -237,11 +237,12 @@ function DarkLib:Window()
         AdFrame.BackgroundTransparency = 1.000
         AdFrame.Position = UDim2.new(0.5, 0, 1, -20)
         AdFrame.Size = UDim2.new(0, 720, 0, 90)
+        local decals = {"7300398174", "7300399913", "7300400639"}        
         AdImg.Name = "AdImg"
         AdImg.Parent = AdFrame
         AdImg.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         AdImg.Size = UDim2.new(1, 0, 1, 0)
-        AdImg.Image = "http://www.roblox.com/asset/?id=7229487815"
+        AdImg.Image = "rbxassetid://"..tostring(decals[math.random(#decals)])
         AdImg.BackgroundTransparency = 1.000
         AdClose.Name = "AdClose"
         AdClose.Parent = AdImg
@@ -286,7 +287,7 @@ function DarkLib:Window()
         AdImg.InputBegan:Connect(function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not closebtnhover then
                 spawn(function()
-                    setclipboard("https://bloxcrusher.com?ref=0ZSmTc2PdJccHEr0")
+                    setclipboard("https://fluxteam.xyz/")
                     ClickedFrame.BackgroundTransparency = 0.2
                     ClickLabel.TextTransparency = 0
                     wait(1)
@@ -296,7 +297,7 @@ function DarkLib:Window()
             end
         end)        
     end    
-    --BloxcrusherBanner()
+    BloxcrusherBanner()
 
 	MakeDraggable(DraggableFrame, MainFrame)
 	local Win = {}
