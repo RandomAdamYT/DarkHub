@@ -1,4 +1,11 @@
-
+function GetFramework()
+    for i,v in pairs(game.Players.LocalPlayer.PlayerScripts:GetChildren()) do
+        if pcall(function() getsenv(v) end) and getsenv(v).InspectWeapon then
+            return v 
+        end
+    end
+    return nil 
+end
 DarkHub_Client = {SavedSettings = false}
 if isfolder and makefolder and not isfolder('DarkHub') then
     makefolder('DarkHub')
@@ -19,7 +26,7 @@ end
 
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub_V3/main/UILIB",true))()
 main = lib:Window()
-local ClientVars = getsenv(game:GetService("Players").LocalPlayer.PlayerScripts.WeaponryClientFramework).CheckIsToolValid
+local ClientVars = getsenv(GetFramework()).CheckIsToolValid
 local RecoilHandler = require(game:GetService("ReplicatedStorage").ClientModules.RecoilCamHandler)
 local RayCastClient = require(game:GetService("ReplicatedStorage").ClientModules.RayCastClient)
 
