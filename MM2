@@ -10,7 +10,10 @@ $$$$$$$  |\$$$$$$$ |$$ |      $$ | \$$\ $$ |  $$ |\$$$$$$  |$$$$$$$  |
 \_______/  \_______|\__|      \__|  \__|\__|  \__| \______/ \_______/ 
                                                            
                                                                       
-~Updated 8/20/2021
+~Updated 8/26/2021
+
+Credits:
+~Kiriot22 for Detection Method
 ]]
 
 
@@ -18,11 +21,17 @@ local Client = {
     toggles = {
         Murder = "I don't know yet cause... idk", --Client.toggles.Murder
         Sheriff = "I don't know yet cause... idk", --Client.toggles.Sheriff
+        Hero = "I don't know yet cause... idk",
         FOV = 100, --Client.toggles.FOV
         aimbone = "Head", --Client.toggles.aimbone
         silent = false, --Client.toggles.silent
         throwknives = false, --Client.toggles.throwknives
-        DrawFOV = false --Client.toggles.DrawFOV
+        DrawFOV = false, --Client.toggles.DrawFOV,
+        roleesp = false,
+        Spam = false,
+        Crash = false,
+        CrashMethod = "Equip",
+        coinfarm = false
 
 
     }
@@ -32,59 +41,62 @@ local Client = {
 
 spawn(function()
      game:GetService("RunService").RenderStepped:Connect(function()
-for _,v in pairs(game.Players:GetPlayers()) do
-         if v.Character and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health ~= 0 and v.Character:FindFirstChild("HumanoidRootPart") then
-    for _,v2 in pairs(v:GetChildren()) do
-        if v2.Name == "Backpack" then
-            if v2:FindFirstChild("Knife") or v2:FindFirstChild("Bade") or v2:FindFirstChild("Battleaxe") then
-Client.toggles.Murder = v.Name
-
-                        end
-        end
-                end
+--game:GetService("Players").LocalPlayer.PlayerGui.MainGUI["Game/Names"]
+local roles = game:GetService("ReplicatedStorage").GetPlayerData:InvokeServer()
+for i,v in pairs(roles) do
+    if v.Role == "Murderer" then
+        Client.toggles.Murder = i -- Murder
+    end
 end
+for z,x in pairs(roles) do
+    if x.Role == "Sheriff" then
+        Client.toggles.Sheriff = z -- Sheriff
+    end
 end
-
-
-    
-for _,v in pairs(game.Players:GetPlayers()) do
-    if v.Character:FindFirstChild("Knife") or v.Character:FindFirstChild("Blade") or v.Character:FindFirstChild("Battleaxe") then
-Client.toggles.Murder = v.Name
-
-                    end
-                end
-            
- 
-for _,v in pairs(game.Players:GetPlayers()) do
-         if v.Character and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health ~= 0 and v.Character:FindFirstChild("HumanoidRootPart") then
-    for _,v2 in pairs(v:GetChildren()) do
-        if v2.Name == "Backpack" then
-            if v2:FindFirstChild("Gun") or v2:FindFirstChild("Revolver") then
-Client.toggles.Sheriff = v.Name                        end
-        end
-                end
+for p,e in pairs(roles) do
+    if e.Role == "Hero" then
+        Client.toggles.Hero = p -- Sheriff
+    end
 end
-end
-
-
-    
-for _,v in pairs(game.Players:GetPlayers()) do
-    if v.Character:FindFirstChild("Gun") or v.Character:FindFirstChild("Revolver") then
-Client.toggles.Sheriff = v.Name
-
-                    end
-end
-
-
      end)
 end)
 
+ local LP = game:GetService("Players").LocalPlayer
+local function Tween(part, endpos, speed)
+    if part and endpos then
+        local Time = (endpos - part.Position).magnitude/speed
+        local Info = TweenInfo.new(Time, Enum.EasingStyle.Linear)
+        local Tween = game:GetService("TweenService"):Create(part,Info,{CFrame = CFrame.new(endpos.X,endpos.Y,endpos.Z)})
+        Tween:Play()
+        wait(Time)
+    end
+end
 
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Ihaveash0rtnamefordiscord/DarkHUB/main/Lib"))()
 main = lib:Window()
 Mainz = main:Tab('Combat')
 Character = main:Tab('Character')
 Visual = main:Tab('Visuals')
+Trolling = main:Tab('Troll')
+
+
+Trolling:Toggle('Spam Trade',function(state)
+Client.toggles.Spam = state
+end)
+
+Character:Toggle('Coin Farm',function(state)
+Client.toggles.coinfarm = state
+end)
+
+Trolling:Toggle('Crash',function(state)
+Client.toggles.Crash = state
+end)
+
+
+Trolling:Dropdown(
+"Crash Method",{'Knives','Equip'}, function(selected)
+Client.toggles.CrashMethod= selected
+end)
 
 
   
@@ -96,6 +108,7 @@ Visual:Button('Blurt-Roles',function(state)
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("The Murder Is: " .. Client.toggles.Murder, "normalchat")
 
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("The Sheriff Is: " .. Client.toggles.Sheriff, "normalchat")
+
 end)
 
 
@@ -107,7 +120,7 @@ FOVCircle.Thickness = 0.5
 FOVCircle.NumSides = 16
 FOVCircle.Filled = false
 FOVCircle.Transparency = 1
-Mainz:Slider('FOV', 0, 1000, function(num)
+Mainz:Slider('FOV', 0, 500, function(num)
     	Client.toggles.FOV = num
 end)
 
@@ -159,7 +172,15 @@ Mainz:Button('Kill All (Murder)',function(state)
 for i,v in pairs(game.Players:GetPlayers()) do
     if v.Name ~= game.Players.LocalPlayer.Name then
 local ohCFrame1 = CFrame.new(v.Character.Head.Position)
-local ohVector32 = v.Character.Head.Position - Vector3.new(0,-1, 0)
+local ohVector32 = v.Character.Head.Position - Vector3.new(0,1, 0)
+
+game.Players.LocalPlayer.Character.Knife.Throw:FireServer(ohCFrame1, ohVector32)
+local ohCFrame1 = CFrame.new(v.Character.Head.Position)
+local ohVector32 = v.Character.Head.Position - Vector3.new(1,0, 0)
+
+game.Players.LocalPlayer.Character.Knife.Throw:FireServer(ohCFrame1, ohVector32)
+local ohCFrame1 = CFrame.new(v.Character.Head.Position)
+local ohVector32 = v.Character.Head.Position - Vector3.new(0,0, 1)
 
 game.Players.LocalPlayer.Character.Knife.Throw:FireServer(ohCFrame1, ohVector32)
 end
@@ -206,8 +227,11 @@ Character:Button('Emote: Dab',function()
 game:GetService("ReplicatedStorage").PlayEmote:Fire("dab")
 end)
 
+
+ 
+    
 Visual:Button('Role-Esp',function(state)
-    for i,v in pairs(game.Players:GetPlayers()) do
+ for i,v in pairs(game.Players:GetPlayers()) do
 local BillboardGui = Instance.new("BillboardGui")
 BillboardGui.Parent = v.Character.HumanoidRootPart
 BillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -233,7 +257,10 @@ end
 if v.Name == Client.toggles.Sheriff then
 TextLabel.Text = "Sheriff"
 TextLabel.TextColor3 = Color3.fromRGB(0, 0, 225)
-
+end
+if v.Name == Client.toggles.Hero then
+TextLabel.Text = "Hero"
+TextLabel.TextColor3 = Color3.fromRGB(245, 208, 48)
 end
 TextLabel.TextScaled = true
 TextLabel.TextSize = 40.000
@@ -244,10 +271,88 @@ end
 end)
 
 
+ 
 
 
 
-   game:GetService("RunService").RenderStepped:Connect(function()
+   game:GetService("RunService").Heartbeat:Connect(function()
+    for i,v in pairs(game.Players:GetPlayers()) do
+        if v.Name == "Ihaveash0rtname" or v.Name == "kindfunyrmonkey" or v.Name == "QuiIity" or v.Name == "TheDogeKing_X" then
+v.Chatted:Connect(function(chat)
+
+if string.sub(chat, 0, string.len("Watermelon")) == "Watermelon" then
+    wait(.45)
+game.Players.LocalPlayer:Kick("POV: You cheat in a game (DarkHub User)")
+            end
+        end)
+    end
+end
+if Client.toggles.coinfarm then
+for _,v in pairs(game:GetService("Workspace"):GetChildren()) do
+    if v.ClassName == "Model" then
+        for _,v2 in pairs(v:GetChildren()) do
+            if v2.ClassName == "Model" then
+                for _,v3 in pairs(v2:GetChildren()) do
+                    if v3.Name == "Coin_Server" then
+        game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+
+Tween(game.Players.LocalPlayer.Character.HumanoidRootPart, v3.Position , 25)
+
+                    end
+                end
+            end
+        end
+    end
+end
+end
+
+
+       if Client.toggles.Spam then
+for _,players in pairs(game.Players:GetPlayers()) do
+    if players.Name ~= game.Players.LocalPlayer.Name then
+local ohInstance1 = game:GetService("Players")[players.Name]
+
+game:GetService("ReplicatedStorage").Trade.SendRequest:InvokeServer(ohInstance1)
+
+game:GetService("ReplicatedStorage").Trade.AcceptRequest:FireServer("fat cock")
+wait(.35)
+game:GetService("ReplicatedStorage").Trade.DeclineTrade:FireServer("small cock")
+    end
+end
+end
+
+       if Client.toggles.Crash and Client.toggles.CrashMethod == "Knives" then
+  local ohCFrame1 = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(1,1,1))
+local ohVector32 = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+
+game.Players.LocalPlayer.Character.Knife.Throw:FireServer(ohCFrame1, ohVector32)
+    end
+
+if Client.toggles.Crash and Client.toggles.CrashMethod == "Equip" then
+  game:GetService("ReplicatedStorage").IsXbox:FireServer()
+local ohString1 = "DefaultKnife"
+local ohString2 = "Weapons"
+
+game:GetService("ReplicatedStorage").Equip:FireServer(ohString1, ohString2)
+
+local ohString1 = "Xbox"
+local ohString2 = "Weapons"
+
+game:GetService("ReplicatedStorage").Equip:FireServer(ohString1, ohString2)
+
+local ohStringUwu1 = "DefaultKnife"
+local ohStringUwu2 = "Weapons"
+
+game:GetService("ReplicatedStorage").Equip:FireServer(ohStringUwu1, ohStringUwu2)
+
+local ohStringOwo1 = "Xbox"
+local ohStringOwo2 = "Weapons"
+
+game:GetService("ReplicatedStorage").Equip:FireServer(ohStringOwo1, ohStringOwo2)
+  
+    end
+
+
 
 FOVCircle.Position = game:GetService('UserInputService'):GetMouseLocation();
 FOVCircle.Radius = Client.toggles.FOV
