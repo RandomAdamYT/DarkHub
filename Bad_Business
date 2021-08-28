@@ -1,43 +1,50 @@
-DarkHub_Client = {SavedSettings = false}
-if isfolder and makefolder and not isfolder('DarkHub') then
-    makefolder('DarkHub')
-    DarkHub_Client.SaveSettings = true
-    if isfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB') then
-        DarkHub_Client.SavedSettings = true
-        DarkHub_Client.GameSettings = game:GetService('HttpService'):JSONDecode(readfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB'))
+for i,v in pairs(getconnections(game:GetService("ScriptContext").Error)) do
+    v:Disable()
+end
+Codex_Client = {SavedSettings = false}
+if isfolder and makefolder and not isfolder('Codex') then
+    makefolder('Codex')
+    Codex_Client.SaveSettings = true
+    if isfile('Codex/Codex_'..tostring(Game.PlaceId)..'.CODEX') then
+        Codex_Client.SavedSettings = true
+        Codex_Client.GameSettings = game:GetService('HttpService'):JSONDecode(readfile('Codex/Codex_'..tostring(Game.PlaceId)..'.CODEX'))
     end
-elseif isfolder('DarkHub') then
-    DarkHub_Client.SaveSettings = true
-    if isfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB') then
-        DarkHub_Client.SavedSettings = true
-        DarkHub_Client.GameSettings = game:GetService('HttpService'):JSONDecode(readfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB'))
+elseif isfolder('Codex') then
+    Codex_Client.SaveSettings = true
+    if isfile('Codex/Codex_'..tostring(Game.PlaceId)..'.CODEX') then
+        Codex_Client.SavedSettings = true
+        Codex_Client.GameSettings = game:GetService('HttpService'):JSONDecode(readfile('Codex/Codex_'..tostring(Game.PlaceId)..'.CODEX'))
     end
 else
-    DarkHub_Client.SaveSettings = false
+    Codex_Client.SaveSettings = false
 end
 
 
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub_V3/main/UILIB",true))()
-main = lib:Window()
-MainWindow = main:Tab('Bad Business')
-Aimbotz = main:Tab('Aimbot')
-Esp = main:Tab('Esp')
+local lib = loadstring(game:HttpGet("https://robloxexploits.net/uilibcodex.txt"))()
+main = lib:CreateWindow('Arsenal | Idev is sexy man')
+Aimbotz = main:CreateTab('Aimbot')
+Combat = main:CreateTab('Combat')
+MainWindow = main:CreateTab('LocalPlayer')
+Esp = main:CreateTab('Esp')
 
 IsUpToDate = pcall(function()
     Client = {
         Toggles = {
-            SilentAim = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.SilentAim or false,
-            FOV = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.FOV or false,
-            NoRecoil = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoRecoil or false,
-            Fly = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Fly or false,
-            BHOP = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.BHOP or false,
-            BoxEsp = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.BoxEsp or false,
-            TracerEsp = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.TracerEsp or false,
-            ShowTeam = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.ShowTeam or false,
-            Rainbow =  DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Rainbow or false,
-            Rainbow2 = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Rainbow2 or false,
-            Wallbang = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Wallbang or false,
-            RapidFire = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.RapidFire or false
+            SilentAim = Codex_Client.SavedSettings and Codex_Client.GameSettings.Toggles.SilentAim or false,
+            FOV = Codex_Client.SavedSettings and Codex_Client.GameSettings.Toggles.FOV or false,
+            NoRecoil = Codex_Client.SavedSettings and Codex_Client.GameSettings.Toggles.NoRecoil or false,
+            Fly = Codex_Client.SavedSettings and Codex_Client.GameSettings.Toggles.Fly or false,
+            BHOP = Codex_Client.SavedSettings and Codex_Client.GameSettings.Toggles.BHOP or false,
+            BoxEsp = Codex_Client.SavedSettings and Codex_Client.GameSettings.Toggles.BoxEsp or false,
+            TracerEsp = Codex_Client.SavedSettings and Codex_Client.GameSettings.Toggles.TracerEsp or false,
+            ShowTeam = Codex_Client.SavedSettings and Codex_Client.GameSettings.Toggles.ShowTeam or false,
+            Rainbow =  Codex_Client.SavedSettings and Codex_Client.GameSettings.Toggles.Rainbow or false,
+            Rainbow2 = Codex_Client.SavedSettings and Codex_Client.GameSettings.Toggles.Rainbow2 or false,
+            Wallbang = Codex_Client.SavedSettings and Codex_Client.GameSettings.Toggles.Wallbang or false,
+            RapidFire = Codex_Client.SavedSettings and Codex_Client.GameSettings.Toggles.RapidFire or false,
+            KillAura = Codex_Client.SavedSettings and Codex_Client.GameSettings.Toggles.KillAura or false,
+            JumpPower = Codex_Client.SavedSettings and Codex_Client.GameSettings.Toggles.JumpPower or false,
+            NoSpread = Codex_Client.SavedSettings and Codex_Client.GameSettings.Toggles.NoSpread or false,
         },
         Visuals = {
             BoxEsp = false,
@@ -51,51 +58,66 @@ IsUpToDate = pcall(function()
             Rainbow2 = false
         },
         Values = {
-            AimPart = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.AimPart or "Head",
-            FOV = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.FOV or 100,
-            ChatMsg = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.ChatMsg or "Dark HUB Winning! Dizzy: DarkHUB",
-            ChatDelay = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.ChatDelay or 1,
-            Speed = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.Speed or 2
+            AimPart = Codex_Client.SavedSettings and Codex_Client.GameSettings.Values.AimPart or "Head",
+            FOV = Codex_Client.SavedSettings and Codex_Client.GameSettings.Values.FOV or 100,
+            ChatMsg = Codex_Client.SavedSettings and Codex_Client.GameSettings.Values.ChatMsg or "Codex Winning",
+            ChatDelay = Codex_Client.SavedSettings and Codex_Client.GameSettings.Values.ChatDelay or 1,
+            Speed = Codex_Client.SavedSettings and Codex_Client.GameSettings.Values.Speed or 2,
+            JumpPower = Codex_Client.SavedSettings and Codex_Client.GameSettings.Values.JumpPower or 36
         }
     }
 end)
-if not IsUpToDate and DarkHub_Client.SavedSettings and isfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB') then
-    delfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB')
-    game.Players.LocalPlayer:Kick('DarkHub Settings Out Of Date - Issue Fixed | Restart DarkHub to Continue')
+if not IsUpToDate and Codex_Client.SavedSettings and isfile('CODEX/CODEX_'..tostring(Game.PlaceId)..'.CODEX') then
+    delfile('Codex/Codex_'..tostring(Game.PlaceId)..'.CODEX')
+    game.Players.LocalPlayer:Kick('Codex Expirenced an unexpected issue with savefile | Restart Codex to Continue')
 end
+Main = require(game:GetService("ReplicatedStorage"):WaitForChild("TS"));
 
 
-MainWindow:Toggle("Fly", function(state)
+MainWindow:CreateToggle("Fly", Client.Toggles.Fly,function(state)
     Client.Toggles.Fly = state
-end,Client.Toggles.Fly)
+end)
 
 
+local TS = require(game:GetService("ReplicatedStorage"):WaitForChild("TS"));
+local Timer = TS.Timer
+local Control = getupvalue(Timer.BindToHeartbeat,1)['Control']
 
-
-MainWindow:Slider("Speed", 2, 10, function(num)
+MainWindow:CreateSlider("Sprint Speed",Client.Values.Speed, 2, 10, function(num)
     Client.Values.Speed = num
-    for i,v in pairs(getgc(true)) do
-        if type(v) == 'table' and rawget(v,'Control') and type(v.Control) == 'function' then
-            if table.find(getconstants(v.Control),'Stand') then
-                print(getconstant(v.Control,tonumber(table.find(getconstants(v.Control),'Stand'))+1))
-                setconstant(v.Control,tonumber(table.find(getconstants(v.Control),'Stand'))+1,num)
-            end
+    setconstant(Control,tonumber(table.find(getconstants(Control),'Stand'))+1,num)
+end)
+MainWindow:CreateToggle("JumpPower", Client.Toggles.JumpPower, function(state)
+    Client.Toggles.JumpPower = state 
+end)
+MainWindow:CreateSlider("JumpPower", Client.Values.JumpPower,0, 150, function(num)
+    Client.Values.JumpPower = num
+end)
+OldVECTOR3 = hookfunction(getrenv().Vector3.new,function(...)
+    if Client.Toggles.JumpPower == true and tostring(getfenv(2).script) == 'ControlScript' then
+        local Args = {...}
+        local Me = Main.Characters:GetCharacter(game.Players.LocalPlayer)
+        if Me and Args[1] == Me.Root.Velocity.X then
+            return OldVECTOR3(Me.Root.Velocity.X,100,Me.Root.Velocity.Y)
         end
     end
-end,Client.Values.Speed)
+    return OldVECTOR3(...)
+end)
 
-
-
-
-MainWindow:Toggle("No Recoil", function(state)
+Combat:CreateToggle("No Recoil", Client.Toggles.NoRecoil,function(state)
     Client.Toggles.NoRecoil = state
-end,Client.Toggles.NoRecoil)
-MainWindow:Toggle("Rapid Fire", function(state)
+end)
+--[[
+Combat:CreateToggle("Rapid Fire",Client.Toggles.RapidFire, function(state)
     Client.Toggles.RapidFire = state
-end,Client.Toggles.RapidFire)
+end)
+]]
+Combat:CreateToggle("No Spread",Client.Toggles.NoSpread, function(state)
+    Client.Toggles.NoSpread = state
+end)
 
 
-MainWindow:Toggle("Wallbang(20m Close Range)", function(state)
+Combat:CreateToggle("Wallbang (20m Close Range)", Client.Toggles.Wallbang,function(state)
     Client.Toggles.Wallbang = state
     local Raycast = require(game:GetService("ReplicatedStorage").TS).Raycast
     if state == true then
@@ -105,15 +127,14 @@ MainWindow:Toggle("Wallbang(20m Close Range)", function(state)
         debug.setupvalue(Raycast.CastGeometryAndEnemies, 1, game:GetService('Workspace').Geometry)
         debug.setupvalue(Raycast.CastGeometryAndEnemies, 2, game:GetService('Workspace').Terrain)
     end
-end,Client.Toggles.Wallbang)
+end)
 
-MainWindow:Toggle('Chat Spam',function(state)
+MainWindow:CreateToggle('Chat Spam',Client.Toggles.SpamChat,function(state)
     Client.Toggles.SpamChat = state
-end,Client.Toggles.SpamChat)
+end)
 
-MainWindow:Textbox(
+MainWindow:CreateTextbox(
 	"Chat Message",
-	true,
 	function(Text)
 		Client.Values.ChatMsg = tostring(Text)
 	end
@@ -130,7 +151,7 @@ spawn(function()
     end
 end)
 
-MainWindow:Slider("Chat Delay", 0, 10, function(num)
+MainWindow:CreateSlider("Chat Delay",Client.Values.ChatDelay, 0, 10, function(num)
     Client.Values.ChatDelay = num
 end)
 
@@ -150,11 +171,28 @@ game:GetService('UserInputService').InputEnded:connect(function(key, gpe)
         Temp_Down = false
     end
 end)
-Main = require(game:GetService("ReplicatedStorage"):WaitForChild("TS"));
 spawn(function()
     while true do
         wait()
         pcall(function()
+            if Client.Toggles.KillAura then
+                for i,v in pairs(GetCharacters()) do
+                    local Me = Main.Characters:GetCharacter(game.Players.LocalPlayer)
+                    if Me and v.Hitbox and (v.Hitbox.Chest.Position - game.Workspace.CurrentCamera.CFrame.p).Magnitude < 25 then
+                        if Me.Backpack.Equipped ~= Me:FindFirstChild('Stab',true).Parent.Parent then
+                            game:GetService("ReplicatedStorage"):FindFirstChild('Item',true):FireServer("Equip", Me:FindFirstChild('Stab',true).Parent.Parent)   
+                        end
+                        local v1 = "Stab"
+                        local v2 = Me:FindFirstChild('Stab',true).Parent.Parent
+                        local v3 = v.Hitbox.Chest
+                        local v4 = Vector3.new()
+                        local v5 = Vector3.new()
+                        local event = game:GetService("ReplicatedStorage"):FindFirstChild('Item_Melee',true)
+                        
+                        event:FireServer(v1, v2, v3, v4, v5)
+                    end
+                end
+            end
             if Client.Toggles.Fly == true then
                 game:GetService("Workspace").Gravity = 0
                 Me = Main.Characters:GetCharacter(game.Players.LocalPlayer)
@@ -177,19 +215,22 @@ spawn(function()
 end)
 
 
-Aimbotz:Toggle("Silent-Aim", function(state)
+Aimbotz:CreateToggle("Silent-Aim",Client.Toggles.SilentAim, function(state)
     Client.Toggles.SilentAim = state
-end,Client.Toggles.SilentAim)
+end)
+Combat:CreateToggle("Auto Knife Aura",Client.Toggles.KillAura, function(state)
+    Client.Toggles.KillAura = state
+end)
 
-Aimbotz:Toggle('FOV Visible',function(state)
+Aimbotz:CreateToggle('FOV Visible',Client.Toggles.FOV,function(state)
     Client.Toggles.FOV = state
-end,Client.Toggles.FOV)
+end)
 
-Aimbotz:Slider("FOV", 15, 1000, function(num)
+Aimbotz:CreateSlider("FOV", Client.Values.FOV,15, 1000, function(num)
     Client.Values.FOV = num
-end,Client.Values.FOV)
+end)
 
-Aimbotz:Dropdown('BodyPart',{'Chest','Head','Random'},function(Sele)
+Aimbotz:CreateDropdown('BodyPart',false,{'Chest','Head','Random'},function(Sele)
     Client.Values.AimPart = Sele
 end)
 function GetAimPart()
@@ -218,7 +259,6 @@ FOVCircle.Color = Color3.new(0,255,0)
 local localPlayer = game:GetService("Players").LocalPlayer
 local currentCamera = game:GetService("Workspace").CurrentCamera
 local Mouse = localPlayer:GetMouse()
-Main = require(game:GetService("ReplicatedStorage"):WaitForChild("TS"));
 function GetCharacters()
     temptable = {}
         for i,v in pairs(game.Players:GetPlayers()) do
@@ -252,76 +292,64 @@ game:GetService("RunService").Stepped:Connect(function()
     end
 end)
 
-Main = require(game:GetService("ReplicatedStorage"):WaitForChild("TS"));
-Camera =  game.Workspace.CurrentCamera
-OldLV = hookfunction(Main.Input.Reticle.LookVector , function()
-    if Client.Toggles.SilentAim == false then
-        return game.Workspace.CurrentCamera.CFrame.LookVector
-    end
-    x = nil
-    target = nil
-    pcall(function()
-        target = getClosestPlayerToCursor()
-    end)
-    if target == nil then
-        return game.Workspace.CurrentCamera.CFrame.LookVector
-    end
-    Camera = game.Workspace.CurrentCamera
-    xt = target
-    Camera  = {
-        CFrame = CFrame.new(Camera.CFrame.p,xt.Body[GetAimPart()].Position)
-    }
-    x = (Camera.CFrame).LookVector
-
-    if not xt:FindFirstChild('Body') or not xt.Body:FindFirstChild(GetAimPart()) or x == nil then
-        return game.Workspace.CurrentCamera.CFrame.LookVector
-    end
-    if x ~= nil then
-        return x
-    else
-        return game.Workspace.CurrentCamera.CFrame.LookVector
-    end
+Camera = game.Workspace.CurrentCamera
+local getcallingfunction = function(stack)
+    return debug.getinfo(stack + 1).func
+end
+OldIndex = hookfunction(getrawmetatable(game).__index,function(...)
+	local Self,Key = ...
+	if tostring(Self) == 'Camera' and tostring(Key) == 'CFrame' and tostring(getfenv(2).script) == 'ItemControlScript' then
+	    if Client.Toggles.SilentAim and getClosestPlayerToCursor() and tostring(debug.getinfo(getcallingfunction(3)).name) == 'LookVector' then
+		    local target = getClosestPlayerToCursor()
+            if target then
+                Camera = game.Workspace.CurrentCamera
+                if target.Body and target.Body:FindFirstChild(GetAimPart()) then
+                    Camera = {
+                        CFrame = CFrame.new(Camera.CFrame.p,target.Body[GetAimPart()].Position)
+                    }
+                end
+                return (Camera.CFrame)
+            end
+		end
+	end
+	return OldIndex(...)
 end)
-
-OldRecoil = hookfunction(Main.Camera.Recoil.Fire,function(self, name, ...)
-    local args = {...}
-    if Client.Toggles.NoRecoil then
-        return nil
-    else
-        return OldRecoil(self, name, unpack(args))
-    end
-end)
-
-
-Main = require(game:GetService("ReplicatedStorage"):WaitForChild("TS"));
-Old = Main.Timer.Wait
-Main.Timer.Wait = function(...)
-    Args = {...}
-    if tostring(getcallingscript()) == 'ItemControlScript' then
-        if Client.Toggles.RapidFire then
-            Args[2] = 0.01
+OldRANDOM = hookfunction(getrenv().math.random,function(...)
+    local Args = {...}
+    if tostring(getfenv(2).script) == 'ItemControlScript' and Client.Toggles.NoSpread then
+        if math.abs(Args[1]) == Args[2] then
+            Args[1] = -0.1
+            Args[2] = 0.1
+            return OldRANDOM(unpack(Args))
         end
     end
-    return Old(unpack(Args))
-end
+    return OldRANDOM(...)
+end)
+
+OldRecoil = hookfunction(Main.Camera.Recoil.Update,function(p6, p7)
+    if Client.Toggles.NoRecoil == true then
+        return p6.Value - p6.LastValue;
+    end
+    return OldRecoil(p6,p7)
+end)
 
 --ESP 
 
-Esp:Toggle('Boxes',function(state)
+Esp:CreateToggle('Boxes',Client.Toggles.BoxEsp,function(state)
     Client.Toggles.BoxEsp = state
-end,Client.Toggles.BoxEsp)
+end)
 
-Esp:Toggle("Tracers", function(state)
+Esp:CreateToggle("Tracers", Client.Toggles.TracerEsp,function(state)
     Client.Toggles.TracerEsp = state
-end,Client.Toggles.TracerEsp)
+end)
 
-Esp:Toggle("NameEsp", function(state)
+Esp:CreateToggle("NameEsp",Client.Toggles.NameEsp, function(state)
     Client.Toggles.NameEsp = state
-end,Client.Toggles.NameEsp)
+end)
 
-Esp:Toggle("TeamEsp", function(state)
+Esp:CreateToggle("TeamEsp",Client.Toggles.ShowTeam, function(state)
     Client.Toggles.ShowTeam = state
-end,Client.Toggles.ShowTeam)
+end)
 
 function DrawSquare()
     local Box = Drawing.new("Square")
@@ -472,7 +500,7 @@ end)
 
 
 while true do wait(5)
-    if DarkHub_Client.SaveSettings then
-        writefile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB',game:GetService('HttpService'):JSONEncode({['Toggles'] = Client.Toggles,['Values'] = Client.Values}))    
+    if Codex_Client.SaveSettings then
+        writefile('Codex/Codex_'..tostring(Game.PlaceId)..'.CODEX',game:GetService('HttpService'):JSONEncode({['Toggles'] = Client.Toggles,['Values'] = Client.Values}))    
     end
 end
