@@ -7,7 +7,7 @@ e:Button("Beam Server",function()
 
 coroutine.wrap(function()
 while true do wait(.2)
-local yourmessage = "🔴 Server beamed by prestiged and darkhub dsc.gg/VJUuUTT8JS 🔴"
+local yourmessage = "🔴 Server beamed by prestiged and darkhub.xyz 🔴"
 
 local tbl_main = 
 {
