@@ -54,7 +54,7 @@ IsUpToDate = pcall(function()
         Values = {
             AimPart = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.AimPart or "Head",
             FOV = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.FOV or 100,
-            ChatMsg = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.ChatMsg or "Dark HUB Winning! Dizzy: DarkHUB",
+            ChatMsg = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.ChatMsg or "Dark HUB Winning! darkhub.xyz",
             ChatDelay = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.ChatDelay or 1,
             Speed = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.Speed or 2
         }
