@@ -1,3 +1,3 @@
 # DarkHub
-discord.gg/darkhub
+discord.gg/dark-hub
 darkhub.xyz
