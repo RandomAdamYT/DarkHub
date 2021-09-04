@@ -10,7 +10,7 @@ $$$$$$$  |\$$$$$$$ |$$ |      $$ | \$$\ $$ |  $$ |\$$$$$$  |$$$$$$$  |
 \_______/  \_______|\__|      \__|  \__|\__|  \__| \______/ \_______/ 
                                                            
                                                                       
-~Updated 8/16/2021
+~Updated 8/29/2021
 
 ]]
 
@@ -441,18 +441,15 @@ end
  
 GunMods:Toggle('No Recoil',function(state)
 Config.GunMods.Recoil = state
-Funcs:UpdateGuns()
 end)
 
 GunMods:Toggle('No Spread',function(state)
 Config.GunMods.Spread = state
-Funcs:UpdateGuns()
 end)
 
---GunMods:Toggle('FireRate',function(state)
---Config.GunMods.FireRate = state
---Funcs:UpdateGuns()
---end)
+GunMods:Toggle('FireRate',function(state)
+Config.GunMods.FireRate = state
+end)
 
 GunMods:Toggle('Wallbang',function(state)
 Config.GunMods.Wallbang = state
@@ -506,6 +503,36 @@ else
 end
 end
 return nearestenemy
+end
+
+--Silent
+local Mouse = game:GetService('Players').LocalPlayer:GetMouse()
+function IsFFA()
+    return game:GetService("Players").LocalPlayer.PlayerGui.GameUI.CoreFrames.RoundStats.Gamemode.Text == " FFA"   
+end
+function GetTarget() 
+    local Plr = nil
+    local SD = math.huge
+        for i, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild('Head') and v.Character:FindFirstChild('Humanoid') then
+                if IsFFA() then
+                    local pos = game:GetService('Workspace').CurrentCamera:WorldToViewportPoint(v.Character:FindFirstChild('UpperTorso').Position)
+                    local magnitude = (Vector2.new(pos.X, pos.Y) - Vector2.new(Mouse.X, Mouse.Y)).magnitude
+                    if magnitude < SD and magnitude <= Config.Aimbot["FOV"]  then
+                        Plr = v
+                        SD = magnitude
+                    end
+                elseif v.Team ~= game:GetService('Players').LocalPlayer.Team then
+                    local pos = game:GetService('Workspace').CurrentCamera:WorldToViewportPoint(v.Character:FindFirstChild('UpperTorso').Position)
+                    local magnitude = (Vector2.new(pos.X, pos.Y) - Vector2.new(Mouse.X, Mouse.Y)).magnitude
+                    if magnitude < SD and magnitude <= Config.Aimbot["FOV"] then
+                        Plr = v
+                        SD = magnitude
+                    end
+                end
+            end
+        end  
+    return Plr
 end
 
 spawn(function()
@@ -770,47 +797,36 @@ end
 return require(WeaponModules:FindFirstChild(Argument_2))
 end
 
-function Funcs:UpdateGuns()
-for a,b in pairs(WeaponModules:GetChildren()) do
-if b.Name ~= "Pickaxe" then
-  if Config.GunMods.Recoil == true then
-    require(b).Recoil = 0
-  else
-    require(b).Recoil = require(game:GetService("ReplicatedStorage").Weapons.Modules[b.Name]).Recoil
+ game:GetService("RunService").Heartbeat:Connect(function()
+     pcall(function()
+ if Config.GunMods.Recoil == true then
+getupvalue(require(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.NewLocal.Tools.Tool.Gun.Auto).ShootLogic,1).WSettings.Recoil = 0
   end
---  if Config.GunMods.FireRate == true then
-  --  require(b).Debounce = 0
---  else
-  --  require(b).Debounce = require(game:GetService("ReplicatedStorage").Weapons.Modules[b.Name]).Debounce
---  end
+  if Config.GunMods.FireRate == true then
+        getupvalue(require(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.NewLocal.Tools.Tool.Gun.Auto).ShootLogic,1).WSettings.Debounce = 0.05
+ end
   if Config.GunMods.Spread == true then
-    require(b).Inaccuracy = 0
-  else
-    require(b).Inaccuracy = require(game:GetService("ReplicatedStorage").Weapons.Modules[b.Name]).Inaccuracy
-  end
-    --if Config.GunMods.FireRate == true then
-  --  require(b).Auto = true
- -- else
-   -- require(b).Auto = require(game:GetService("ReplicatedStorage").Weapons.Modules[b.Name]).Auto
-   -- end
+getupvalue(require(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.NewLocal.Tools.Tool.Gun.Auto).ShootLogic,1).WSettings.Inaccuracy = 0
 end
-end
-end
+end)
+end)
+
+
+
 
  game:GetService("RunService").RenderStepped:Connect(function()
- local ConeOfFire = require(game.Players.LocalPlayer.PlayerGui:WaitForChild("MainGui").NewLocal.Tools.Tool.Gun).ConeOfFire
-if Config.Aimbot.Silent then
-  local ConeOfFire = require(game.Players.LocalPlayer.PlayerGui:WaitForChild("MainGui").NewLocal.Tools.Tool.Gun).ConeOfFire
-  require(game.Players.LocalPlayer.PlayerGui:WaitForChild("MainGui").NewLocal.Tools.Tool.Gun).ConeOfFire = function(...)
-    if tostring(getfenv(2).script.Name) == "Extra" then
-      return ConeOfFire(...)
-    end
-    if Funcs:GetTarget() ~= nil then
-      return Funcs:GetTarget().Character[Config.Aimbot.AimBone].Position
-    end
-    return ({...})[3]
-  end
-end
+     pcall(function()
+         local getcallingfunction = function(stack)
+    return debug.getinfo(stack + 1).func
+            end
+         getupvalue(require(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.NewLocal.Tools.Tool.Gun.Auto).ShootLogic,1).GetMouseInfo = function(...)
+                if Config.Aimbot.Silent and debug.getinfo(getcallingfunction(3)).name ~= 'CheckInteraction' and GetTarget() then
+                    return GetTarget().Character.Head,GetTarget().Character[Config.Aimbot.AimBone].Position
+                end
+                return Mouse.Target,Mouse.Hit.p
+            end
+  
+end)
 end)
 
 
@@ -875,14 +891,6 @@ elseif random == 3 then
   Config.Aimbot.AimBone = "LowerTorso"
 end
 end
-pcall(function()
-if Config.GunMods.Recoil == true then
-  --getsenv(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.NewLocal).CameraRecoil = function() end
-end
---if Config.GunMods.FireRate == true then
- --getupvalue(getsenv(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.NewLocal).Reload, 3).Debounce = 0
---end
-end)
 end)
 
      local RayHook;
@@ -910,7 +918,7 @@ end))
     
 while wait(1) do
          if Config.LocalPlayer.NoFD == true then 
-             wait(1)
+             wait(.45)
 game:GetService("ReplicatedStorage").Network.Remotes.Bouncing:FireServer()
 end
 end
