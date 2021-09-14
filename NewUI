@@ -113,8 +113,8 @@ DarkHubLib.Name = "MarkBeatsIsGay"
 if syn and syn.protect_gui then
     syn.protect_gui(DarkHubLib)
     DarkHubLib.Parent = game.CoreGui
-elseif hiddenUI then
-    DarkHubLib.Parent = hiddenUI()
+elseif gethui then
+    DarkHubLib.Parent = gethui()
 else
     DarkHubLib.Parent = game.CoreGui
 end
