@@ -1,5 +1,5 @@
 local Q = syn and syn.queue_on_teleport or queue_on_teleport
-if not Q then game.Players.LocalPlayer:Kick('Exploit not supported!') end
+if not Q then game.Players.LocalPlayer:Kick('Exploit not supported!') return end
 Q(game:HttpGet(('https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/Rolling_Thunder'), true))
 repeat wait() until game:IsLoaded()
 local Network;
