@@ -35,7 +35,7 @@ spawn(function()
                     Network:FireServer('Nade',v.HumanoidRootPart.CFrame,workspace.CurrentCamera.CFrame.LookVector,'Frag',5)
                 end
             end
-            if (tonumber(game.Players.LocalPlayer:GetAttribute("Kills")) - Old) > 4 then
+            if (tonumber(game.Players.LocalPlayer:GetAttribute("Kills")) - Old) > 250 then
                 ServerHop()
                 break
             end
