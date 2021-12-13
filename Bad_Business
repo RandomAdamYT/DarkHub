@@ -241,8 +241,8 @@ local Mouse = localPlayer:GetMouse()
 Main = require(game:GetService("ReplicatedStorage"):WaitForChild("TS"));
 function GetCharacters()
     temptable = {}
-        for i,v in pairs(game.Players:GetPlayers()) do
-            if v.Name ~= game.Players.LocalPlayer.Name and Main.Teams:GetPlayerTeam(v) ~= Main.Teams:GetPlayerTeam(game.Players.LocalPlayer) then
+        for i,v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name and Main.Teams:GetPlayerTeam(v) ~= Main.Teams:GetPlayerTeam(game:GetService('Players').LocalPlayer) then
                 temp2 = Main.Characters:GetCharacter(v)
                 table.insert(temptable,temp2)
             end
@@ -279,20 +279,19 @@ Camera =  game.Workspace.CurrentCamera
 local getcallingfunction = function(stack)
     return debug.getinfo(stack + 1).func
 end
+Camera = game:GetService('Workspace').CurrentCamera
 OldIndex = hookfunction(getrawmetatable(game).__index,function(...)
 	local Self,Key = ...
 	if tostring(Self) == 'Camera' and tostring(Key) == 'CFrame' and tostring(getfenv(2).script) == 'ItemControlScript' then
 	    if Client.Toggles.SilentAim and getClosestPlayerToCursor() and tostring(debug.getinfo(getcallingfunction(3)).name) == 'LookVector' then
-            local target = getClosestPlayerToCursor()
+		    local target = getClosestPlayerToCursor()
             if target then
-                Camera = game.Workspace.CurrentCamera
-                if target.Body then
-                    IsValid = pcall(function()
-                        local X = CFrame.new(Camera.CFrame.p,target.Body[GetAimPart()].Position)
-                    end)
-                    if IsValid then
+                Camera = game:GetService('Workspace').CurrentCamera
+                if target:FindFirstChild('Body') then
+                    local HP = target.Body:FindFirstChild(GetAimPart())
+                    if HP then
                         Camera = {
-                            CFrame = CFrame.new(Camera.CFrame.p,target.Body[GetAimPart()].Position)
+                            CFrame = CFrame.new(Camera.CFrame.p,HP.Position or Vector3.new(0,0,0))
                         }
                     end
                 end
