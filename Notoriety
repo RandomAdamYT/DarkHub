@@ -5,9 +5,8 @@ repeat pcall(function()
     wait()
     BulletClient = getconnections(game:GetService("ReplicatedStorage")["RS_Package"].Assets.Remotes.Bullet.OnClientEvent)[1].Function
     FuncNew = getupvalue(BulletClient,3).new
-    RemoteKey = getupvalue(FuncNew,17)
+    RemoteKey = getupvalue(FuncNew,18)
 end) until BulletClient
-
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/NewUI"))()
 main = lib:Window()
 
@@ -53,6 +52,7 @@ MainW:Button('God Mode',function()
     event:FireServer(v1, v2, v3, v4, v5, v6, v7)
     game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - Godded LocalPlayer')
 end)
+--[[
 MainW:Button('Grab Lootables',function()
     for i = 1,10 do
         wait(.3)
@@ -72,6 +72,8 @@ MainW:Button('Grab Lootables',function()
     end
     game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - COMPLETE')
 end)
+]]
+--[[
 MainW:Button('Put Bags In Van',function()
     game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - Transporting Bags... Please dont move until complete')
     game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(game:GetService("Workspace").BagSecuredArea.PrimaryPart.Position + Vector3.new(0,6,0)))
@@ -81,7 +83,7 @@ MainW:Button('Put Bags In Van',function()
     event:FireServer(v1)
     game:GetService("Players").LocalPlayer.PlayerGui["SG_Package"].MainGui.Events.CasingError:Fire(' [ DARK HUB ] - Transporting Bags Complete')
 end)
-
+]]
 spawn(function()
     while true do wait()
         pcall(function()
