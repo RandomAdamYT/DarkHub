@@ -50,6 +50,30 @@ if not IsUpToDate and DarkHub_Client.SavedSettings and isfile('DarkHub/DarkHub_'
 end
 
 local Main = main:Tab("Main")
+Main:Button('Global Sound Annoy (Plays Once)',function()
+    local REMOTES = game:GetService("ReplicatedStorage"):FindFirstChild('FirearmSoundHandler',true).Parent
+    for i,v in pairs(game.Players:GetPlayers()) do
+        if v.Character and v.Character:FindFirstChild('Head') then
+            local v1 = 1
+            local v2 = game:GetService("ReplicatedStorage").ClientSounds.PreloadEndgameThemes.Sound
+            local v3 = v.Character.Head
+            local v4 = {
+                [1] = 95, 
+                [2] = 105
+            }
+            local v5 = {
+                [1] = "SHOOT"
+            }
+            local v6 = {
+            }
+            local v7 = false
+            local event = REMOTES.FirearmSoundHandler
+            
+            event:FireServer(v1, v2, v3, v4, v5, v6, v7)
+        end
+    end
+end)
+
 Main:Toggle('Silent Aim',function(state)
     Client.Toggles.SilentAim = state
 end,Client.Toggles.SilentAim)
