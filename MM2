@@ -10,7 +10,7 @@ $$$$$$$  |\$$$$$$$ |$$ |      $$ | \$$\ $$ |  $$ |\$$$$$$  |$$$$$$$  |
 \_______/  \_______|\__|      \__|  \__|\__|  \__| \______/ \_______/ 
                                                            
                                                                       
-~Updated 8/26/2021
+~Updated 12/22/2021
 
 Credits:
 ~Kiriot22 for Detection Method
@@ -149,7 +149,6 @@ Client.toggles.throwknives = state
 end)
 
 Mainz:Button('Grab Dropped Gun',function(state)
-if game.Worksapce("GunDrop") then
 
 box = Instance.new('Part',workspace)
 box.Name = "DarkHub"
@@ -165,7 +164,6 @@ wait(.45)
 wait(.45)
 	    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Workspace.DarkHub.Position)
 
-    end
 end)
 
 Mainz:Button('Kill All (Murder)',function(state)
@@ -228,10 +226,22 @@ game:GetService("ReplicatedStorage").PlayEmote:Fire("dab")
 end)
 
 
- 
-    
-Visual:Button('Role-Esp',function(state)
+Character:Button('Godmode',function()
+local Humanoid = game.Players.LocalPlayer.Character.Humanoid
+local Character = Humanoid:Clone()
+Character.Parent = Humanoid.Parent
+Humanoid:Destroy()
+workspace.CurrentCamera.CameraSubject = Character
+end)
+
+Visual:Toggle('RoleEsp',function(state)
+Client.toggles.roleesp = state
+end)
+
+while task.wait() do
+    if Client.toggles.roleesp then
  for i,v in pairs(game.Players:GetPlayers()) do
+    if v.Character and v.Character:FindFirstChild("HumanoidRootPart") and not v.Character.HumanoidRootPart:FindFirstChild("BillboardGui") then
 local BillboardGui = Instance.new("BillboardGui")
 BillboardGui.Parent = v.Character.HumanoidRootPart
 BillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -246,7 +256,7 @@ TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.BackgroundTransparency = 1.000
 TextLabel.Size = UDim2.new(0, 200, 0, 50)
 TextLabel.Font = Enum.Font.GothamBold
-if Client.toggles.Murder ~= v.Name or Client.toggles.Murder ~= v.Name then
+if Murder ~= v.Name or Murder ~= v.Name then
     TextLabel.Text = "Innocent"
  TextLabel.TextColor3 = Color3.fromRGB(0, 225, 0)
 end
@@ -258,7 +268,7 @@ if v.Name == Client.toggles.Sheriff then
 TextLabel.Text = "Sheriff"
 TextLabel.TextColor3 = Color3.fromRGB(0, 0, 225)
 end
-if v.Name == Client.toggles.Hero then
+if v.Name == Client.toggles.Hero and game.Players[Sheriff].Character.Humanoid.Health == 0 then
 TextLabel.Text = "Hero"
 TextLabel.TextColor3 = Color3.fromRGB(245, 208, 48)
 end
@@ -266,12 +276,30 @@ TextLabel.TextScaled = true
 TextLabel.TextSize = 40.000
 TextLabel.TextStrokeTransparency = 0.000
 TextLabel.TextWrapped = true
-
 end
-end)
+end
+wait(1)
+for _,v in ipairs(game.Players:GetPlayers()) do
+    if v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
+        if v.Character.HumanoidRootPart:FindFirstChild("BillboardGui") then
+            v.Character.HumanoidRootPart.BillboardGui:Destroy()
+            
+        end
+    end
+end
+end
 
-
- 
+if not Client.toggles.roleesp then
+    for _,v in ipairs(game.Players:GetPlayers()) do
+    if v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
+        if v.Character.HumanoidRootPart:FindFirstChild("BillboardGui") then
+            v.Character.HumanoidRootPart.BillboardGui:Destroy()
+            
+        end
+    end
+end
+end
+end
 
 
 
