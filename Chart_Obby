@@ -1,6 +1,7 @@
 local settings = {
     Comp = false,
-    Buy = false
+    Buy = false,
+    Delay = 5
     
 }
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/NewUI"))()
@@ -12,12 +13,17 @@ Mainz:Toggle('Auto-Buy',function(state)
 settings.Buy = state
 end)
 
+  Mainz:Slider('Auto-Complete Delay (seconds)',0,5,function(num)
+    settings.Delay = num
+  end)
+    
 Mainz:Toggle('Auto-Complete',function(state)
 settings.Comp = state
 end)
 
+
 spawn(function()
-while task.wait() do
+while task.wait(settings.Delay) do
     if settings.Comp then
      if game:GetService("Workspace").Gifts:FindFirstChild("Gift") then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Gifts.Gift.Position)
