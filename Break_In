@@ -7,7 +7,7 @@ local Client = {
 }
 
 
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Ihaveash0rtnamefordiscord/DarkHUB/main/Lib"))()
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/NewUI"))()
 main = lib:Window()
 Mainz = main:Tab('Combat')
 Character = main:Tab('Character')
@@ -22,7 +22,7 @@ Character:Button("Commit Plan: No Father (Semi-God)", function(state)
 game:GetService("ReplicatedStorage").RemoteEvents.MakeStealth:FireServer(9999999) -- should give godmode
 end)
 
-Trolling:Textbox("Drown Specific Player", function(Text)
+Trolling:Textbox("Drown Specific Player", true, function(Text)
     if game:GetService("Players")[Text] then
         game:GetService("ReplicatedStorage").RemoteEvents.ToxicDrown:FireServer(1, game:GetService("Players")[Text])
     end
@@ -67,10 +67,11 @@ if Client.toggles.JPT then
 end)
 
 
-Trolling:Textbox("Play Audio (ID)", function(Text)
-local a = "rbxassetid://"..Text -- sound
-local b = false -- random shit idk
-local c = 69 -- volume (really you can only do 1,10 but frick u)
+Trolling:Textbox("Play Audio (ID)", true, function(Text)
+    print('yes')
+local a = "rbxassetid://" .. tostring(Text) -- soundwwwwwwww
+local b = true -- random shit idk
+local c = 69 -- volume (really you can only do 1,10 but fuck u)
 local d = "trolling57"
 
 game:GetService("ReplicatedStorage").RemoteEvents.Sounds:FireServer(a, b, c, d)
@@ -94,3 +95,4 @@ end
 end
 end
 end)
+
