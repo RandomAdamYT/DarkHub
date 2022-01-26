@@ -70,7 +70,7 @@ end)
 Trolling:Textbox("Play Audio (ID)", true, function(Text)
     print('yes')
 local a = "rbxassetid://" .. tostring(Text) -- soundwwwwwwww
-local b = true -- random shit idk
+local b = false -- random shit idk
 local c = 69 -- volume (really you can only do 1,10 but fuck u)
 local d = "trolling57"
 
@@ -95,4 +95,3 @@ end
 end
 end
 end)
-
