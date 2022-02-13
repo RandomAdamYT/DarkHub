@@ -1,1 +1,517 @@
-DarkHub_Client={SavedSettings=false}if isfolder and makefolder and not isfolder('DarkHub')then makefolder('DarkHub')DarkHub_Client.SaveSettings=true;if isfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB')then DarkHub_Client.SavedSettings=true;DarkHub_Client.GameSettings=game:GetService('HttpService'):JSONDecode(readfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB'))end elseif isfolder('DarkHub')then DarkHub_Client.SaveSettings=true;if isfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB')then DarkHub_Client.SavedSettings=true;DarkHub_Client.GameSettings=game:GetService('HttpService'):JSONDecode(readfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB'))end else DarkHub_Client.SaveSettings=false end;IsUpToDate=pcall(function()Client={Toggles={SilentAim=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.SilentAim or false,VisibleCheck=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.VisibleCheck or false,Head=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Head or false,UseFov=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.UseFov or false,NoRecoil=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoRecoil or false,NoSpread=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoSpread or false,SmallCrosshair=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.SmallCrosshair or false,NoSway=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoSway or false,NoBob=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoBob or false,NoCamBob=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoCamBob or false,Boxes=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Boxes or false,Tracers=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Tracers or false,Skeleton=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Skeleton or false,Invisible=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Invisible or false},Values={Fov=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.Fov or 500,WalkSpeed=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.WalkSpeed or 0,JumpPower=DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.JumpPower or 0}}end)if not IsUpToDate and DarkHub_Client.SavedSettings and isfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB')then delfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB')game.Players.LocalPlayer:Kick('DarkHub Settings Out Of Date - Issue Fixed | Restart DarkHub to Continue')end;local a=loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub_V3/main/UILIB",true))()local b=a:Window()local c=b:Tab('Aimbot')local d=b:Tab('Gun Mods')local e=b:Tab('Esp')local f=b:Tab('Miscellaneous')local g=Drawing.new("Circle")g.Visible=Client.Toggles.UseFov;g.Radius=Client.Values.Fov;g.Color=Color3.new(1,1,1)g.Thickness=1;g.Position=Vector2.new(workspace.Camera.ViewportSize.X*0.5,workspace.Camera.ViewportSize.Y*0.5)local h={}for i,j in pairs(getnilinstances())do if j.ClassName=="ModuleScript"and(j.Name=="effects"or j.Name=="camera"or j.Name=="particle")then h[j.Name]=require(j)end end;for i,j in pairs(getgc(false))do if getinfo(j).name=="loadgun"then getgenv()["loadgun"]=j;break end end;h["network"]=debug.getupvalue(h.effects.breakwindow,1)h["char"]=debug.getupvalue(h.effects.muzzleflash,2)h["replication"]=debug.getupvalue(h.camera.setspectate,1)h["hud"]=debug.getupvalue(h.char.setmovementmode,10)h["gamelogic"]=debug.getupvalue(h.char.setsprint,1)h["input"]=debug.getupvalue(h.gamelogic.controllerstep,2)local k=debug.getupvalue(h.char.loadgrenade,34)local l=debug.getupvalue(h.char.loadgrenade,33)local m=debug.getupvalue(loadgun,2)local n=debug.getupvalue(h.camera.step,11)local o={workspace.Players,workspace.Camera,workspace.Ignore}local p=game:GetService("UserInputService")local q=game:GetService("RunService")local workspace=game:GetService("Workspace")local r=game:GetService("Players")local s=r.LocalPlayer;local t=tick()local u={}local v=Vector3.new()local w=CFrame.new()local x=v.Dot;local y=Vector3.new(0,-workspace.Gravity,0)for i,j in pairs(h)do getgenv()[i]=j;for z,A in pairs(j)do if not getgenv()[z]and type(A)=="function"then getgenv()[z]=A end end end;local B=debug.getupvalue(getbodyparts,1)setreadonly(particle,false)c:Toggle('Silent Aim',function(C)Client.Toggles.SilentAim=C end,Client.Toggles.SilentAim)c:Toggle('Visible Check',function(C)Client.Toggles.VisibleCheck=C end,Client.Toggles.VisibleCheck)c:Toggle('Head Shots Only',function(C)Client.Toggles.Head=C end,Client.Toggles.Head)c:Toggle('Use Fov',function(C)Client.Toggles.UseFov=C;g.Visible=C end,Client.Toggles.UseFov)c:Slider("Fov",1,1000,function(D)Client.Values.Fov=D;g.Radius=D end,Client.Values.Fov)d:Toggle('No Recoil',function(C)Client.Toggles.NoRecoil=C end,Client.Toggles.NoRecoil)d:Toggle('No Spread',function(C)Client.Toggles.NoSpread=C end,Client.Toggles.NoSpread)d:Toggle('Small Crosshair',function(C)Client.Toggles.SmallCrosshair=C end,Client.Toggles.SmallCrosshair)d:Toggle('No Sway',function(C)Client.Toggles.NoSway=C end,Client.Toggles.NoSway)d:Toggle('No Bob',function(C)Client.Toggles.NoBob=C end,Client.Toggles.NoBob)d:Toggle('No Camera Bob',function(C)Client.Toggles.NoCamBob=C end,Client.Toggles.NoCamBob)e:Toggle('Box Esp',function(C)Client.Toggles.Boxes=C end,Client.Toggles.Boxes)e:Toggle('Tracer Esp',function(C)Client.Toggles.Tracers=C end,Client.Toggles.Tracers)e:Toggle('Skeleton Esp',function(C)Client.Toggles.Skeleton=C end,Client.Toggles.Skeleton)f:Slider("Walk Speed",0,100,function(D)Client.Values.WalkSpeed=D;if char.alive then char:setbasewalkspeed(gamelogic.currentgun.data.walkspeed+D)end end,Client.Values.WalkSpeed)f:Slider("Jump Power",0,100,function(D)Client.Values.JumpPower=D end,Client.Values.JumpPower)local E=workspace.Gravity;f:Slider("Gravity",0,100,function(D)workspace.Gravity=E*0.01*(100-D)end,Client.Values.Gravity)f:Toggle('Invisible',function(C)Client.Toggles.Invisible=C;if char.alive then network:send("forcereset")end end,Client.Toggles.Invisible)spawn(function()while true do wait(5)if DarkHub_Client.SaveSettings then writefile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB',game:GetService('HttpService'):JSONEncode({['Toggles']=Client.Toggles,['Values']=Client.Values}))end end end)function trajectory(z,F,G,H,I)local J=-F;local K=G-z;local F=x(J,J)local A=4*x(K,K)local L=4*(x(J,K)+H*H)/(2*F)local j=(L*L-A/F)^0.5;local G,M=L-j,L+j;if not(G>0)then G=M end;G=G^0.5;return J*G/2+(I or v)+K/G,G end;function isvisible(z,G)local N=(z-G).Magnitude;local O=workspace:FindPartOnRayWithIgnoreList(Ray.new(z,(G-z).Unit*N),o)return O==nil or O.Transparency~=0 end;function getclosest()local P,Q,R=nil,nil,Client.Toggles.UseFov and Client.Values.Fov or math.huge;for i,j in pairs(B)do if i.Team~=s.Team and j.head then local S,T=workspace.Camera:WorldToViewportPoint(j.head.Position)local U=(g.Position-Vector2.new(S.X,S.Y)).Magnitude;if T and(not Client.Toggles.VisibleCheck or isvisible(camera.cframe.Position,j.head.Position))and U<R then P=i;Q=j[Client.Toggles.Head and"head"or"torso"].Position;R=U end end end;return P,Q end;function particle.new(V)if gamelogic.currentgun and gamelogic.currentgun.barrel and Client.Toggles.SilentAim and gamelogic.currentgun and(V.visualorigin==gamelogic.currentgun.barrel.Position or V.visualorigin==gamelogic.currentgun.aimsightdata[1].sightpart.Position)then local P,Q=getclosest()if P then V.velocity=trajectory(V.visualorigin,y,Q,gamelogic.currentgun.data.bulletspeed)V.position=Q end end;return new(V)end;local W=Vector3.new(0,4.5,0)local X=tick()local Y=nil;local Z=0;function setpos(Q)local _=tick()if X>_ then X=X+0.000001;_=X end;Y=Q;send(network,"repupdate",Q,Vector2.new(camera.angles.X,camera.angles.Y),_)end;function move(a0,a1)local a2=CFrame.new(a0,a1)for i=1,math.floor((a0-a1).Magnitude/9.5)do setpos(a2*Vector3.new(0,0,-9.5*i))end;setpos(a1)end;function farmove(a0,a1)move(a0,a1)move(a1,a0)move(a0,a1)end;function resetvelocity(Q)for i=1,10 do setpos(Q)end end;function network.send(self,a3,...)local a4={...}if a3=="newbullets"then if Client.Toggles.Invisible then move(Y,a4[1].camerapos)a4[2]=X end;if Client.Toggles.SilentAim then local P,Q=getclosest()if P and gamelogic.currentgun then local a5=trajectory(a4[1].firepos,y,Q,gamelogic.currentgun.data.bulletspeed)for i=1,#a4[1].bullets do a4[1].bullets[i][1]=a5 end end end elseif a3=="falldamage"then return elseif a3=="ping"and Client.Toggles.Invisible then a4[1]=a4[1]+0.5;a4[2]=a4[2]+0.5 elseif a3=="spawn"then Y=nil;Z=0 elseif a3=="repupdate"and Client.Toggles.Invisible then if not Y then Y=a4[1]X=a4[3]+0.5 end;a4[1]=a4[1]+Vector3.new(math.random(-50,50)*0.01,math.random(-50,50)*0.01,math.random(-50,50)*0.01)if Z<2 then Z=Z+1;local a6=a4[1]+W*Z;farmove(a4[1],a6)return else Z=0;farmove(Y,a4[1])resetvelocity(Y)X=a4[3]+0.5;return end end;return send(self,a3,unpack(a4))end;function char.jump(self,a7)return jump(self,a7+Client.Values.JumpPower)end;function char.setbasewalkspeed(self,a8)return setbasewalkspeed(self,a8+Client.Values.WalkSpeed)end;function addesp(a9)u[a9]={visible=false,all={},boxoutline=Drawing.new("Square"),box=Drawing.new("Square"),tracer=Drawing.new("Line"),skeleton={head=Drawing.new("Line"),secondhead=Drawing.new("Line"),torso=Drawing.new("Line"),leftupperarm=Drawing.new("Line"),leftlowerarm=Drawing.new("Line"),rightupperarm=Drawing.new("Line"),rightlowerarm=Drawing.new("Line"),leftupperleg=Drawing.new("Line"),leftlowerleg=Drawing.new("Line"),rightupperleg=Drawing.new("Line"),rightlowerleg=Drawing.new("Line")}}table.insert(u[a9].all,u[a9].box)table.insert(u[a9].all,u[a9].boxoutline)table.insert(u[a9].all,u[a9].tracer)for i,j in pairs(u[a9].skeleton)do table.insert(u[a9].all,j)end;for i,j in pairs(u[a9].all)do j.Visible=false;j.Color=Color3.new(1,1,1)pcall(function()j.Thickness=1;j.Filled=false end)end;u[a9].tracer.Color=Color3.new(1,0,0)u[a9].tracer.From=Vector2.new(workspace.Camera.ViewportSize.X*0.5,0)u[a9].boxoutline.Color=Color3.new(0,0,0)u[a9].boxoutline.Thickness=3 end;function removeesp(a9)u[a9].box:Remove()u[a9].tracer:Remove()for i,j in pairs(u[a9].skeleton)do j:Remove()end;u[a9]=nil end;for i,j in pairs(r:GetPlayers())do if j~=s then addesp(j)end end;r.PlayerAdded:Connect(addesp)r.PlayerRemoving:Connect(removeesp)function getscreenpos(aa)local S,ab=workspace.Camera:WorldToViewportPoint(aa)return Vector2.new(S.X,S.Y),ab end;function getpartends(O)local ac,H=O.CFrame,O.Size;return getscreenpos(ac*Vector3.new(0,H.Y*0.5,0)),getscreenpos(ac*Vector3.new(0,-H.Y*0.5,0))end;q.RenderStepped:Connect(function()local ad=tick()if ad-t>0.02 then t=ad;if Client.Toggles.UseFov then g.Radius=char.unaimedfov/workspace.Camera.FieldOfView*Client.Values.Fov;g.Position=Vector2.new(workspace.Camera.ViewportSize.X*0.5,workspace.Camera.ViewportSize.Y*0.5)end;for a9,ae in pairs(u)do local char=B[a9]if a9.Team~=s.Team and char and char.head then local af,ab=getscreenpos(char.head.Position)local ag=getscreenpos(char.torso.Position)if ab then if not ae.visible then ae.visible=true;ae.box.Visible=Client.Toggles.Boxes;ae.boxoutline.Visible=Client.Toggles.Boxes;ae.tracer.Visible=Client.Toggles.Tracers;if Client.Toggles.Skeleton then for i,j in pairs(ae.skeleton)do j.Visible=true end end end;if Client.Toggles.Tracers then ae.tracer.To=af end;if Client.Toggles.Boxes then ae.box.Size=Vector2.new((ag.Y-af.Y)*3,(ag.Y-af.Y)*4)ae.box.Position=ag-ae.box.Size*0.5;ae.boxoutline.Size=ae.box.Size;ae.boxoutline.Position=ae.box.Position end;if Client.Toggles.Skeleton then local ah,ai=getpartends(char.torso)local aj,ak=getpartends(char.rarm)local al,am=getpartends(char.larm)local an,ao=getpartends(char.rleg)local ap,aq=getpartends(char.lleg)local ar=getscreenpos(char.rarm.Position)local as=getscreenpos(char.larm.Position)local at=getscreenpos(char.rleg.Position)local au=getscreenpos(char.lleg.Position)local av=getscreenpos(char.torso.CFrame*Vector3.new(0,-char.torso.Size.Y*0.5,-1))ae.skeleton.head.From=af;ae.skeleton.head.To=ah;ae.skeleton.secondhead.From=ai;ae.skeleton.secondhead.To=av;ae.skeleton.torso.From=ai;ae.skeleton.torso.To=ah;ae.skeleton.leftupperarm.From=ah;ae.skeleton.leftupperarm.To=as;ae.skeleton.leftlowerarm.From=am;ae.skeleton.leftlowerarm.To=as;ae.skeleton.rightupperarm.From=ah;ae.skeleton.rightupperarm.To=ar;ae.skeleton.rightlowerarm.From=ak;ae.skeleton.rightlowerarm.To=ar;ae.skeleton.leftupperleg.From=ai;ae.skeleton.leftupperleg.To=au;ae.skeleton.leftlowerleg.From=aq;ae.skeleton.leftlowerleg.To=au;ae.skeleton.rightupperleg.From=ai;ae.skeleton.rightupperleg.To=at;ae.skeleton.rightlowerleg.From=ao;ae.skeleton.rightlowerleg.To=at end elseif ae.visible then ae.visible=false;ae.box.Visible=false;ae.boxoutline.Visible=false;ae.tracer.Visible=false;for i,j in pairs(ae.skeleton)do j.Visible=false end end elseif ae.visible then ae.visible=false;ae.box.Visible=false;ae.boxoutline.Visible=false;ae.tracer.Visible=false;for i,j in pairs(ae.skeleton)do j.Visible=false end end end end end)debug.setupvalue(loadgun,2,function(...)local V=m(...)setreadonly(V,false)if Client.Toggles.NoRecoil then V["aimcamkickspeed"]=9999999;V["camkickspeed"]=9999999;V["modelkickspeed"]=9999999 end;if Client.Toggles.NoSpread then V["hipfirespreadrecover"]=9999999;V["hipfirespread"]=9999999 end;if Client.Toggles.SmallCrosshair then V["crosssize"]=1;V["crossexpansion"]=0 end;return V end)debug.setupvalue(camera.step,11,function(...)return Client.Toggles.NoCamBob and w or n(...)end)debug.setupvalue(loadgun,58,function(...)return Client.Toggles.NoBob and w or l(...)end)debug.setupvalue(loadgun,59,function(...)return Client.Toggles.NoSway and w or k(...)end)
+DarkHub_Client = {SavedSettings = false}
+if isfolder and makefolder and not isfolder('DarkHub') then
+    makefolder('DarkHub')
+    DarkHub_Client.SaveSettings = true
+    if isfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB') then
+        DarkHub_Client.SavedSettings = true
+        DarkHub_Client.GameSettings = game:GetService('HttpService'):JSONDecode(readfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB'))
+    end
+elseif isfolder('DarkHub') then
+    DarkHub_Client.SaveSettings = true
+    if isfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB') then
+        DarkHub_Client.SavedSettings = true
+        DarkHub_Client.GameSettings = game:GetService('HttpService'):JSONDecode(readfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB'))
+    end
+else
+    DarkHub_Client.SaveSettings = false
+end
+
+IsUpToDate = pcall(function()
+    Client = {
+        Toggles = {
+            SilentAim = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.SilentAim or false,
+            VisibleCheck = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.VisibleCheck or false,
+            Head = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Head or false,
+            UseFov = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.UseFov or false,
+            NoRecoil = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoRecoil or false,
+            NoSpread = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoSpread or false,
+            SmallCrosshair = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.SmallCrosshair or false,
+            NoSway = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoSway or false,
+            NoBob = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoBob or false,
+            NoCamBob = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.NoCamBob or false,
+            Boxes = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Boxes or false,
+            Tracers = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Tracers or false,
+            Skeleton = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Skeleton or false,
+            Invisible = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Toggles.Invisible or false
+        },
+        Values = {
+            Fov = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.Fov or 500,
+            WalkSpeed = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.WalkSpeed or 0,
+            JumpPower = DarkHub_Client.SavedSettings and DarkHub_Client.GameSettings.Values.JumpPower or 0
+        }
+    }
+end)
+if not IsUpToDate and DarkHub_Client.SavedSettings and isfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB') then
+    delfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB')
+    game.Players.LocalPlayer:Kick('DarkHub Settings Out Of Date - Issue Fixed | Restart DarkHub to Continue')
+end
+
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub_V3/main/UILIB",true))()
+local main = lib:Window()
+local Aimbot = main:Tab('Aimbot')
+local GunMods = main:Tab('Gun Mods')
+local Esp = main:Tab('Esp')
+local Misc = main:Tab('Miscellaneous')
+local FovCircle = Drawing.new("Circle")
+FovCircle.Visible = Client.Toggles.UseFov
+FovCircle.Radius = Client.Values.Fov
+FovCircle.Color = Color3.new(1, 1, 1)
+FovCircle.Thickness = 1
+FovCircle.Position = Vector2.new(workspace.Camera.ViewportSize.X * 0.5, workspace.Camera.ViewportSize.Y * 0.5)
+
+local found = {}
+for i, v in pairs(getnilinstances()) do
+    if v.ClassName == "ModuleScript" and (v.Name == "effects" or v.Name == "camera" or v.Name == "particle") then
+        found[v.Name] = require(v)
+    end
+end
+
+for i, v in pairs(getgc(false)) do
+    if getinfo(v).name == "loadgun" then
+        getgenv()["loadgun"] = v
+        break
+    end
+end
+
+found["network"] = debug.getupvalue(found.effects.breakwindow, 1)
+found["char"] = debug.getupvalue(found.effects.muzzleflash, 2)
+found["replication"] = debug.getupvalue(found.camera.setspectate, 1)
+found["hud"] = debug.getupvalue(found.char.setmovementmode, 10)
+found["gamelogic"] = debug.getupvalue(found.char.setsprint, 1)
+found["input"] = debug.getupvalue(found.gamelogic.controllerstep, 2)
+local gunsway = debug.getupvalue(found.char.loadgrenade, 34)
+local gunbob = debug.getupvalue(found.char.loadgrenade, 33)
+local gunrequire = debug.getupvalue(loadgun, 2)
+local fromaxisangle = debug.getupvalue(found.camera.step, 11)
+local physicsignore = {workspace.Players, workspace.Camera, workspace.Ignore}
+local userinputservice = game:GetService("UserInputService")
+local runservice = game:GetService("RunService")
+local workspace = game:GetService("Workspace")
+local players = game:GetService("Players")
+local localplayer = players.LocalPlayer
+local rendertime = tick()
+local playeresp = {}
+local v3 = Vector3.new()
+local newcf = CFrame.new()
+local dot = v3.Dot
+local accel = Vector3.new(0, -workspace.Gravity, 0)
+
+for i, v in pairs(found) do
+    getgenv()[i] = v
+
+    for o, b in pairs(v) do
+        if not getgenv()[o] and type(b) == "function" then
+            getgenv()[o] = b
+        end
+    end
+end
+local chartable = debug.getupvalue(getbodyparts, 1)
+setreadonly(particle, false)
+
+Aimbot:Toggle('Silent Aim', function(state)
+    Client.Toggles.SilentAim = state
+end,Client.Toggles.SilentAim)
+
+Aimbot:Toggle('Visible Check', function(state)
+    Client.Toggles.VisibleCheck = state
+end,Client.Toggles.VisibleCheck)
+
+Aimbot:Toggle('Head Shots Only', function(state)
+    Client.Toggles.Head = state
+end,Client.Toggles.Head)
+
+Aimbot:Toggle('Use Fov', function(state)
+    Client.Toggles.UseFov = state
+    FovCircle.Visible = state
+end,Client.Toggles.UseFov)
+
+Aimbot:Slider("Fov", 1, 1000, function(num)
+    Client.Values.Fov = num
+    FovCircle.Radius = num
+end,Client.Values.Fov)
+
+GunMods:Toggle('No Recoil', function(state)
+    Client.Toggles.NoRecoil = state
+end,Client.Toggles.NoRecoil)
+
+GunMods:Toggle('No Spread', function(state)
+    Client.Toggles.NoSpread = state
+end,Client.Toggles.NoSpread)
+
+GunMods:Toggle('Small Crosshair', function(state)
+    Client.Toggles.SmallCrosshair = state
+end,Client.Toggles.SmallCrosshair)
+
+GunMods:Toggle('No Sway', function(state)
+    Client.Toggles.NoSway = state
+end,Client.Toggles.NoSway)
+
+GunMods:Toggle('No Bob', function(state)
+    Client.Toggles.NoBob = state
+end,Client.Toggles.NoBob)
+
+GunMods:Toggle('No Camera Bob', function(state)
+    Client.Toggles.NoCamBob = state
+end,Client.Toggles.NoCamBob)
+
+Esp:Toggle('Box Esp', function(state)
+    Client.Toggles.Boxes = state
+end,Client.Toggles.Boxes)
+
+Esp:Toggle('Tracer Esp', function(state)
+    Client.Toggles.Tracers = state
+end,Client.Toggles.Tracers)
+
+Esp:Toggle('Skeleton Esp', function(state)
+    Client.Toggles.Skeleton = state
+end,Client.Toggles.Skeleton)
+
+Misc:Slider("Walk Speed", 0, 100, function(num)
+    Client.Values.WalkSpeed = num
+
+    if char.alive then
+        char:setbasewalkspeed(gamelogic.currentgun.data.walkspeed + num)
+    end
+end,Client.Values.WalkSpeed)
+
+Misc:Slider("Jump Power", 0, 100, function(num)
+    Client.Values.JumpPower = num
+end,Client.Values.JumpPower)
+
+local Gravity = workspace.Gravity
+Misc:Slider("Gravity", 0, 100, function(num)
+    workspace.Gravity = (Gravity * 0.01) * (100 - num)
+end,Client.Values.Gravity)
+
+--Goes under all framework
+spawn(function()
+    while true do wait(5)
+        if DarkHub_Client.SaveSettings then
+            writefile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB',game:GetService('HttpService'):JSONEncode({['Toggles'] = Client.Toggles,['Values'] = Client.Values}))    
+        end
+    end
+end)
+
+function trajectory(o, a, t, s, e)
+    local f = -a
+    local ld = t - o
+    local a = dot(f, f)
+    local b = 4 * dot(ld, ld)
+    local k = (4 * (dot(f, ld) + s * s)) / (2 * a)
+    local v = (k * k - b / a) ^ 0.5
+    local t, t0 = k - v, k + v
+
+    if not (t > 0) then
+        t = t0
+    end
+
+    t = t ^ 0.5
+    return f * t / 2 + (e or v3) + ld / t, t
+end
+
+function isvisible(o, t)
+    local dist = (o - t).Magnitude
+    local part = workspace:FindPartOnRayWithIgnoreList(Ray.new(o, (t - o).Unit * dist), physicsignore)
+
+    return part == nil or part.Transparency ~= 0
+end
+
+function getclosest()
+    local closest, pos, maxdist = nil, nil, Client.Toggles.UseFov and FovCircle.Radius or math.huge
+
+    for i, v in pairs(chartable) do
+        if i.Team ~= localplayer.Team and v.head then
+            local screenpos, visible = workspace.Camera:WorldToViewportPoint(v.head.Position)
+            local distance = (FovCircle.Position - Vector2.new(screenpos.X, screenpos.Y)).Magnitude
+
+            if visible and (not Client.Toggles.VisibleCheck or isvisible(camera.cframe.Position, v.head.Position)) and distance < maxdist then
+                closest = i
+                pos = v[Client.Toggles.Head and "head" or "torso"].Position
+                maxdist = distance
+            end
+        end
+    end
+
+    return closest, pos
+end
+
+function particle.new(data)
+    if gamelogic.currentgun and gamelogic.currentgun.barrel and Client.Toggles.SilentAim and gamelogic.currentgun and (data.visualorigin == gamelogic.currentgun.barrel.Position or data.visualorigin == gamelogic.currentgun.aimsightdata[1].sightpart.Position) then
+        local closest, pos = getclosest()
+
+        if closest then
+            data.velocity = trajectory(data.visualorigin, accel, pos, gamelogic.currentgun.data.bulletspeed)
+            data.position = pos
+        end
+    end
+
+    return new(data)
+end
+
+local upvector = Vector3.new(0, 4.5, 0)
+local currenttime = tick()
+local lastpos = nil
+local tpcount = 0
+function setpos(pos)
+    local newtimee = tick()
+    if currenttime > newtimee then
+        currenttime = currenttime + 0.000001
+        newtimee = currenttime
+    end
+
+    lastpos = pos
+    send(network, "repupdate", pos, Vector2.new(camera.angles.X, camera.angles.Y), newtimee)
+end
+
+function move(origin, target)
+    local cframe = CFrame.new(origin, target)
+
+    for i = 1, math.floor((origin - target).Magnitude / 9.5) do
+        setpos(cframe * Vector3.new(0, 0, -9.5 * i))
+    end
+
+    setpos(target)
+end
+
+function network.send(self, name, ...)
+    local args = {...}
+
+    if name == "newbullets" then
+        if Client.Toggles.SilentAim then
+            local closest, pos = getclosest()
+
+            if closest and gamelogic.currentgun then
+                local velocity = trajectory(args[1].firepos, accel, pos, gamelogic.currentgun.data.bulletspeed)
+                
+                for i = 1, #args[1].bullets do
+                    args[1].bullets[i][1] = velocity
+                end
+            end
+        end
+    elseif name == "falldamage" then
+        return
+    elseif name == "spawn" then
+        lastpos = nil
+        tpcount = 0
+    end
+
+    return send(self, name, unpack(args))
+end
+
+function char.jump(self, power)
+    return jump(self, power + Client.Values.JumpPower)
+end
+
+function char.setbasewalkspeed(self, speed)
+    return setbasewalkspeed(self, speed + Client.Values.WalkSpeed)
+end
+
+function addesp(player)
+    playeresp[player] = {
+        visible = false,
+        all = {},
+        boxoutline = Drawing.new("Square"),
+        box = Drawing.new("Square"),
+        tracer = Drawing.new("Line"),
+        skeleton = {
+            head = Drawing.new("Line"),
+            secondhead = Drawing.new("Line"),
+            torso = Drawing.new("Line"),
+            leftupperarm = Drawing.new("Line"),
+            leftlowerarm = Drawing.new("Line"),
+            rightupperarm = Drawing.new("Line"),
+            rightlowerarm = Drawing.new("Line"),
+            leftupperleg = Drawing.new("Line"),
+            leftlowerleg = Drawing.new("Line"),
+            rightupperleg = Drawing.new("Line"),
+            rightlowerleg = Drawing.new("Line")
+        }
+    }
+
+    table.insert(playeresp[player].all, playeresp[player].box)
+    table.insert(playeresp[player].all, playeresp[player].boxoutline)
+    table.insert(playeresp[player].all, playeresp[player].tracer)
+    for i, v in pairs(playeresp[player].skeleton) do
+        table.insert(playeresp[player].all, v)
+    end
+
+    for i, v in pairs(playeresp[player].all) do
+        v.Visible = false
+        v.Color = Color3.new(1, 1, 1)
+        pcall(function()
+            v.Thickness = 1
+            v.Filled = false
+        end)
+    end
+    playeresp[player].tracer.Color = Color3.new(1, 0, 0)
+    playeresp[player].tracer.From = Vector2.new(workspace.Camera.ViewportSize.X * 0.5, 0)
+    playeresp[player].boxoutline.Color = Color3.new(0, 0, 0)
+    playeresp[player].boxoutline.Thickness = 3
+end
+
+function removeesp(player)
+    playeresp[player].box:Remove()
+    playeresp[player].tracer:Remove()
+    for i, v in pairs(playeresp[player].skeleton) do
+        v:Remove()
+    end
+    playeresp[player] = nil
+end
+
+for i, v in pairs(players:GetPlayers()) do
+    if v ~= localplayer then
+        addesp(v)
+    end
+end
+
+players.PlayerAdded:Connect(addesp)
+players.PlayerRemoving:Connect(removeesp)
+
+function getscreenpos(position)
+    local screenpos, onscreen = workspace.Camera:WorldToViewportPoint(position)
+
+    return Vector2.new(screenpos.X, screenpos.Y), onscreen
+end
+
+function getpartends(part)
+    local cf, s = part.CFrame, part.Size
+    return getscreenpos(cf * Vector3.new(0, s.Y * 0.5, 0)), getscreenpos(cf * Vector3.new(0, -s.Y * 0.5, 0))
+end
+
+runservice.RenderStepped:Connect(function()
+    local time = tick()
+
+    if time - rendertime > 0.02 then
+        rendertime = time
+
+        if Client.Toggles.UseFov then
+            FovCircle.Radius = (char.unaimedfov / workspace.Camera.FieldOfView) * Client.Values.Fov 
+            FovCircle.Position = Vector2.new(workspace.Camera.ViewportSize.X * 0.5, workspace.Camera.ViewportSize.Y * 0.5)
+        end
+
+        for player, drawings in pairs(playeresp) do
+            local char = chartable[player]
+
+            if player.Team ~= localplayer.Team and char and char.head then
+                local headpos, onscreen = getscreenpos(char.head.Position)
+                local torsopos = getscreenpos(char.torso.Position)
+
+                if onscreen then
+                    if not drawings.visible then
+                        drawings.visible = true
+    
+                        drawings.box.Visible = Client.Toggles.Boxes
+                        drawings.boxoutline.Visible = Client.Toggles.Boxes
+                        drawings.tracer.Visible = Client.Toggles.Tracers
+    
+                        if Client.Toggles.Skeleton then
+                            for i, v in pairs(drawings.skeleton) do
+                                v.Visible = true
+                            end
+                        end
+                    end
+
+                    if Client.Toggles.Tracers then
+                        drawings.tracer.To = headpos
+                    end
+
+                    if Client.Toggles.Boxes then
+                        drawings.box.Size = Vector2.new((torsopos.Y - headpos.Y) * 3, (torsopos.Y - headpos.Y) * 4)
+                        drawings.box.Position = torsopos - drawings.box.Size * 0.5
+                        drawings.boxoutline.Size = drawings.box.Size
+                        drawings.boxoutline.Position = drawings.box.Position
+                    end
+
+                    if Client.Toggles.Skeleton then
+                        local torsotop, torsobottom = getpartends(char.torso)
+                        local rarmtop, rarmbottom = getpartends(char.rarm)
+                        local larmtop, larmbottom = getpartends(char.larm)
+                        local rlegtop, rlegbottom = getpartends(char.rleg)
+                        local llegtop, llegbottom = getpartends(char.lleg)
+                        local rarm = getscreenpos(char.rarm.Position)
+                        local larm = getscreenpos(char.larm.Position)
+                        local rleg = getscreenpos(char.rleg.Position)
+                        local lleg = getscreenpos(char.lleg.Position)
+                        local endpoint = getscreenpos(char.torso.CFrame * Vector3.new(0, -char.torso.Size.Y * 0.5, -1))
+
+                        drawings.skeleton.head.From = headpos
+                        drawings.skeleton.head.To = torsotop
+                        drawings.skeleton.secondhead.From = torsobottom
+                        drawings.skeleton.secondhead.To = endpoint
+                        drawings.skeleton.torso.From = torsobottom
+                        drawings.skeleton.torso.To = torsotop
+                        drawings.skeleton.leftupperarm.From = torsotop
+                        drawings.skeleton.leftupperarm.To = larm
+                        drawings.skeleton.leftlowerarm.From = larmbottom
+                        drawings.skeleton.leftlowerarm.To = larm
+                        drawings.skeleton.rightupperarm.From = torsotop
+                        drawings.skeleton.rightupperarm.To = rarm
+                        drawings.skeleton.rightlowerarm.From = rarmbottom
+                        drawings.skeleton.rightlowerarm.To = rarm
+                        drawings.skeleton.leftupperleg.From = torsobottom
+                        drawings.skeleton.leftupperleg.To = lleg
+                        drawings.skeleton.leftlowerleg.From = llegbottom
+                        drawings.skeleton.leftlowerleg.To = lleg
+                        drawings.skeleton.rightupperleg.From = torsobottom
+                        drawings.skeleton.rightupperleg.To = rleg
+                        drawings.skeleton.rightlowerleg.From = rlegbottom
+                        drawings.skeleton.rightlowerleg.To = rleg
+                    end
+                elseif drawings.visible then
+                    drawings.visible = false
+                    drawings.box.Visible = false
+                    drawings.boxoutline.Visible = false
+                    drawings.tracer.Visible = false
+                    
+                    for i, v in pairs(drawings.skeleton) do
+                        v.Visible = false
+                    end
+                end
+            elseif drawings.visible then
+                drawings.visible = false
+                drawings.box.Visible = false
+                drawings.boxoutline.Visible = false
+                drawings.tracer.Visible = false
+                
+                for i, v in pairs(drawings.skeleton) do
+                    v.Visible = false
+                end
+            end
+        end
+    end
+end)
+
+debug.setupvalue(loadgun, 2, function(...)
+    local data = gunrequire(...)
+    setreadonly(data, false)
+
+    if Client.Toggles.NoRecoil then
+        data["aimcamkickspeed"] = 9999999
+        data["camkickspeed"] = 9999999
+        data["modelkickspeed"] = 9999999
+    end
+
+    if Client.Toggles.NoSpread then
+        data["hipfirespreadrecover"] = 9999999
+        data["hipfirespread"] = 9999999
+    end
+
+    if Client.Toggles.SmallCrosshair then
+        data["crosssize"] = 1
+        data["crossexpansion"] = 0
+    end
+
+    return data
+end)
+
+debug.setupvalue(camera.step, 11, function(...)
+    return Client.Toggles.NoCamBob and newcf or fromaxisangle(...)
+end)
+
+debug.setupvalue(loadgun, 58, function(...)
+    return Client.Toggles.NoBob and newcf or gunbob(...)
+end)
+
+debug.setupvalue(loadgun, 59, function(...)
+    return Client.Toggles.NoSway and newcf or gunsway(...)
+end)
