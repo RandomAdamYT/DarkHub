@@ -1,3 +1,4 @@
+
 local settings = {
     AutoFarm = false,
     God = false,
@@ -155,3 +156,4 @@ end)
         end
     end)
 
+print('loaded')
