@@ -27,8 +27,8 @@ end
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub_V3/main/UILIB",true))()
 main = lib:Window()
 local ClientVars = getsenv(GetFramework()).CheckIsToolValid
-local RecoilHandler = require(game:GetService("ReplicatedStorage").ClientModules.RecoilCamHandler)
-local RayCastClient = require(game:GetService("ReplicatedStorage").ClientModules.RayCastClient)
+local RecoilHandler = require(game:GetService("ReplicatedStorage").ClientModules.CamRecoilHandler)
+local M = require(game:GetService("ReplicatedStorage").ClientModules.RayCastClient)
 
 IsUpToDate = pcall(function()
     Client = {
@@ -50,29 +50,6 @@ if not IsUpToDate and DarkHub_Client.SavedSettings and isfile('DarkHub/DarkHub_'
 end
 
 local Main = main:Tab("Main")
-Main:Button('Global Sound Annoy (Plays Once)',function()
-    local REMOTES = game:GetService("ReplicatedStorage"):FindFirstChild('FirearmSoundHandler',true).Parent
-    for i,v in pairs(game.Players:GetPlayers()) do
-        if v.Character and v.Character:FindFirstChild('Head') then
-            local v1 = 1
-            local v2 = game:GetService("ReplicatedStorage").ClientSounds.PreloadEndgameThemes.Sound
-            local v3 = v.Character.Head
-            local v4 = {
-                [1] = 95, 
-                [2] = 105
-            }
-            local v5 = {
-                [1] = "SHOOT"
-            }
-            local v6 = {
-            }
-            local v7 = false
-            local event = REMOTES.FirearmSoundHandler
-            
-            event:FireServer(v1, v2, v3, v4, v5, v6, v7)
-        end
-    end
-end)
 
 Main:Toggle('Silent Aim',function(state)
     Client.Toggles.SilentAim = state
@@ -116,11 +93,17 @@ game:GetService('RunService').RenderStepped:Connect(function()
         end)
     end
 end)
+
+
+
 function GetClosestPlr()
     Plr = nil
     MaxDis = math.huge
     for i,v in pairs(game.Players.GetPlayers(game.Players)) do
-        if v ~= game.Players.LocalPlayer and v.TeamColor ~= game.Players.LocalPlayer.TeamColor and v.Character and v.Character.FindFirstChild(v.Character,"Head") then
+        if v ~= game.Players.LocalPlayer  and v.Character and v.Character.FindFirstChild(v.Character,"Head") then
+            if game:GetService("ReplicatedStorage").Game.GameMode == 'Team Deathmatch' and v.TeamColor == game.Players.LocalPlayer.TeamColor then
+                return    
+            end
             local Pos, Vis = game.Workspace.CurrentCamera.WorldToScreenPoint(game.Workspace.CurrentCamera,v.Character.FindFirstChild(v.Character,"Head").Position)
             if Vis then
                 mag = (Vector2.new(Pos.X,Pos.Y) - Vector2.new(game.Players.LocalPlayer.GetMouse(game.Players.LocalPlayer).X,game.Players.LocalPlayer.GetMouse(game.Players.LocalPlayer).Y)).magnitude
@@ -133,14 +116,13 @@ function GetClosestPlr()
     end
     return Plr
 end
-Old = RayCastClient.CastRayMouse
-RayCastClient.CastRayMouse = function(p31,p32,p33)
-    if Client.Toggles.SilentAim and GetClosestPlr() ~= nil then
-        NewPoint = p31:WorldToScreenPoint(GetClosestPlr().Character.Head.Position)
-        p32 = NewPoint.X
-        p33 = NewPoint.Y + game:GetService('GuiService'):GetGuiInset().Y;
+
+Old = M.RayCast
+M.RayCast = function(p13)
+    if GetClosestPlr() ~= nil then
+        return GetClosestPlr().Character.Head, GetClosestPlr().Character.Head.Position, GetClosestPlr().Character.Head.Position
     end
-    return Old(p31,p32,p33)
+    return Old(p13)
 end
 
 while true do wait(5)
