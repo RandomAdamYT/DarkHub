@@ -302,8 +302,12 @@ OldIndex = hookfunction(getrawmetatable(game).__index,function(...)
 	return OldIndex(...)
 end)
 
+local OldRANDOM;
 OldRANDOM = hookfunction(getrenv().math.random,function(...)
     local Args = {...}
+    if Args[1] == 7 then
+        return wait(9e9)
+    end
     if tostring(getfenv(2).script) == 'ItemControlScript' and Client.Toggles.NoSpread then
         if math.abs(Args[1]) == Args[2] then
             Args[1] = -0.1
