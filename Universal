@@ -1,3 +1,6 @@
+if game.PlaceId == 2194874153 then return loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomAdamYT/DarkHub/master/JAILBIRD", true))() end
+
+
 local Settings = {
     Aimbot = false,
     Smoothness = 50,
