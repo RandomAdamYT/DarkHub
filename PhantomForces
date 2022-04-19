@@ -16,6 +16,7 @@ else
     DarkHub_Client.SaveSettings = false
 end
 
+--Client Values that will save basicly
 IsUpToDate = pcall(function()
     Client = {
         Toggles = {
@@ -41,6 +42,7 @@ IsUpToDate = pcall(function()
         }
     }
 end)
+
 if not IsUpToDate and DarkHub_Client.SavedSettings and isfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB') then
     delfile('DarkHub/DarkHub_'..tostring(Game.PlaceId)..'.DARKHUB')
     game.Players.LocalPlayer:Kick('DarkHub Settings Out Of Date - Issue Fixed | Restart DarkHub to Continue')
@@ -95,6 +97,7 @@ local v3 = Vector3.new()
 local newcf = CFrame.new()
 local dot = v3.Dot
 local accel = Vector3.new(0, -workspace.Gravity, 0)
+local badtick, add, reset = tick(), 0, true
 
 for i, v in pairs(found) do
     getgenv()[i] = v
@@ -107,6 +110,8 @@ for i, v in pairs(found) do
 end
 local chartable = debug.getupvalue(getbodyparts, 1)
 setreadonly(particle, false)
+
+--Framework under this along with ui elements
 
 Aimbot:Toggle('Silent Aim', function(state)
     Client.Toggles.SilentAim = state
@@ -172,16 +177,21 @@ Misc:Slider("Walk Speed", 0, 100, function(num)
     if char.alive then
         char:setbasewalkspeed(gamelogic.currentgun.data.walkspeed + num)
     end
-end,Client.Values.WalkSpeed)
+end,Client.Values.Fov)
 
 Misc:Slider("Jump Power", 0, 100, function(num)
     Client.Values.JumpPower = num
-end,Client.Values.JumpPower)
+end,Client.Values.Fov)
 
 local Gravity = workspace.Gravity
 Misc:Slider("Gravity", 0, 100, function(num)
     workspace.Gravity = (Gravity * 0.01) * (100 - num)
 end,Client.Values.Gravity)
+
+Misc:Toggle('Invisible', function(state)
+    Client.Toggles.Invisible = state
+    reset = true
+end,Client.Toggles.Invisible)
 
 --Goes under all framework
 spawn(function()
@@ -217,7 +227,7 @@ function isvisible(o, t)
 end
 
 function getclosest()
-    local closest, pos, maxdist = nil, nil, Client.Toggles.UseFov and FovCircle.Radius or math.huge
+    local closest, pos, maxdist = nil, nil, Client.Toggles.UseFov and Client.Values.Fov or math.huge
 
     for i, v in pairs(chartable) do
         if i.Team ~= localplayer.Team and v.head then
@@ -248,31 +258,6 @@ function particle.new(data)
     return new(data)
 end
 
-local upvector = Vector3.new(0, 4.5, 0)
-local currenttime = tick()
-local lastpos = nil
-local tpcount = 0
-function setpos(pos)
-    local newtimee = tick()
-    if currenttime > newtimee then
-        currenttime = currenttime + 0.000001
-        newtimee = currenttime
-    end
-
-    lastpos = pos
-    send(network, "repupdate", pos, Vector2.new(camera.angles.X, camera.angles.Y), newtimee)
-end
-
-function move(origin, target)
-    local cframe = CFrame.new(origin, target)
-
-    for i = 1, math.floor((origin - target).Magnitude / 9.5) do
-        setpos(cframe * Vector3.new(0, 0, -9.5 * i))
-    end
-
-    setpos(target)
-end
-
 function network.send(self, name, ...)
     local args = {...}
 
@@ -290,9 +275,19 @@ function network.send(self, name, ...)
         end
     elseif name == "falldamage" then
         return
-    elseif name == "spawn" then
-        lastpos = nil
-        tpcount = 0
+   elseif name == "ping" then
+       reset = true
+    elseif name == "repupdate" and Client.Toggles.Invisible then
+       if reset then
+           badtick = args[3]
+           reset = false
+           add = 0
+       end
+       
+        args[1] += Vector3.new(camera.cframe.LookVector.X * add * 0.01, -add, camera.cframe.LookVector.Z * add * 0.01) * 5000
+        args[2] = Vector2.new(0, args[2].Y)
+        args[3] = badtick + add
+        add = add + 0.0000025
     end
 
     return send(self, name, unpack(args))
@@ -508,10 +503,10 @@ debug.setupvalue(camera.step, 11, function(...)
     return Client.Toggles.NoCamBob and newcf or fromaxisangle(...)
 end)
 
-debug.setupvalue(loadgun, 58, function(...)
+debug.setupvalue(loadgun, 57, function(...)
     return Client.Toggles.NoBob and newcf or gunbob(...)
 end)
 
-debug.setupvalue(loadgun, 59, function(...)
+debug.setupvalue(loadgun, 58, function(...)
     return Client.Toggles.NoSway and newcf or gunsway(...)
 end)
