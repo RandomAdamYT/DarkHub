@@ -1,3 +1,8 @@
+local OldCCC;
+OldCCC = hookfunction(getrenv().xpcall,function()
+    return    
+end)
+
 DarkHub_Client = {SavedSettings = false}
 if isfolder and makefolder and not isfolder('DarkHub') then
     makefolder('DarkHub')
