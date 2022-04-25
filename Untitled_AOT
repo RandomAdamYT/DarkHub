@@ -1,4 +1,4 @@
---Low from Felix!
+--Love from Felix
 local LP = game:GetService("Players").LocalPlayer
 local ts = game:GetService("TweenService")
 local function Tween(part, endpos, speed)
