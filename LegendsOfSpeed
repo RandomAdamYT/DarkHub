@@ -103,7 +103,7 @@ local Crystal = {
     "Inferno Crystal",
     "Lava Crystal",
     "Electro Legends Crystal"
-} -- FrontMan𐎺#9917 Is Hotter the Sun UwU
+} -- FrontMan#9917 Is Hotter the Sun UwU
 
 
 task.spawn(function()
