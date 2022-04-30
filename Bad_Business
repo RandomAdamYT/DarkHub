@@ -162,9 +162,13 @@ spawn(function()
             if Client.Toggles.KillAura then
                 for i,v in pairs(GetCharacters()) do
                     local Me = Main.Characters:GetCharacter(game.Players.LocalPlayer)
-                    if Me and v.Hitbox and (v.Hitbox.Chest.Position - game.Workspace.CurrentCamera.CFrame.p).Magnitude < 25 then
-                        if Me.Backpack.Equipped ~= Me:FindFirstChild('Stab',true).Parent.Parent then
-                            game:GetService("ReplicatedStorage"):FindFirstChild('Item',true):FireServer("Equip", Me:FindFirstChild('Stab',true).Parent.Parent)   
+                    if Me and v.Hitbox and (v.Hitbox.Chest.Position - game.Workspace.CurrentCamera.CFrame.p).Magnitude < 20 then
+                       if Me.Backpack.Equipped ~= Me:FindFirstChild('Stab',true).Parent.Parent then
+                            for _,v in pairs(game:GetService("ReplicatedStorage"):FindFirstChild('Item',true).Parent:GetChildren()) do
+                                if v.Name == "Item" and v.ClassName == "RemoteEvent" then
+                                    v:FireServer("Equip", Me:FindFirstChild('Stab',true).Parent.Parent)   
+                                end
+                            end
                         end
                         local v1 = "Stab"
                         local v2 = Me:FindFirstChild('Stab',true).Parent.Parent
