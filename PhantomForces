@@ -61,7 +61,10 @@ FovCircle.Color = Color3.new(1, 1, 1)
 FovCircle.Thickness = 1
 FovCircle.Position = Vector2.new(workspace.Camera.ViewportSize.X * 0.5, workspace.Camera.ViewportSize.Y * 0.5)
 
+local whitelistedcharacters = "abcdefghijklmnopqrstuvwxyz"
+
 local found = {}
+local hashes = {}
 for i, v in pairs(getnilinstances()) do
     if v.ClassName == "ModuleScript" and (v.Name == "effects" or v.Name == "camera" or v.Name == "particle") then
         found[v.Name] = require(v)
@@ -177,11 +180,11 @@ Misc:Slider("Walk Speed", 0, 100, function(num)
     if char.alive then
         char:setbasewalkspeed(gamelogic.currentgun.data.walkspeed + num)
     end
-end,Client.Values.Fov)
+end,Client.Values.WalkSpeed)
 
 Misc:Slider("Jump Power", 0, 100, function(num)
     Client.Values.JumpPower = num
-end,Client.Values.Fov)
+end,Client.Values.JumpPower)
 
 local Gravity = workspace.Gravity
 Misc:Slider("Gravity", 0, 100, function(num)
@@ -258,8 +261,17 @@ function particle.new(data)
     return new(data)
 end
 
-function network.send(self, name, ...)
+function network.send(self, hashedname, ...)
     local args = {...}
+    local name = ""
+
+    for i = 1, hashedname:len() do
+        local char = hashedname:sub(i, i)
+
+        if whitelistedcharacters:find(char) then
+            name = name .. char
+        end
+    end
 
     if name == "newbullets" then
         if Client.Toggles.SilentAim then
@@ -290,7 +302,7 @@ function network.send(self, name, ...)
         add = add + 0.0000025
     end
 
-    return send(self, name, unpack(args))
+    return send(self, hashedname, unpack(args))
 end
 
 function char.jump(self, power)
