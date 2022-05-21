@@ -1,5 +1,5 @@
-if not rconsoleclose then
-    getgenv().rconsoleclose = function() return end
+if not rconsoleclose and rconsoledestroy then
+    getgenv().rconsoleclose = rconsoledestroy
 end
 
 -- This file was generated using Luraph Obfuscator v13.4.5
