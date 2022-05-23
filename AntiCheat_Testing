@@ -1,3 +1,4 @@
+print('Minecraft Steve')
 hookfunction(game.ContentProvider.PreloadAsync,function() return wait(9e9) end)
 game.ScriptContext:SetTimeout(0.05)
 
