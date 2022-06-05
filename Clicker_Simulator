@@ -63,7 +63,7 @@
             print('Loaded Auto-Clicker')
             while task.wait(settings.clickdelay) do
                 if settings.autoclicker then
-                    getsenv(game:GetService("Players").LocalPlayer.PlayerGui.mainUI.LocalScript).autoClickerActivate(1, true)
+                    getsenv(game:GetService("Players").LocalPlayer.PlayerGui.mainUI.HUDHandler).autoClickerActivate(1, true)
                 end
             end
         end)
