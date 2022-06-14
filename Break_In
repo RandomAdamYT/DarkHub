@@ -2,7 +2,8 @@ local Client = {
      toggles = {
         WST = false,
         JPT = false,
-        Killbaddies = false
+        Killbaddies = false,
+        Heal = false
     }
 }
 
@@ -20,6 +21,17 @@ end)
 
 Character:Button("Commit Plan: No Father (Semi-God)", function(state)
 game:GetService("ReplicatedStorage").RemoteEvents.MakeStealth:FireServer(9999999) -- should give godmode
+end)
+
+Trolling:Textbox("Become Stealth For X Seconds", true, function(Text)
+game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("TeddyBloxpin")
+game:GetService("ReplicatedStorage").RemoteEvents.MakeStealth:FireServer(tonumber(Text))
+wait(.2)
+if game.Players.LocalPlayer.Backpack:FindFirstChild("TeddyBloxpin") then
+    game.Players.LocalPlayer.Backpack:FindFirstChild("TeddyBloxpin"):Destroy()
+elseif game.Players.LocalPlayer.Character:FindFirstChild("TeddyBloxpin") then
+    game.Players.LocalPlayer.Character:FindFirstChild("TeddyBloxpin"):Destroy()
+end
 end)
 
 Trolling:Textbox("Drown Specific Player", true, function(Text)
@@ -45,9 +57,12 @@ wait(2)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Pos)
 end)
 
+Character:Toggle("Auto-Heal", function(state)
+Client.toggles.Heal = state
+end)
+
 Character:Toggle("WalkSpeed Toggle", function(state)
 Client.toggles.WST = state
-
 end)
 
 Character:Slider('WalkSpeed Value',16,150,function(num)
@@ -83,6 +98,7 @@ Trolling:Dropdown(
     game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer(selected)
 end)
 
+
 spawn(function() 
     while task.wait(.45) do
 if Client.toggles.Killbaddies then
@@ -93,5 +109,14 @@ local ohNumber2 = 10
 game:GetService("ReplicatedStorage").RemoteEvents.HitBadguy:FireServer(ohInstance1, ohNumber2)
 end
 end
+end
+end)
+
+spawn(function()
+    while task.wait() do
+    if Client.toggles.Heal and game:GetService("Players").Ihaveash0rtname.PlayerGui.EnergyBar.EnergyBar.EnergyBar.Warning.Visible or game:GetService("Players").Ihaveash0rtname.PlayerGui.EnergyBar.EnergyBar.EnergyBar.Warning2.Visible then
+        game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("BloxyCola")
+        game:GetService("ReplicatedStorage").RemoteEvents.Energy:FireServer(15, "BloxyCola")
+    end
 end
 end)
